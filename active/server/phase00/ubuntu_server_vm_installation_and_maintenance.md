@@ -8,13 +8,23 @@ Phase: 00
 DocumentType: Operational Runbook
 Title: Ubuntu Server VM Installation and Maintenance
 Status: Active
-ArchiveVersion: 3
-Date: 2026-07-11
+ArchiveVersion: 4
+Date: 2026-07-24
 HostOS: Arch Linux
 GuestOS: Ubuntu Server 26.04 LTS
 Hypervisor: QEMU/KVM
 ManagementLayer: libvirt
 ```
+
+## Change History
+
+- 2026-07-24: Renamed the libvirt domain and Guest hostname from
+  `ubuntu-server-lab` to `ubuntu-lab`.
+- Renamed the qcow2 disk and UEFI NVRAM paths to use `ubuntu-lab`.
+- Updated the libvirt DHCP reservation name and the host-side paths stored in
+  the `baseline-initial` snapshot metadata.
+- The snapshot's embedded domain name remains the historical name recorded at
+  snapshot creation because libvirt treats it as Guest ABI metadata.
 
 ---
 
@@ -67,7 +77,7 @@ Ubuntu Server Guest
 
 ```text
 VM name:
-ubuntu-server-lab
+ubuntu-lab
 
 Guest OS:
 Ubuntu Server 26.04 LTS
@@ -86,7 +96,7 @@ Virtual disk:
 60 GiB qcow2
 
 Disk location:
-/var/lib/libvirt/images/ubuntu-server-lab.qcow2
+/var/lib/libvirt/images/ubuntu-lab.qcow2
 
 Virtual network:
 libvirt default NAT
@@ -269,7 +279,7 @@ Inspect the running path:
 ```bash
 ip -brief link show virbr0
 bridge link show master virbr0
-virsh -c qemu:///system domiflist ubuntu-server-lab
+virsh -c qemu:///system domiflist ubuntu-lab
 ```
 
 ---
@@ -414,7 +424,7 @@ Before creating the VM, generate its XML without making changes:
 ```bash
 virt-install \
   --connect qemu:///system \
-  --name ubuntu-server-lab \
+  --name ubuntu-lab \
   --memory 8192 \
   --vcpus 4,sockets=1,cores=4,threads=1 \
   --cpu host-model \
@@ -427,7 +437,7 @@ virt-install \
   --cdrom /var/lib/libvirt/images/ubuntu-server.iso \
   --dry-run \
   --print-xml \
-  > /tmp/ubuntu-server-lab.xml
+  > /tmp/ubuntu-lab.xml
 ```
 
 At installation time, the local `osinfo-db` did not yet provide an Ubuntu 26.04
@@ -439,7 +449,7 @@ Inspect important fields:
 ```bash
 grep -E \
   '<name>|<memory|<vcpu|<type arch|firmware=|secure-boot|source file=|source network=|model type=|<graphics' \
-  /tmp/ubuntu-server-lab.xml
+  /tmp/ubuntu-lab.xml
 ```
 
 Confirm that the dry run created nothing:
@@ -447,7 +457,7 @@ Confirm that the dry run created nothing:
 ```bash
 virsh -c qemu:///system list --all
 
-sudo test -e /var/lib/libvirt/images/ubuntu-server-lab.qcow2 &&
+sudo test -e /var/lib/libvirt/images/ubuntu-lab.qcow2 &&
   echo "unexpected disk exists" ||
   echo "VM disk not created: expected"
 ```
@@ -461,7 +471,7 @@ Create and start the VM:
 ```bash
 virt-install \
   --connect qemu:///system \
-  --name ubuntu-server-lab \
+  --name ubuntu-lab \
   --memory 8192 \
   --vcpus 4,sockets=1,cores=4,threads=1 \
   --cpu host-model \
@@ -479,16 +489,16 @@ Verify:
 
 ```bash
 virsh -c qemu:///system list --all
-virsh -c qemu:///system domiflist ubuntu-server-lab
-sudo ls -lh /var/lib/libvirt/images/ubuntu-server-lab.qcow2
+virsh -c qemu:///system domiflist ubuntu-lab
+sudo ls -lh /var/lib/libvirt/images/ubuntu-lab.qcow2
 ```
 
 The qcow2 file may display its virtual size with `ls`. Use `du` and
 `qemu-img info` to inspect actual allocation:
 
 ```bash
-sudo du -h /var/lib/libvirt/images/ubuntu-server-lab.qcow2
-sudo qemu-img info /var/lib/libvirt/images/ubuntu-server-lab.qcow2
+sudo du -h /var/lib/libvirt/images/ubuntu-lab.qcow2
+sudo qemu-img info /var/lib/libvirt/images/ubuntu-lab.qcow2
 ```
 
 ---
@@ -503,7 +513,7 @@ virt-viewer \
   --zoom=180 \
   --cursor=local \
   --hotkeys=release-cursor=ctrl+alt,toggle-fullscreen=shift+f11 \
-  ubuntu-server-lab
+  ubuntu-lab
 ```
 
 Console controls:
@@ -578,7 +588,7 @@ Display name:
 Lab User
 
 Hostname:
-ubuntu-server-lab
+ubuntu-lab
 
 Username:
 labuser
@@ -632,7 +642,7 @@ VM configuration:
 
 ```bash
 virsh -c qemu:///system change-media \
-  ubuntu-server-lab \
+  ubuntu-lab \
   sda \
   --eject \
   --live \
@@ -643,11 +653,11 @@ Verify:
 
 ```bash
 virsh -c qemu:///system domblklist \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --details
 
 virsh -c qemu:///system domblklist \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --inactive \
   --details
 ```
@@ -663,7 +673,7 @@ is shut down:
 
 ```bash
 virsh -c qemu:///system change-media \
-  ubuntu-server-lab \
+  ubuntu-lab \
   sda \
   --insert \
   /var/lib/libvirt/images/ubuntu-server.iso \
@@ -836,7 +846,7 @@ A valid initial state includes:
 
 ```text
 hostname:
-ubuntu-server-lab
+ubuntu-lab
 
 network:
 Guest address from 192.168.122.0/24
@@ -913,7 +923,7 @@ ssh \
 Expected:
 
 ```text
-labuser@ubuntu-server-lab:~$
+labuser@ubuntu-lab:~$
 ```
 
 ---
@@ -1083,7 +1093,7 @@ From the Host, wait for it to return:
 
 ```bash
 watch -t -n 1 \
-  'virsh -c qemu:///system domstate ubuntu-server-lab'
+  'virsh -c qemu:///system domstate ubuntu-lab'
 ```
 
 Connect with public-key authentication only:
@@ -1148,14 +1158,14 @@ sudo poweroff
 Confirm the VM is off from the Host:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 ```
 
 Create the known-good snapshot:
 
 ```bash
 virsh -c qemu:///system snapshot-create-as \
-  ubuntu-server-lab \
+  ubuntu-lab \
   baseline-initial \
   "Ubuntu installed, updated, network verified, SSH key-only" \
   --atomic \
@@ -1166,11 +1176,11 @@ Verify:
 
 ```bash
 virsh -c qemu:///system snapshot-list \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --tree
 
 virsh -c qemu:///system snapshot-current \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --name
 ```
 
@@ -1190,13 +1200,13 @@ backup of important data.
 Start the VM from the Arch Host:
 
 ```bash
-virsh -c qemu:///system start ubuntu-server-lab
+virsh -c qemu:///system start ubuntu-lab
 ```
 
 Check its state:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 ```
 
 Inspect the current DHCP lease if needed:
@@ -1209,7 +1219,7 @@ Inspect the Guest address associated with the VM:
 
 ```bash
 virsh -c qemu:///system domifaddr \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --source lease
 ```
 
@@ -1236,7 +1246,7 @@ The SSH connection closes because the remote operating system stops.
 Expected Host-side state:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 ```
 
 ```text
@@ -1252,7 +1262,7 @@ ssh -t labuser@<VM_IP> 'sudo poweroff'
 ### Request normal shutdown through libvirt
 
 ```bash
-virsh -c qemu:///system shutdown ubuntu-server-lab
+virsh -c qemu:///system shutdown ubuntu-lab
 ```
 
 Both methods request an orderly operating-system shutdown.
@@ -1260,7 +1270,7 @@ Both methods request an orderly operating-system shutdown.
 Do not use the following command for routine shutdown:
 
 ```bash
-virsh -c qemu:///system destroy ubuntu-server-lab
+virsh -c qemu:///system destroy ubuntu-lab
 ```
 
 `destroy` is comparable to removing power from a physical machine and should
@@ -1273,14 +1283,14 @@ be reserved for an unresponsive VM.
 One-time state check:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 ```
 
 Repeated state display without the `watch` title:
 
 ```bash
 watch -t -n 1 \
-  'virsh -c qemu:///system domstate ubuntu-server-lab'
+  'virsh -c qemu:///system domstate ubuntu-lab'
 ```
 
 `watch` is not a pager. It repeatedly redraws the terminal until interrupted
@@ -1291,7 +1301,7 @@ Log-style observation:
 ```bash
 while true; do
   printf '%s  ' "$(date '+%H:%M:%S')"
-  virsh -c qemu:///system domstate ubuntu-server-lab
+  virsh -c qemu:///system domstate ubuntu-lab
   sleep 1
 done
 ```
@@ -1299,7 +1309,7 @@ done
 Wait only until the VM stops:
 
 ```bash
-while [[ $(virsh -c qemu:///system domstate ubuntu-server-lab) != "shut off" ]]; do
+while [[ $(virsh -c qemu:///system domstate ubuntu-lab) != "shut off" ]]; do
   echo "$(date '+%H:%M:%S') VM is still running"
   sleep 1
 done
@@ -1315,7 +1325,7 @@ List snapshots:
 
 ```bash
 virsh -c qemu:///system snapshot-list \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --tree
 ```
 
@@ -1323,7 +1333,7 @@ Show the current snapshot:
 
 ```bash
 virsh -c qemu:///system snapshot-current \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --name
 ```
 
@@ -1331,7 +1341,7 @@ Create a snapshot before a risky exercise:
 
 ```bash
 virsh -c qemu:///system snapshot-create-as \
-  ubuntu-server-lab \
+  ubuntu-lab \
   before-risky-change \
   "Known-good state before controlled failure exercise" \
   --atomic \
@@ -1345,21 +1355,21 @@ Revert while the VM is shut down:
 
 ```bash
 virsh -c qemu:///system snapshot-revert \
-  ubuntu-server-lab \
+  ubuntu-lab \
   baseline-initial
 ```
 
 Start after the rollback:
 
 ```bash
-virsh -c qemu:///system start ubuntu-server-lab
+virsh -c qemu:///system start ubuntu-lab
 ```
 
 Delete an obsolete snapshot only after verifying that it is no longer needed:
 
 ```bash
 virsh -c qemu:///system snapshot-delete \
-  ubuntu-server-lab \
+  ubuntu-lab \
   <SNAPSHOT_NAME>
 ```
 
@@ -1396,17 +1406,17 @@ virsh -c qemu:///system pool-list --all
 df -h /var/lib/libvirt/images
 
 sudo du -h \
-  /var/lib/libvirt/images/ubuntu-server-lab.qcow2
+  /var/lib/libvirt/images/ubuntu-lab.qcow2
 
 sudo qemu-img info \
-  /var/lib/libvirt/images/ubuntu-server-lab.qcow2
+  /var/lib/libvirt/images/ubuntu-lab.qcow2
 ```
 
 ### Inspect snapshots
 
 ```bash
 virsh -c qemu:///system snapshot-list \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --tree
 ```
 
@@ -1420,7 +1430,7 @@ after confirming that their recovery points are no longer required.
 Start and connect:
 
 ```bash
-virsh -c qemu:///system start ubuntu-server-lab
+virsh -c qemu:///system start ubuntu-lab
 ssh labuser@<VM_IP>
 ```
 
@@ -1488,7 +1498,7 @@ sudo poweroff
 Inspect state:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 virsh -c qemu:///system list --all
 ```
 
@@ -1496,11 +1506,11 @@ Inspect definition and disks:
 
 ```bash
 virsh -c qemu:///system domblklist \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --details
 
 virsh -c qemu:///system dumpxml \
-  ubuntu-server-lab
+  ubuntu-lab
 ```
 
 Inspect libvirt logs:
@@ -1524,7 +1534,7 @@ Inspect attached block devices:
 
 ```bash
 virsh -c qemu:///system domblklist \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --details
 ```
 
@@ -1535,7 +1545,7 @@ be ejected.
 
 ```text
 disk:
-vda → ubuntu-server-lab.qcow2
+vda → ubuntu-lab.qcow2
 
 cdrom:
 sda → ISO during installation
@@ -1551,7 +1561,7 @@ Inspect the virtual network:
 ```bash
 virsh -c qemu:///system net-list --all
 ip -brief address show virbr0
-virsh -c qemu:///system domiflist ubuntu-server-lab
+virsh -c qemu:///system domiflist ubuntu-lab
 bridge link show master virbr0
 ```
 
@@ -1658,9 +1668,9 @@ Authentication policy permits the selected method?
 Host checks:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 virsh -c qemu:///system domifaddr \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --source lease
 ```
 
@@ -1736,22 +1746,22 @@ Rollback:
 
 ```bash
 virsh -c qemu:///system snapshot-revert \
-  ubuntu-server-lab \
+  ubuntu-lab \
   baseline-initial
 ```
 
 Start:
 
 ```bash
-virsh -c qemu:///system start ubuntu-server-lab
+virsh -c qemu:///system start ubuntu-lab
 ```
 
 Verify:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 virsh -c qemu:///system domifaddr \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --source lease
 
 ssh \
@@ -1778,7 +1788,7 @@ VM images:
 /var/lib/libvirt/images/
 
 Primary VM disk:
-/var/lib/libvirt/images/ubuntu-server-lab.qcow2
+/var/lib/libvirt/images/ubuntu-lab.qcow2
 
 libvirt network dnsmasq configuration:
 /var/lib/libvirt/dnsmasq/
@@ -1877,20 +1887,20 @@ Reboot requirement marker:
 Start:
 
 ```bash
-virsh -c qemu:///system start ubuntu-server-lab
+virsh -c qemu:///system start ubuntu-lab
 ```
 
 State:
 
 ```bash
-virsh -c qemu:///system domstate ubuntu-server-lab
+virsh -c qemu:///system domstate ubuntu-lab
 ```
 
 Find address:
 
 ```bash
 virsh -c qemu:///system domifaddr \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --source lease
 ```
 
@@ -1909,7 +1919,7 @@ sudo poweroff
 Shutdown from Host:
 
 ```bash
-virsh -c qemu:///system shutdown ubuntu-server-lab
+virsh -c qemu:///system shutdown ubuntu-lab
 ```
 
 Open console:
@@ -1920,14 +1930,14 @@ virt-viewer \
   --zoom=180 \
   --cursor=local \
   --hotkeys=release-cursor=ctrl+alt,toggle-fullscreen=shift+f11 \
-  ubuntu-server-lab
+  ubuntu-lab
 ```
 
 List snapshots:
 
 ```bash
 virsh -c qemu:///system snapshot-list \
-  ubuntu-server-lab \
+  ubuntu-lab \
   --tree
 ```
 
@@ -1935,7 +1945,7 @@ Restore baseline:
 
 ```bash
 virsh -c qemu:///system snapshot-revert \
-  ubuntu-server-lab \
+  ubuntu-lab \
   baseline-initial
 ```
 
