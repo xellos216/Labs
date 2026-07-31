@@ -82,15 +82,11 @@ The top-level `archive/` directory is a roadmap lifecycle location, not a histor
 | `active/server/`                    | Linux Server Administration | Operations, troubleshooting, recovery         | Active  |
 | `active/crypto/`                    | Cryptography                | Byte reasoning and transformation analysis    | Active  |
 | `active/payload/`                   | Payload Construction        | Parser reasoning and input interpretation     | Active  |
+| `active/devtool/`                     | DevTools                    | Browser troubleshooting and request analysis  | Active  |
 | `backlog/flask/`                    | Flask                       | HTTP, web applications, security foundations  | Backlog |
 | `backlog/toolsmith/`                | Security Toolsmith          | Building security-related utilities           | Backlog |
-| `backlog/vulnerability_report_lab/` | Vulnerability Report Lab    | Vulnerability verification and report writing | Backlog |
-| `backlog/devtool/`                  | DevTools                    | Browser troubleshooting and request analysis  | Backlog |
-| `backlog/echotrace/`                | EchoTrace                   | Public-comment pattern analysis               | Backlog |
-| `backlog/ironforge/`                | Iron Forge                  | Systems/network/home-lab planning             | Backlog |
+| `backlog/vulnerability-report/` | Vulnerability Report Lab    | Vulnerability verification and report writing | Backlog |
 | `backlog/LFS/`                      | Linux From Scratch          | Linux build process and system construction   | Backlog |
-| `backlog/myjarvis/`                 | MyJarvis                    | Personal assistant / lab interface project    | Backlog |
-| `backlog/window/`                   | Windows                     | Paused or alternate Windows roadmap material  | Backlog |
 | `archive/numbersystem/`             | Number Systems              | Binary, hex, bytes, encoding foundations      | Archive |
 
 Status meanings:
@@ -137,8 +133,6 @@ Examples:
 ```text
 backlog/flask/README.md
 backlog/toolsmith/README.md
-backlog/devtool/README.md
-backlog/window/README.md
 ```
 
 Archived roadmap example:
@@ -173,9 +167,6 @@ Networking
         │
         ▼
 Linux Server Administration
-        │
-        ▼
-Windows Fundamentals
         │
         ▼
 Flask / Web Foundations
@@ -291,29 +282,6 @@ Supports:
 * Infrastructure
 * Security
 * Production Linux
-
----
-
-## Windows Fundamentals
-
-Location:
-
-```text
-backlog/window/
-```
-
-Focus:
-
-* Windows architecture
-* enterprise systems
-* authentication
-* Active Directory
-
-Supports:
-
-* Enterprise Security
-* Incident Response
-* Windows Internals
 
 ---
 
@@ -435,7 +403,7 @@ Supports:
 Location:
 
 ```text
-backlog/vulnerability_report_lab/
+backlog/vulnerability-report/
 ```
 
 Focus:

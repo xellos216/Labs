@@ -137,7 +137,7 @@ Archived roadmaps may be referenced at `archive/<roadmap>/README.md`. Their plan
 Examples:
 
 ```text
-backlog/window/README.md
+backlog/flask/README.md
 archive/numbersystem/README.md
 ```
 
