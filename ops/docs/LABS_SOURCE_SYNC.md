@@ -87,19 +87,19 @@ Conversation context can guide the current task, but it must not silently overri
 
 Keep the following in ChatGPT Project Sources:
 
-* `docs/labs/LABS_SOURCE_SYNC.md`
-* `docs/labs/LABS_SESSION_RULES.md`
-* `docs/labs/MARKDOWN_GENERATION_POLICY.md`
-* `docs/labs/ARCHIVE_TEMPLATE.md`
-* `docs/labs/QA_TEMPLATE_SPECIFICATION.md`
-* `docs/labs/LAB_EXPERIMENT_TEMPLATE.md`
-* `docs/labs/ROADMAP_INDEX.md`
+* `ops/docs/LABS_SOURCE_SYNC.md`
+* `ops/docs/LABS_SESSION_RULES.md`
+* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
+* `ops/docs/ARCHIVE_TEMPLATE.md`
+* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
+* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
+* `ops/docs/ROADMAP_INDEX.md`
 
 Optionally keep:
 
-* `docs/labs/DESIGN_PRINCIPLES.md`
-* `docs/labs/ARCHIVE_MIGRATION_PLAN.md`
-* `docs/labs/ROADMAP_FORMAT.md`
+* `ops/docs/DESIGN_PRINCIPLES.md`
+* `ops/docs/ARCHIVE_MIGRATION_PLAN.md`
+* `ops/docs/ROADMAP_FORMAT.md`
 
 Do not keep ordinary session archives, handoff files, temporary notes, or frequently changing progress records in ChatGPT Project Sources.
 
@@ -210,7 +210,7 @@ Do not silently merge conflicting rules.
 At the start of a Labs session, use this rule:
 
 ```text
-Use Project Instructions and `docs/labs/LABS_SOURCE_SYNC.md` for source policy.
+Use Project Instructions and `ops/docs/LABS_SOURCE_SYNC.md` for source policy.
 Use cached Project Sources for common templates.
 Use the GitHub connector to read the roadmap from its current lifecycle directory before continuing a learning sequence or review.
 Treat GitHub remote as authoritative over uploaded Project Sources.

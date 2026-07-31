@@ -97,7 +97,7 @@ another learner's private context or progress.
 Example prompt:
 
 ```text
-Read docs/labs/LABS_SOURCE_SYNC.md and docs/labs/ROADMAP_INDEX.md.
+Read ops/docs/LABS_SOURCE_SYNC.md and ops/docs/ROADMAP_INDEX.md.
 Then read <lifecycle>/<roadmap>/README.md from the committed repository.
 Identify the next documented session without inventing missing progress.
 Begin with a short concept and ask for my prediction before observation.

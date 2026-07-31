@@ -40,7 +40,7 @@ Labs uses both a local Git repository and a GitHub remote.
 For source-of-truth and ChatGPT Project Sources policy, read:
 
 ```text
-docs/labs/LABS_SOURCE_SYNC.md
+ops/docs/LABS_SOURCE_SYNC.md
 ```
 
 General rule:
@@ -57,45 +57,45 @@ General rule:
 Labs governance documents live under:
 
 ```text
-docs/labs/
+ops/docs/
 ```
 
 Before creating, moving, or refactoring lab documents, read the relevant documents below.
 
-* `docs/labs/LABS_SOURCE_SYNC.md`
+* `ops/docs/LABS_SOURCE_SYNC.md`
 
   * Source-of-truth, Project Sources, and GitHub connector policy.
-* `docs/labs/DESIGN_PRINCIPLES.md`
+* `ops/docs/DESIGN_PRINCIPLES.md`
 
   * Stable design principles for the Labs project.
-* `docs/labs/LABS_SESSION_RULES.md`
+* `ops/docs/LABS_SESSION_RULES.md`
 
   * Rules for interactive learning sessions.
-* `docs/labs/MARKDOWN_GENERATION_POLICY.md`
+* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
 
   * Markdown generation, formatting, markdownlint validation, and redaction policy.
-* `docs/labs/ARCHIVE_TEMPLATE.md`
+* `ops/docs/ARCHIVE_TEMPLATE.md`
 
   * Template for archived learning/session documents.
-* `docs/labs/QA_TEMPLATE_SPECIFICATION.md`
+* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
 
   * QA document format and review-question requirements.
-* `docs/labs/LAB_EXPERIMENT_TEMPLATE.md`
+* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
 
   * Template for experiment-style lab notes.
-* `docs/labs/ROADMAP_INDEX.md`
+* `ops/docs/ROADMAP_INDEX.md`
 
   * Index of roadmap documents and learning tracks.
-* `docs/labs/ROADMAP_FORMAT.md`
+* `ops/docs/ROADMAP_FORMAT.md`
 
   * Format rules for roadmap documents.
-* `docs/labs/GETTING_STARTED.md`
+* `ops/docs/GETTING_STARTED.md`
 
   * Public learner bootstrap and operating guide.
-* `docs/labs/CHATGPT_SETUP.md`
+* `ops/docs/CHATGPT_SETUP.md`
 
   * Optional ChatGPT setup guide.
-* `docs/labs/PROJECT_INSTRUCTIONS.md`
+* `ops/docs/PROJECT_INSTRUCTIONS.md`
 
   * Reusable generic project-instructions template.
 
@@ -118,17 +118,17 @@ For ordinary small file edits, read only this `AGENTS.md` unless the task touche
 
 For source policy, Project Sources, or GitHub connector behavior, read:
 
-* `docs/labs/LABS_SOURCE_SYNC.md`
+* `ops/docs/LABS_SOURCE_SYNC.md`
 
 For Markdown generation, Markdown cleanup, privacy redaction, or Markdown policy changes, read:
 
-* `docs/labs/MARKDOWN_GENERATION_POLICY.md`
+* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
 
 For public onboarding or reusable assistant setup, read the relevant documents:
 
-* `docs/labs/GETTING_STARTED.md`
-* `docs/labs/CHATGPT_SETUP.md`
-* `docs/labs/PROJECT_INSTRUCTIONS.md`
+* `ops/docs/GETTING_STARTED.md`
+* `ops/docs/CHATGPT_SETUP.md`
+* `ops/docs/PROJECT_INSTRUCTIONS.md`
 
 For licensing scope or third-party notices, read:
 
@@ -137,34 +137,34 @@ For licensing scope or third-party notices, read:
 
 For canonical legal-text handling, public media, or privacy review, also read:
 
-* `docs/labs/MARKDOWN_GENERATION_POLICY.md`
+* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
 
 For session archive generation, read:
 
-* `docs/labs/LABS_SESSION_RULES.md`
-* `docs/labs/ARCHIVE_TEMPLATE.md`
-* `docs/labs/QA_TEMPLATE_SPECIFICATION.md`
+* `ops/docs/LABS_SESSION_RULES.md`
+* `ops/docs/ARCHIVE_TEMPLATE.md`
+* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
 
 For experiment documentation, read:
 
-* `docs/labs/LAB_EXPERIMENT_TEMPLATE.md`
+* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
 
 For roadmap continuation, read:
 
-* `docs/labs/ROADMAP_INDEX.md`
+* `ops/docs/ROADMAP_INDEX.md`
 * the roadmap's `README.md` from its current `active/`, `backlog/`, or `archive/` lifecycle directory
 
 For roadmap creation or roadmap modification, read:
 
-* `docs/labs/ROADMAP_FORMAT.md`
-* `docs/labs/ROADMAP_INDEX.md`
+* `ops/docs/ROADMAP_FORMAT.md`
+* `ops/docs/ROADMAP_INDEX.md`
 * the relevant roadmap `README.md` from `active/`, `backlog/`, or `archive/` if it already exists
 
 For repository structure, taxonomy, or organization changes, read:
 
-* `docs/labs/LABS_SOURCE_SYNC.md`
-* `docs/labs/ROADMAP_INDEX.md`
-* `docs/labs/DESIGN_PRINCIPLES.md`
+* `ops/docs/LABS_SOURCE_SYNC.md`
+* `ops/docs/ROADMAP_INDEX.md`
+* `ops/docs/DESIGN_PRINCIPLES.md`
 
 ---
 
@@ -181,7 +181,7 @@ LICENSES/
 active/
 backlog/
 archive/
-docs/
+ops/
 ```
 
 ## active/
@@ -229,9 +229,9 @@ Review answers, factual corrections, link repairs, and clearly scoped maintenanc
 
 The lifecycle `archive/` directory is not a restoration area for historical, pre-redaction, or legacy material. Reintroducing such material requires an explicit audited restoration, migration, or private archival task.
 
-## docs/labs/
+## ops/docs/
 
-`docs/labs/` contains governance and operational documentation.
+`ops/docs/` contains governance and operational documentation.
 
 Use for:
 
@@ -312,13 +312,13 @@ The term "session archive" describes a learning record. The top-level `archive/`
 Future archives should follow:
 
 ```text
-docs/labs/ARCHIVE_TEMPLATE.md
+ops/docs/ARCHIVE_TEMPLATE.md
 ```
 
 Future QA sections should follow:
 
 ```text
-docs/labs/QA_TEMPLATE_SPECIFICATION.md
+ops/docs/QA_TEMPLATE_SPECIFICATION.md
 ```
 
 Do not silently rewrite populated learner answers.
@@ -427,7 +427,7 @@ Labs may be public.
 Before committing Markdown produced from real local output, follow:
 
 ```text
-docs/labs/MARKDOWN_GENERATION_POLICY.md
+ops/docs/MARKDOWN_GENERATION_POLICY.md
 ```
 
 Mask personal and local environment identifiers such as public IPs, MAC addresses, host-specific interface names, usernames, hostnames, local paths, tokens, or account IDs.
@@ -488,7 +488,7 @@ npx markdownlint-cli2@latest \
   "active/**/*.md" \
   "backlog/**/*.md" \
   "archive/**/*.md" \
-  "docs/labs/**/*.md"
+  "ops/docs/**/*.md"
 ```
 
 Do not include canonical legal texts under `LICENSES/` in Markdown linting. If changes are staged, also inspect `git diff --cached --check` and `git diff --cached`.
@@ -496,14 +496,14 @@ Do not include canonical legal texts under `LICENSES/` in Markdown linting. If c
 For public Markdown generated from real network or host output, run the redaction checks documented in:
 
 ```text
-docs/labs/MARKDOWN_GENERATION_POLICY.md
+ops/docs/MARKDOWN_GENERATION_POLICY.md
 ```
 
 For structural refactors:
 
 ```bash
-rg 'old/path' active backlog archive docs README.md AGENTS.md
-rg '\]\(.*\.md\)' active backlog archive docs README.md AGENTS.md
+rg 'old/path' active backlog archive ops README.md AGENTS.md
+rg '\]\(.*\.md\)' active backlog archive ops README.md AGENTS.md
 find . -type d -empty
 ```
 

@@ -37,19 +37,19 @@ Archive migration should be performed only as an explicit refactoring task.
 Current archive documents should follow:
 
 ```text
-docs/labs/ARCHIVE_TEMPLATE.md
+ops/docs/ARCHIVE_TEMPLATE.md
 ```
 
 Current QA sections should follow:
 
 ```text
-docs/labs/QA_TEMPLATE_SPECIFICATION.md
+ops/docs/QA_TEMPLATE_SPECIFICATION.md
 ```
 
 Current experiment records should follow:
 
 ```text
-docs/labs/LAB_EXPERIMENT_TEMPLATE.md
+ops/docs/LAB_EXPERIMENT_TEMPLATE.md
 ```
 
 ---
@@ -138,7 +138,7 @@ Preserve mismatched files as historical or pre-roadmap archives within their cur
 Do not invent a missing current-roadmap session archive automatically. If the user explicitly approves creation and the conditions in `Current Session Creation Limit` are satisfied, create a new Draft archive or study file using:
 
 * the current canonical roadmap
-* `docs/labs/ARCHIVE_TEMPLATE.md`
+* `ops/docs/ARCHIVE_TEMPLATE.md`
 * nearby current-format session files
 
 New study archives should use:
@@ -217,9 +217,9 @@ Example:
 Refactor only Networking Phase 02 archive files to the current Labs archive format.
 
 Use:
-- docs/labs/ARCHIVE_TEMPLATE.md
-- docs/labs/QA_TEMPLATE_SPECIFICATION.md
-- docs/labs/ARCHIVE_MIGRATION_PLAN.md
+- ops/docs/ARCHIVE_TEMPLATE.md
+- ops/docs/QA_TEMPLATE_SPECIFICATION.md
+- ops/docs/ARCHIVE_MIGRATION_PLAN.md
 
 Do not invent missing metadata.
 Do not change roadmap order.

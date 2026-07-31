@@ -28,7 +28,8 @@ Labs is organized by learning status and project function.
 active/
 backlog/
 archive/
-docs/
+ops/
+  docs/
 AGENTS.md
 README.md
 ```
@@ -63,9 +64,9 @@ Archived roadmap path:
 archive/<roadmap>/README.md
 ```
 
-## docs/
+## ops/docs/
 
-`docs/labs/` contains project governance, templates, source policy, and workflow rules.
+`ops/docs/` contains project governance, templates, source policy, and workflow rules.
 
 The top-level `archive/` directory is a roadmap lifecycle location, not a historical restoration tree. Historical or pre-redaction material should not be reintroduced unless the user explicitly requests a dedicated restoration, migration, or private archival task.
 
