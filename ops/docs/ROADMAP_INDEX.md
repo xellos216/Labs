@@ -82,10 +82,10 @@ The top-level `archive/` directory is a roadmap lifecycle location, not a histor
 | `active/server/`                    | Linux Server Administration | Operations, troubleshooting, recovery         | Active  |
 | `active/crypto/`                    | Cryptography                | Byte reasoning and transformation analysis    | Active  |
 | `active/payload/`                   | Payload Construction        | Parser reasoning and input interpretation     | Active  |
-| `active/devtool/`                     | DevTools                    | Browser troubleshooting and request analysis  | Active  |
+| `active/devtool/`                   | DevTools                    | Browser troubleshooting and request analysis  | Active  |
 | `backlog/flask/`                    | Flask                       | HTTP, web applications, security foundations  | Backlog |
 | `backlog/toolsmith/`                | Security Toolsmith          | Building security-related utilities           | Backlog |
-| `backlog/vulnerability-report/` | Vulnerability Report Lab    | Vulnerability verification and report writing | Backlog |
+| `backlog/vulnerability-report/`     | Vulnerability Report Lab    | Vulnerability verification and report writing | Backlog |
 | `backlog/LFS/`                      | Linux From Scratch          | Linux build process and system construction   | Backlog |
 | `archive/numbersystem/`             | Number Systems              | Binary, hex, bytes, encoding foundations      | Archive |
 
