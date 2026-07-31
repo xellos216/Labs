@@ -35,4 +35,4 @@ jobs:
             active/**/*.md
             backlog/**/*.md
             archive/**/*.md
-            docs/labs/**/*.md
+            ops/docs/**/*.md

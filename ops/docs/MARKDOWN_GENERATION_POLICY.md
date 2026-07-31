@@ -18,7 +18,7 @@ THIRD_PARTY_NOTICES.md
 active/**/*.md
 backlog/**/*.md
 archive/**/*.md
-docs/labs/**/*.md
+ops/docs/**/*.md
 ```
 
 Repository Markdown outside these paths should be handled only when the task explicitly includes it.
@@ -205,7 +205,7 @@ npx markdownlint-cli2@latest \
   "active/**/*.md" \
   "backlog/**/*.md" \
   "archive/**/*.md" \
-  "docs/labs/**/*.md"
+  "ops/docs/**/*.md"
 ```
 
 Expected result:
@@ -275,5 +275,5 @@ When an agent generates or edits Markdown for Labs, it must:
 Use this short instruction in the ChatGPT Labs project settings:
 
 ```text
-When creating or editing Markdown for Labs, follow the canonical repository policy in docs/labs/MARKDOWN_GENERATION_POLICY.md. The GitHub repository is authoritative over Project Sources; do not reintroduce historical or pre-redaction material unless explicitly requested.
+When creating or editing Markdown for Labs, follow the canonical repository policy in ops/docs/MARKDOWN_GENERATION_POLICY.md. The GitHub repository is authoritative over Project Sources; do not reintroduce historical or pre-redaction material unless explicitly requested.
 ```

@@ -55,20 +55,21 @@ Explain
 A short concept establishes the problem, a prediction creates a testable
 expectation, observation supplies evidence, and explanation connects the
 result to a durable mental model. See the [Design
-Principles](docs/labs/DESIGN_PRINCIPLES.md) and [Labs Session
-Rules](docs/labs/LABS_SESSION_RULES.md) for the canonical method.
+Principles](ops/docs/DESIGN_PRINCIPLES.md) and [Labs Session
+Rules](ops/docs/LABS_SESSION_RULES.md) for the canonical method.
 
 ## Explore the Repository
 
 - `active/` contains roadmaps currently being practiced or expanded.
 - `backlog/` contains planned, paused, or future roadmaps.
 - `archive/` contains roadmaps whose planned learning sequence is complete.
-- `docs/labs/` contains governance, templates, policies, and navigation.
+- `ops/` contains repository operation materials.
+- `ops/docs/` contains governance, templates, policies, and navigation.
 
 A roadmap's directory determines its current roadmap lifecycle state. A
 session archive is a learning record stored with its roadmap; it is not the
 same thing as the top-level `archive/` lifecycle directory. See the [Roadmap
-Index](docs/labs/ROADMAP_INDEX.md) for the current inventory.
+Index](ops/docs/ROADMAP_INDEX.md) for the current inventory.
 
 ## Quick Start for Reading
 
@@ -80,7 +81,7 @@ cd labs
 ```
 
 Then read this `README.md`, open the [Roadmap
-Index](docs/labs/ROADMAP_INDEX.md), choose a relevant roadmap `README.md` in
+Index](ops/docs/ROADMAP_INDEX.md), choose a relevant roadmap `README.md` in
 its lifecycle directory, and inspect its existing phase or session records.
 
 Cloning this repository copies the populated personal learning workspace and
@@ -91,9 +92,9 @@ clean bootstrap for a new personal Labs repository.
 
 - [Create a workspace from
   xellos216/labs-starter](https://github.com/xellos216/labs-starter)
-- [Getting Started with Labs](docs/labs/GETTING_STARTED.md)
-- [Optional ChatGPT Setup](docs/labs/CHATGPT_SETUP.md)
-- [Project Instructions Template](docs/labs/PROJECT_INSTRUCTIONS.md)
+- [Getting Started with Labs](ops/docs/GETTING_STARTED.md)
+- [Optional ChatGPT Setup](ops/docs/CHATGPT_SETUP.md)
+- [Project Instructions Template](ops/docs/PROJECT_INSTRUCTIONS.md)
 
 ChatGPT or another LLM can be used as an optional AI assistant, but Labs can
 be operated without one. The committed repository remains the source of
@@ -103,8 +104,8 @@ truth.
 
 Experiments should be local, reproducible, observable, reversible, and
 authorized. Follow the safety guidance in the [Labs Session
-Rules](docs/labs/LABS_SESSION_RULES.md) and the privacy and redaction rules in
-the [Markdown Generation Policy](docs/labs/MARKDOWN_GENERATION_POLICY.md)
+Rules](ops/docs/LABS_SESSION_RULES.md) and the privacy and redaction rules in
+the [Markdown Generation Policy](ops/docs/MARKDOWN_GENERATION_POLICY.md)
 before publishing observations.
 
 ## License
