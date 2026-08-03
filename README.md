@@ -17,18 +17,16 @@ reference implementation of the Labs method. Its roadmap order, recorded
 progress, and topic selection reflect one learner's path. Historical session
 archives may use older formats that remain useful as learning records.
 
-This repository is not an empty starter repository. The separate public
-[xellos216/labs-starter](https://github.com/xellos216/labs-starter) repository
-is the clean, reusable template for a new personal workspace. Learners should
-use that template rather than clone this populated repository as their
-bootstrap. A repository generated from the template has independent Git
-history and should be adapted to its learner's own goals and roadmaps.
+This repository is not an empty starter or template repository. Readers may
+clone it to study the populated reference implementation and its history, but
+its content and Git history reflect an existing learner's work.
 
-Readers may still clone `xellos216/labs` to study the populated reference
-implementation and its history. This repository is not distributed as a whole
-under an OSI-approved software license; its licensing scope remains separate
-from the starter repository and is defined in this repository's license
-documents.
+This repository is maintained as a populated reference, not as a reusable
+template. A new personal workspace should use independent Git history and be
+adapted to its learner's own goals, environment, and roadmap order. Before
+copying or adapting material from this repository, review its license
+documents. This repository is not distributed as a whole under an
+OSI-approved software license.
 
 ## Who It Is For
 
@@ -85,13 +83,12 @@ Index](ops/docs/ROADMAP_INDEX.md), choose a relevant roadmap `README.md` in
 its lifecycle directory, and inspect its existing phase or session records.
 
 Cloning this repository copies the populated personal learning workspace and
-its Git history. It is useful for reference, but it is not the recommended
-clean bootstrap for a new personal Labs repository.
+its Git history. It is useful for reference and should not be treated as a
+clean bootstrap. To create an independent personal workspace, follow the
+[Getting Started with Labs](ops/docs/GETTING_STARTED.md) guide.
 
 ## Start Your Own Labs
 
-- [Create a workspace from
-  xellos216/labs-starter](https://github.com/xellos216/labs-starter)
 - [Getting Started with Labs](ops/docs/GETTING_STARTED.md)
 - [Optional ChatGPT Setup](ops/docs/CHATGPT_SETUP.md)
 - [Project Instructions Template](ops/docs/PROJECT_INSTRUCTIONS.md)
