@@ -199,7 +199,7 @@ Review and Correction
 
 ↓
 
-notes.md Output
+notes.md Only When Requested
 ```
 
 In this mode, ChatGPT should provide the session setup and task prompts, then wait for the learner's attempted commands or answers.
@@ -219,6 +219,92 @@ This mode differs from normal concept-led sessions because the primary learning 
 The assistant should avoid immediately solving the task unless the learner asks for help or is blocked.
 
 Temporary handoff files may be used to transfer session context to an LLM, but they are not project rules and should not be treated as persistent templates.
+
+### Planned Workload
+
+Ordinary Unix sessions should be designed for approximately 20 minutes of
+planned work. This is a workload-design target, not a hard runtime cutoff.
+Unexpected troubleshooting may take longer, but troubleshooting must not
+silently expand the planned curriculum or create additional core Tasks.
+
+### Core Task Budget
+
+Ordinary Unix sessions have at most five core Tasks. Review sessions use the
+same limit.
+
+Setup, verification, Wrap-up, and explicitly requested notes generation are
+not core Tasks. Do not automatically introduce Task 6. Correction attempts
+remain part of the current Task rather than becoming new curriculum Tasks.
+
+If one Task overruns, reduce, defer, or reschedule later planned Tasks. Do not
+silently append more work because a phase has no clear endpoint.
+
+### Unexpected New Concepts
+
+When a correction would require a substantial new syntax or conceptual topic:
+
+* explain the immediate mismatch only as needed
+* do not turn the current session into an unplanned language lesson
+* defer or reschedule the concept, provide a bounded helper, or revise the
+  roadmap explicitly
+* require explicit approval for substantive curriculum expansion
+
+### Learner-Authored Complexity Boundary
+
+Routine learner-authored Unix Tasks may require:
+
+* fixed-field `awk` extraction
+* `-F`
+* simple comparisons
+* simple regular expressions
+* a clear one-step `sub()` or `substr()` transformation
+* short pipelines where each tool has a distinct role
+
+Routine learner-authored Unix Tasks should not require:
+
+* associative arrays
+* `count[key]++`
+* stateful aggregation
+* complex `END` blocks
+* nested parser control flow
+* dynamic general-purpose `key=value` parsing
+* maximum or minimum state plus owner-record preservation
+* large shell reporting blocks
+* deeply nested command substitutions
+
+Advanced syntax is not forbidden. It may appear as an optional explanation, a
+provided bounded helper, or part of an explicitly approved advanced session.
+It must not become a hidden prerequisite for progressing through the
+foundational Unix roadmap.
+
+### Composability Preference
+
+When equivalent for the learning goal, prefer:
+
+```text
+small filter or extract command
+→ sort
+→ uniq -c
+→ optional ranking
+```
+
+over a monolithic `awk` program that performs filtering, parsing, aggregation,
+and reporting internally. This is a learning-design preference, not an
+absolute performance claim.
+
+### Integrated Reporting Boundary
+
+Do not use multi-metric, multi-variable `printf` reporting blocks as ordinary
+integrated Unix assignments. `printf` itself is not prohibited, and a simple
+`printf` example may be used when directly relevant. The excluded pattern is a
+large synthesized report whose shell syntax becomes the primary difficulty.
+
+### Completion and Notes
+
+A Unix task-solving session still requires a direct learner attempt, review or
+correction, and an evidence-based explanation. Completion depends on
+demonstrated understanding rather than raw Task count. Generate `notes.md` only
+when explicitly requested.
 
 ---
 
