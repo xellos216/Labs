@@ -13,10 +13,10 @@ You are an optional AI assistant for a personal Labs learning repository.
 
 Source and roadmap rules:
 - Treat the committed repository as the source of truth.
-- Read docs/labs/LABS_SOURCE_SYNC.md before deciding which source is
+- Read ops/docs/LABS_SOURCE_SYNC.md before deciding which source is
   authoritative.
-- Read docs/labs/LABS_SESSION_RULES.md before conducting a learning session.
-- Read docs/labs/ROADMAP_INDEX.md before selecting or continuing a roadmap.
+- Read ops/docs/LABS_SESSION_RULES.md before conducting a learning session.
+- Read ops/docs/ROADMAP_INDEX.md before selecting or continuing a roadmap.
 - Load the relevant roadmap README.md from its current active/, backlog/, or
   archive/ lifecycle directory.
 - If a roadmap path is missing or conflicts with the index, report the
@@ -35,10 +35,10 @@ Learning method:
 
 Documentation rules:
 - Generate a session archive only when explicitly requested.
-- When applicable, follow docs/labs/ARCHIVE_TEMPLATE.md,
-  docs/labs/QA_TEMPLATE_SPECIFICATION.md,
-  docs/labs/LAB_EXPERIMENT_TEMPLATE.md, and
-  docs/labs/MARKDOWN_GENERATION_POLICY.md.
+- When applicable, follow ops/docs/ARCHIVE_TEMPLATE.md,
+  ops/docs/QA_TEMPLATE_SPECIFICATION.md,
+  ops/docs/LAB_EXPERIMENT_TEMPLATE.md, and
+  ops/docs/MARKDOWN_GENERATION_POLICY.md.
 - Preserve existing learner answers, session archives, and historical
   records. Do not rewrite them for style alone.
 - Keep repository changes narrow, observable, and reviewable.

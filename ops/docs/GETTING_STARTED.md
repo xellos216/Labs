@@ -18,48 +18,51 @@ have different roles:
   directory records the roadmap's current lifecycle state, not the format of
   an individual learning record.
 
-## Two Usage Paths
+## Use Labs as a Reference
 
-There are two distinct ways to use Labs:
+The populated `xellos216/labs` repository is a reference implementation of
+the Labs method, including evolving roadmaps and historical learning records.
+You may browse or clone it to study its organization and workflow.
 
-1. Browse the populated `xellos216/labs` repository as a reference
-   implementation, including its evolving roadmaps and historical records.
-2. Generate a separate personal learning workspace from the clean
-   `xellos216/labs-starter` template, then adapt its goals, environment,
-   roadmap order, and progress to your needs.
+Do not treat the populated repository as an empty template. Its content and
+Git history reflect an existing learner's work. Use a new repository when you
+need independent history and content.
 
-Do not treat the populated reference repository as an empty template. Its
-content and Git history reflect an existing learner's work.
+## Create a Personal Workspace
 
-## Create a Workspace from Labs Starter
+Initialize a new repository so that its history, goals, environment, roadmap
+order, and progress belong to you from the beginning:
 
-Use the public
-[xellos216/labs-starter](https://github.com/xellos216/labs-starter) template
-to create a clean personal workspace. The generated repository has Git history
-independent from both the populated `xellos216/labs` reference repository and
-the `xellos216/labs-starter` template repository.
+```bash
+mkdir my-labs
+cd my-labs
+git init
+```
 
-After generating the repository, adapt its `README.md` to describe your own
-learning workspace and choose appropriate licenses for future personal
-content. Before the first personal commit, confirm the Git identity that will
-be recorded publicly:
+Describe the workspace in its `README.md` and choose the lifecycle directories
+and operational documents that support your learning process. Before copying
+or adapting material from this repository, review the [License and
+Scope](../../LICENSE.md) and [Third-Party Notices](../../THIRD_PARTY_NOTICES.md).
+
+Before the first personal commit, confirm the Git identity that will be
+recorded publicly:
 
 ```bash
 git config --get user.name
 git config --get user.email
 ```
 
-Create the first roadmap with the roadmap template included in the generated
-repository, then register it in that repository's roadmap index. The generated
-workspace is yours to adapt; it does not copy the populated reference
-repository's personal roadmaps or progress. AI setup is optional.
+Create the first roadmap using the [Roadmap Format](ROADMAP_FORMAT.md) as a
+structural reference. If you adopt the same repository layout, create or
+update a roadmap index for your workspace. AI setup is optional.
 
 ## Create the First Roadmap
 
 1. Define the learning objective and intended scope.
-2. Create `backlog/<roadmap>/README.md` from the roadmap template included in
-   the generated repository.
-3. Register the roadmap in the generated repository's roadmap index.
+2. Create `backlog/<roadmap>/README.md`, using the [Roadmap
+   Format](ROADMAP_FORMAT.md) as a structural reference.
+3. If you adopt the Labs layout, create or update your workspace's roadmap
+   index.
 4. Review the proposed phases and sessions before beginning.
 5. Move the roadmap to `active/` only when actual learning begins.
 6. Keep phase and session records inside the same roadmap directory.
