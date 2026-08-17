@@ -74,8 +74,8 @@ Index](ops/docs/ROADMAP_INDEX.md) for the current inventory.
 Clone the populated reference repository:
 
 ```bash
-git clone https://github.com/xellos216/labs.git
-cd labs
+git clone https://github.com/xellos216/Labs.git
+cd Labs
 ```
 
 Then read this `README.md`, open the [Roadmap

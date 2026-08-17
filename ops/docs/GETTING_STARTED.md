@@ -20,7 +20,7 @@ have different roles:
 
 ## Use Labs as a Reference
 
-The populated `xellos216/labs` repository is a reference implementation of
+The populated `xellos216/Labs` repository is a reference implementation of
 the Labs method, including evolving roadmaps and historical learning records.
 You may browse or clone it to study its organization and workflow.
 
