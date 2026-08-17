@@ -30,8 +30,8 @@ or old branch content as V2 completion credit.
 Clone the public repository when you need a local reference copy:
 
 ```bash
-git clone https://github.com/xellos216/labs.git
-cd labs
+git clone https://github.com/xellos216/Labs.git
+cd Labs
 ```
 
 Inspect the current branch and commit before continuing curriculum work:
