@@ -29,15 +29,19 @@ committed completed-session files.
 Repository location and roadmap status must agree. Move the whole roadmap
 directory and update this index when lifecycle state changes.
 
-## Initial Progress
+## Initial V2 Baseline
 
 ```text
 Curriculum version: V2
-Active roadmap: Security Core
-Current phase: Phase 01 — Unix/Linux Observation
-Completed sessions: none
-Next session: Session 01 — Local Lab Boundaries and Evidence
+Initial active roadmap: Security Core
+First phase: Phase 01 — Unix/Linux Observation
+Baseline completed sessions: none
+First session: P01-S01 — Local Lab Boundaries and Evidence
 ```
+
+This immutable block records the V2 starting state. Do not update it as
+sessions are completed; determine current progress from committed session
+archives and the ordered roadmap specification.
 
 Initial roadmap allocation:
 

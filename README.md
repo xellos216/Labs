@@ -8,18 +8,20 @@ and Wi-Fi security through reproducible investigation.
 The repository is a learning record and curriculum specification, not a
 commercial course or a substitute for direct practice.
 
-## Current Status
+## Initial V2 Baseline
 
 ```text
 Curriculum version: V2
-Active roadmap: Security Core
-Current phase: Phase 01 — Unix/Linux Observation
-Completed sessions: none
-Next session: Session 01 — Local Lab Boundaries and Evidence
+Initial active roadmap: Security Core
+First phase: Phase 01 — Unix/Linux Observation
+Baseline completed sessions: none
+First session: P01-S01 — Local Lab Boundaries and Evidence
 ```
 
-Curriculum V2 begins from zero. No earlier session work counts as a V2
-prerequisite or completed-session credit.
+This block records the V2 starting state, not live progress. Determine current
+progress from committed completed-session archives and the ordered roadmap
+sessions. No earlier session work counts as a V2 prerequisite or
+completed-session credit.
 
 ## Evidence-Based Learning Cycle
 
@@ -66,7 +68,7 @@ data follows the policy's strict handling and minimization rules.
   operational documentation.
 
 See the [Roadmap Index](ops/docs/ROADMAP_INDEX.md) for canonical paths,
-activation relationships, and current progress.
+activation relationships, and progress rules.
 
 ## Language Policy
 

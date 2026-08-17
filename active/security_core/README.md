@@ -4,11 +4,6 @@
 
 Active.
 
-- Curriculum version: V2
-- Current phase: Phase 01 — Unix/Linux Observation
-- Completed sessions: none
-- Next session: Session 01 — Local Lab Boundaries and Evidence
-
 ## Objective
 
 Build the shared observational and protocol-reasoning foundation required by every

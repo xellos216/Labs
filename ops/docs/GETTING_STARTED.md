@@ -10,15 +10,19 @@ wired networks, Wi-Fi, and optional Linux internals.
 It is not a blank template, a completed commercial course, or a substitute for
 performing the work in a real authorized environment.
 
-## Current Starting Point
+## Initial V2 Baseline
 
 ```text
 Curriculum version: V2
-Active roadmap: Security Core
-Current phase: Phase 01 — Unix/Linux Observation
-Completed sessions: none
-Next session: Session 01 — Local Lab Boundaries and Evidence
+Initial active roadmap: Security Core
+First phase: Phase 01 — Unix/Linux Observation
+Baseline completed sessions: none
+First session: P01-S01 — Local Lab Boundaries and Evidence
 ```
+
+This block records the V2 starting state, not live progress. Determine current
+progress from committed completed-session archives and the ordered roadmap
+sessions.
 
 Begin with the [Roadmap Index](ROADMAP_INDEX.md), then read [Security
 Core](../../active/security_core/README.md) and [Labs Session

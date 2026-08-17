@@ -51,11 +51,11 @@ Use lowercase keys and this structure:
 ```yaml
 ---
 roadmap: security_core
-phase: 01
-session: 01
+phase: "01"
+session: "01"
 status: completed
 ai_assistance: none
-date: 2026-08-17
+date: "2026-08-17"
 scope: local_lab
 ---
 ```
@@ -63,6 +63,8 @@ scope: local_lab
 The date above is an example. Use the real completion date. `roadmap`, `phase`,
 and `session` must match the current roadmap. `scope` should identify the
 authorized environment without exposing a private program or real target.
+Keep `phase`, `session`, and `date` quoted so YAML parsers preserve leading
+zeros and do not coerce dates.
 
 The only valid archive status is:
 

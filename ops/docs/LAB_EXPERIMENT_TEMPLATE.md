@@ -44,17 +44,18 @@ Use lowercase front-matter keys:
 ```yaml
 ---
 roadmap: security_core
-phase: 02
-session: 05
+phase: "02"
+session: "05"
 experiment: tcp_state_transition_capture
 status: completed
-date: 2026-08-17
+date: "2026-08-17"
 scope: isolated_lab
 ---
 ```
 
 Use the real date and matching roadmap identifiers. Valid experiment status
-values are:
+values are listed below. Keep `phase`, `session`, and `date` quoted so YAML
+parsers preserve leading zeros and do not coerce dates.
 
 ```text
 completed

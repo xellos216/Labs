@@ -1,10 +1,10 @@
 ---
 roadmap: security_core
-phase: 01
-session: 01
+phase: "01"
+session: "01"
 status: completed
 ai_assistance: none
-date: YYYY-MM-DD
+date: "YYYY-MM-DD"
 scope: local_lab
 ---
 
