@@ -1,6 +1,12 @@
-# Operations Utilities
+# Operations
 
-이 디렉터리는 Labs 저장소의 운영용 파일을 담는 영역입니다.
-- `ops/docs/`: 프로젝트 정책, 학습 운영 규칙, 템플릿 및 운영 문서
-- `ops/scripts/`: 점검/정리용 스크립트
-- `ops/templates/`: 템플릿
+`ops/` contains the operational material for Curriculum V2:
+
+- [`docs/`](docs/README.md) defines governance, curriculum formats, source
+  precedence, session rules, and public-documentation policy.
+- [`templates/`](templates/README.md) contains reusable documentation
+  templates.
+- [`scripts/`](scripts/README.md) documents repository validation or
+  maintenance helpers.
+
+Operational files support the curriculum; they do not record roadmap progress.

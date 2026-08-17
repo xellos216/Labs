@@ -2,7 +2,8 @@
   "ignores": [
     "**/.venv/**",
     "**/node_modules/**",
-    "**/.git/**"
+    "**/.git/**",
+    "LICENSES/**"
   ],
   "config": {
     "MD001": false,

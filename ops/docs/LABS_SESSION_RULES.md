@@ -1,344 +1,258 @@
 # Labs Session Rules
 
-> This document defines how learning sessions are conducted throughout the Labs project.
->
-> These rules describe the learning workflow, not the archive format.
->
-> Project-wide values and decision priorities are defined in
-> `DESIGN_PRINCIPLES.md`. This document defines how those principles are
-> applied during individual sessions.
+## Purpose
 
----
+These rules define how interactive Curriculum V2 learning sessions are run.
+Roadmap README files define what each session covers; this document defines how
+the learner and assistant conduct it. AI assistance follows [AI-Assisted
+Learning and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md).
 
-# Purpose
-
-Every session should strengthen transferable systems understanding rather than isolated knowledge.
-
-The objective is to develop the ability to:
-
-* explain
-* predict
-* observe
-* verify
-* connect
-
-system behavior.
-
----
-
-# Core Learning Cycle
-
-Every session should generally follow this workflow.
-
-During learning sessions, prefer a practice-first approach. Keep conceptual explanations concise and sufficient to support understanding, while allocating most session time to observation, experimentation, troubleshooting, and interpretation of real system behavior.
+## Learner-Facing Flow
 
 ```text
-Understand
-
+Minimal Setup
 ↓
-
-Predict
-
+Question or Task
 ↓
-
-Observe
-
+Learner Prediction
 ↓
-
-Explain
+Learner Performs Primary Work
+↓
+Observed Output
+↓
+Learner Initial Interpretation
+↓
+Optional Level-Appropriate AI Assistance
+↓
+Controlled Verification
+↓
+Mechanism Explanation
+↓
+Completion Decision
+↓
+Korean Session Archive
 ```
 
-Practical experiments are performed as part of the Observation stage.
+The archive step occurs only after the session is complete and the learner
+explicitly requests or approves final generation.
 
-The learner should actively build mental models before receiving complete explanations whenever practical.
+## Minimal Setup
 
----
+Establish only what is needed to begin:
 
-# Session Structure
+- roadmap, phase, and session identifier
+- central question and completion criterion
+- authorized scope and stop conditions
+- required local fixture, accounts, or capture point
+- relevant environment differences
 
-A typical session consists of four stages.
+Do not front-load a full solution. Setup should make the learner's first task
+safe and observable.
 
-## 1. Concept
+## Question and Prediction
 
-Introduce the problem being solved.
+Present one central question or bounded task. Request a prediction before
+observation when the prediction will expose assumptions or make later evidence
+more meaningful.
 
-Focus on:
+A useful prediction identifies an expected state, path, response, or trust
+decision and gives a reason. Do not treat a wrong prediction as failure; use it
+as a comparison point for the observed mechanism.
 
-* why it exists
-* what problem it solves
-* where it fits into the larger system
+## Learner Performs the Primary Work
 
-Avoid presenting implementation details before the learner understands the purpose.
+The learner performs the primary terminal, browser, packet-capture, request,
+and initial interpretation work. The assistant should not immediately provide
+the complete solution unless the learner asks for it, is blocked after a
+genuine attempt, or has reached a roadmap activity that explicitly permits
+higher-level assistance.
 
----
+The assistant may provide a minimal fixture or bounded command when setup
+syntax is not the learning objective. It must still leave the core observation
+and reasoning work to the learner.
 
-## 2. Prediction
+## Observed Output
 
-Whenever practical, encourage prediction before observation.
+Review actual attempted commands, requests, responses, logs, captures, browser
+state, or other observed output. Ask for the smallest additional evidence
+needed to resolve an ambiguity.
 
-Typical prompts:
+Keep these categories distinct:
 
-* What do you expect to happen?
-* Why do you think this exists?
-* Which component will handle this?
-* What would happen if this changed?
+- observed evidence
+- explanation supported by that evidence
+- inference that still needs testing
+- limitation or uncertainty
 
-Predictions provide a baseline for later verification.
+Never invent output, successful execution, environment state, or completion.
 
----
+## Learner Initial Interpretation
 
-## 3. Observation
+Before material AI review or analysis, the learner explains what the observed
+evidence appears to show. The initial interpretation should identify the
+relevant evidence, propose a state, path, or trust-boundary model, and state
+uncertainty or plausible alternatives.
 
-Observe the real system.
+An incomplete or incorrect initial model is useful. Preserve it so later
+corrections remain traceable to verification instead of appearing as
+unexplained facts.
 
-Preferred observations include:
+## Level-Appropriate AI Assistance
 
-* terminal output
-* packet captures
-* logs
-* process state
-* memory layout
-* filesystem state
-* browser developer tools
-* debugger output
+AI assistance is optional and graduated by demonstrated capability:
 
-Observation should come from the system itself whenever possible.
+- `explanation` may be used from the beginning to clarify a concept or
+  mechanism without replacing primary observation;
+- `review` follows a learner attempt, evidence, or initial interpretation;
+- `analysis` follows independent evidence collection and an initial human
+  hypothesis; and
+- `automation` follows a manually performed and verified workflow.
 
-When practical work is needed, perform the experiment within this stage and
-record the resulting observations before explaining them.
+The assistant must not fabricate terminal, browser, packet, service, or other
+environment output. It must label proposed classifications, missing links, and
+hypotheses as candidates. AI use does not reduce the learner's responsibility
+for primary terminal, browser, capture, or request work.
 
----
+A learner may intentionally complete a session with `ai_assistance: none`
+unless that session explicitly teaches AI-assisted practice.
 
-## 4. Explanation
+## Controlled Verification
 
-Explain the observed behavior.
+Test each material AI suggestion against direct evidence. Record its outcome
+as `verified`, `rejected`, `inconclusive`, `not tested`, or `out of scope`.
+Do not silently incorporate a suggestion into the final explanation.
 
-Connect:
+Use the smallest safe observation or controlled comparison that distinguishes
+the candidate from plausible alternatives. Session completion requires
+observed evidence, not a convincing AI explanation.
+
+## Review and Minimal Correction
+
+Review the learner's actual attempt at the assistance level permitted for the
+session. Identify the specific mismatch between the task and the evidence,
+then provide the smallest correction that lets the learner continue. Explain
+syntax only to the depth needed for the current question.
+
+Do not silently add a new concept, core task, or unrelated troubleshooting
+branch. When a dependency problem becomes its own workstream, split it from the
+learning session and preserve the current continuation point.
+
+## Mechanism Explanation
+
+After observation, connect the evidence to the mechanism:
 
 ```text
-Observation
-
+observed state or event
 ↓
-
-Mechanism
-
+responsible component and decision
 ↓
-
-Mental Model
+state, data, or trust-boundary transition
+↓
+reusable mental model
 ```
 
-Avoid explaining only the command or syntax.
+State which alternatives were rejected and which remain possible. Commands
+are instruments; the explanation must remain useful with equivalent tools.
 
----
+## Scope and Task Budget
 
-# Practical Experiments
+A normal session has one central question, no more than five core tasks, one
+explicit completion criterion, and tasks from one coherent workstream. Setup,
+review, correction, completion review, and approved archive generation do not
+increase the task count.
 
-Experiments should be:
+If work overruns, reduce or defer later tasks. Do not append work because a
+phase lacks a convenient stopping point. Keep the roadmap-defined session
+purpose and sequence stable unless the learner explicitly approves a
+curriculum change.
 
-* local
-* reproducible
-* observable
-* reversible
-* ethically scoped
+## Completion Decision
 
-Whenever possible, use:
+Completion requires evidence that satisfies the session's explicit criterion.
+The learner should be able to:
 
-* virtual machines
-* containers
-* loopback interfaces
-* local web applications
-* sample datasets
-* intentionally vulnerable training environments
+- identify the relevant observed evidence
+- explain the mechanism in their own words
+- distinguish evidence from inference
+- reject or bound plausible alternative explanations
+- state limitations and uncertainty
+- apply the mental model to a nearby case
 
-Avoid modifying the primary host unnecessarily.
+Do not infer completion from chat length, task count, earlier conversations,
+an assistant-generated summary, or an AI explanation. If evidence is
+incomplete, mark the session as not complete or inconclusive and identify the
+next bounded action.
 
----
+Phase transitions require explicit learner approval after the phase capstone
+and completion evidence are reviewed. Do not silently advance a phase or
+change roadmap order.
 
-# Application Rules
+## Capstones
 
-During a session:
+A phase capstone uses the same learner-facing flow but integrates several phase
+concepts. It must require the learner to collect evidence, reconstruct a state,
+path, or trust boundary, test alternative explanations, explain the mechanism,
+and state limitations or uncertainty.
 
-* ask for a prediction before observation whenever practical
-* record observed facts before interpretation
-* distinguish conclusions from assumptions and speculation
-* connect the observed mechanism to related system components
-* investigate unexpected results before revising the mental model
-* prefer explaining behavior over memorizing commands
+Use the same archive format as an ordinary session. Do not create a separate
+review or answer file.
 
-These rules apply the evidence, systems-thinking, and failure principles
-defined in `DESIGN_PRINCIPLES.md` without restating them.
+## Korean Session Archive
 
----
+Generate one final Korean archive only when all of these are true:
 
-# Roadmap-Specific Session Modes
+1. The learner performed the primary work.
+2. The relevant commands or tests and outputs were actually observed.
+3. The completion criterion was reviewed explicitly.
+4. The learner requested or approved archive generation.
 
-Some roadmaps may use session flows that extend the default Labs session cycle.
+Follow [Session Archive Format](SESSION_ARCHIVE_FORMAT.md) and
+[`session_archive_ko.md`](../templates/session_archive_ko.md). Do not create a
+draft or incomplete session file. Do not copy a raw transcript. Include only
+the minimum raw evidence needed and redact sensitive identifiers. Record the
+highest material assistance level in `ai_assistance` and disclose material AI
+use and verification in the required Korean AI-use section.
 
-Roadmap-specific modes should be documented here when they affect how sessions are conducted.
+## Conversation Boundary
 
-## Unix Task-Solving Mode
+Use one conversation for one meaningful roadmap section or one coherent
+workstream. Closely related tasks may remain together. A conversation need not
+map one-to-one to a session, and a long milestone need not remain in one
+conversation.
 
-The `unix/` roadmap uses a learner-first task-solving mode.
+Start a separate conversation or branch when:
 
-Typical flow:
+- troubleshooting materially diverges from the learning objective
+- driver or tool installation becomes its own problem
+- repository corruption or maintenance is involved
+- an independent experiment is required
+- the work no longer belongs to the current roadmap section
 
-```text
-Setup
+A coordinator conversation and end-of-session handoff are optional, not
+required.
 
-↓
+## Handoffs
 
-Task Prompt
+Create a handoff only when cross-session transfer is genuinely useful. Include
+only:
 
-↓
+- what was verified
+- what remains unresolved
+- exact paths, commands, or evidence
+- current branch and commit
+- next bounded action
 
-Learner Solves in Terminal
+Repository evidence takes precedence over any handoff or accumulated chat
+context.
 
-↓
+## Safety and Public Records
 
-Review and Correction
+Keep practical work inside the roadmap's authorized lab boundary. Stop when
+scope, ownership, regulatory permission, or publication safety is uncertain.
+Private research evidence stays outside the public repository.
 
-↓
-
-notes.md Only When Requested
-```
-
-In this mode, ChatGPT should provide the session setup and task prompts, then wait for the learner's attempted commands or answers.
-
-The learner performs the primary work directly in the terminal.
-
-ChatGPT should then:
-
-* review the learner's attempted solution
-* identify mistakes or mismatches with the task
-* explain only the necessary corrections
-* reinforce the reusable command pattern
-* generate `notes.md` only when explicitly requested
-
-This mode differs from normal concept-led sessions because the primary learning action is the learner's direct problem solving.
-
-The assistant should avoid immediately solving the task unless the learner asks for help or is blocked.
-
-Temporary handoff files may be used to transfer session context to an LLM, but they are not project rules and should not be treated as persistent templates.
-
-### Planned Workload
-
-Ordinary Unix sessions should be designed for approximately 20 minutes of
-planned work. This is a workload-design target, not a hard runtime cutoff.
-Unexpected troubleshooting may take longer, but troubleshooting must not
-silently expand the planned curriculum or create additional core Tasks.
-
-### Core Task Budget
-
-Ordinary Unix sessions have at most five core Tasks. Review sessions use the
-same limit.
-
-Setup, verification, Wrap-up, and explicitly requested notes generation are
-not core Tasks. Do not automatically introduce Task 6. Correction attempts
-remain part of the current Task rather than becoming new curriculum Tasks.
-
-If one Task overruns, reduce, defer, or reschedule later planned Tasks. Do not
-silently append more work because a phase has no clear endpoint.
-
-### Unexpected New Concepts
-
-When a correction would require a substantial new syntax or conceptual topic:
-
-* explain the immediate mismatch only as needed
-* do not turn the current session into an unplanned language lesson
-* defer or reschedule the concept, provide a bounded helper, or revise the
-  roadmap explicitly
-* require explicit approval for substantive curriculum expansion
-
-### Learner-Authored Complexity Boundary
-
-Routine learner-authored Unix Tasks may require:
-
-* fixed-field `awk` extraction
-* `-F`
-* simple comparisons
-* simple regular expressions
-* a clear one-step `sub()` or `substr()` transformation
-* short pipelines where each tool has a distinct role
-
-Routine learner-authored Unix Tasks should not require:
-
-* associative arrays
-* `count[key]++`
-* stateful aggregation
-* complex `END` blocks
-* nested parser control flow
-* dynamic general-purpose `key=value` parsing
-* maximum or minimum state plus owner-record preservation
-* large shell reporting blocks
-* deeply nested command substitutions
-
-Advanced syntax is not forbidden. It may appear as an optional explanation, a
-provided bounded helper, or part of an explicitly approved advanced session.
-It must not become a hidden prerequisite for progressing through the
-foundational Unix roadmap.
-
-### Composability Preference
-
-When equivalent for the learning goal, prefer:
-
-```text
-small filter or extract command
-→ sort
-→ uniq -c
-→ optional ranking
-```
-
-over a monolithic `awk` program that performs filtering, parsing, aggregation,
-and reporting internally. This is a learning-design preference, not an
-absolute performance claim.
-
-### Integrated Reporting Boundary
-
-Do not use multi-metric, multi-variable `printf` reporting blocks as ordinary
-integrated Unix assignments. `printf` itself is not prohibited, and a simple
-`printf` example may be used when directly relevant. The excluded pattern is a
-large synthesized report whose shell syntax becomes the primary difficulty.
-
-### Completion and Notes
-
-A Unix task-solving session still requires a direct learner attempt, review or
-correction, and an evidence-based explanation. Completion depends on
-demonstrated understanding rather than raw Task count. Generate `notes.md` only
-when explicitly requested.
-
----
-
-# Session Completion
-
-A session is considered complete when the learner can:
-
-* explain the concept in their own words
-* connect it to related systems
-* interpret observed behavior
-* justify conclusions with evidence
-* predict similar behavior in related situations
-
-For Unix task-solving sessions, completion also requires that the learner has attempted the task directly and received review or correction.
-
-Completion is based on demonstrated understanding rather than the number of commands or facts covered.
-
----
-
-# Markdown Generation
-
-When a session produces or modifies Markdown covered by the repository Markdown policy, including files under `active/**`, `backlog/**`, `archive/**`, or `ops/docs/**`, follow:
-
-```text
-ops/docs/MARKDOWN_GENERATION_POLICY.md
-```
-
-Before committing Markdown changes, validate with the repository markdownlint command documented in that policy.
-
----
-
-# Scope
-
-These rules apply to every roadmap within the Labs project unless a roadmap explicitly defines additional procedures.
-
-Roadmap-specific additions may extend these rules but should not silently
-contradict `DESIGN_PRINCIPLES.md`.
+Before generating public Markdown, apply
+[Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md), including
+redaction and media review. Classify AI inputs, minimize shared data, and treat
+target-derived or third-party content as untrusted under [AI-Assisted Learning
+and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md).

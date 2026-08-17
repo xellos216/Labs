@@ -1,271 +1,157 @@
-# Lab Experiment Template
+# Lab Experiment Format
 
-> This document defines the standard format for documenting practical experiments performed throughout the Labs project.
->
-> The purpose is to capture reasoning, observations, and conclusions—not simply the commands that were executed.
+## Purpose
 
----
+This document defines a generic record for a detailed controlled experiment.
+Use it when a session archive alone cannot preserve the reproduction steps,
+environment, evidence provenance, or analysis of an unexpected result.
 
-# Relationship to Session Archives
+An experiment record supports a session. It does not independently mark a
+session complete or replace the Korean completed-session archive.
 
-`ARCHIVE_TEMPLATE.md` records what was learned across an entire session.
-This template records how one specific experiment was predicted, performed,
-observed, and explained.
+## When to Use a Separate Record
 
-Use a separate experiment document when the work requires one or more of:
+Use a separate experiment record when the work needs one or more of:
 
-* detailed reproduction steps
-* environment-specific setup
-* preserved evidence files
-* investigation of unexpected or inconclusive results
-* reuse outside the original session
+- detailed reproduction steps
+- environment-specific setup
+- several observation points or evidence files
+- controlled comparison of competing hypotheses
+- investigation of a failed or inconclusive result
+- safe reuse outside the original session
 
-Small experiments may remain in the archive's Practical Observations section.
+Keep a small experiment inside the session archive when a separate file would
+add no useful evidence or reproducibility.
 
----
+## Language and Filename
 
-# Experiment Metadata
+This specification is English. Write learner predictions, observations,
+interpretations, failures, and uncertainty in Korean. Preserve commands, code,
+protocol names, APIs, and technical identifiers in their original form.
 
-```yaml
-Roadmap:
-Phase:
-Session:
-Experiment:
-Environment:
-Date:
-Status:
-```
-
-Use one of the following status values:
+Use an English snake_case filename that identifies the experiment without
+exposing a private target:
 
 ```text
-planned
+tcp_state_transition_capture.md
+cross_role_response_comparison.md
+```
+
+## Metadata
+
+Use lowercase front-matter keys:
+
+```yaml
+---
+roadmap: security_core
+phase: "02"
+session: "05"
+experiment: tcp_state_transition_capture
+status: completed
+date: "2026-08-17"
+scope: isolated_lab
+---
+```
+
+Use the real date and matching roadmap identifiers. Valid experiment status
+values are listed below. Keep `phase`, `session`, and `date` quoted so YAML
+parsers preserve leading zeros and do not coerce dates.
+
+```text
 completed
 inconclusive
 failed
 ```
 
-`failed` means the procedure could not be completed. An unexpected result
-from a completed procedure should be recorded under Unexpected Results rather
-than marked as failed.
+`failed` means the procedure could not be completed. A completed procedure
+that disproved the hypothesis is `completed`, not `failed`.
 
----
+## Required Content
 
-# Objective
-
-Describe the purpose of the experiment.
-
-Answer questions such as:
-
-* What is being investigated?
-* Why is this experiment being performed?
-* Which concept does it support?
-
----
-
-# Background
-
-Provide only the minimum theory necessary to understand the experiment.
-
-Avoid turning this section into a lecture.
-
----
-
-# Prediction
-
-Record the expected behavior before performing the experiment.
-
-Questions that may help:
-
-* What do I think will happen?
-* Which component will be responsible?
-* Why do I expect this behavior?
-
-Predictions are valuable even when they are incorrect.
-
----
-
-# Environment
-
-Record only information relevant to reproducing the experiment.
-
-Example:
+The experiment record should contain these learner-facing sections in Korean:
 
 ```text
-Host:
-Arch Linux
-
-Guest:
-Ubuntu Server 24.04
-
-Tools:
-ss
-tcpdump
-curl
+# 실험 제목
+## 실험 목적
+## 핵심 가설
+## 실습 환경과 범위
+## 통제 조건
+## 수행 절차
+## 관찰된 증거
+## 대안 설명 검토
+## 해석
+## 실패, 한계 및 불확실성
+## 재현 조건
+## 세션과의 관계
 ```
 
----
+## Content Rules
 
-# Procedure
+### Experiment Purpose and Hypothesis
 
-Describe the experiment as a sequence of reproducible steps.
+State one question and the prediction made before observation. Explain which
+evidence would support, reject, or leave the hypothesis inconclusive.
 
-Prefer explaining intent rather than only listing commands.
+### Environment, Scope, and Controls
 
-Example:
+Record only the environment details needed for reproduction. State the
+authorized boundary, variables held constant, comparison cases, capture points,
+and relevant stop conditions.
 
-````markdown
-1. Start the local web server.
+### Procedure
 
-```bash
-python3 -m http.server
-```
+Describe reproducible actions in order and explain their intent. Do not report
+an action as completed unless it was actually performed. Keep troubleshooting
+that materially diverged from the experiment in a separate workstream.
 
-2. Send an HTTP request.
+### Observed Evidence
 
-```bash
-curl http://127.0.0.1:8000
-```
+Record facts without mechanism claims. Tie each excerpt or evidence path to its
+action and observation point. Include only the minimum raw data required to
+support later analysis.
 
-3. Observe the server output.
-````
+### Alternative Explanations and Interpretation
 
----
+Compare the evidence with plausible alternative mechanisms. State which checks
+rejected an alternative and which uncertainty remains. Explain the resulting
+state, data path, or trust-boundary model.
 
-# Observations
+### Failures, Limits, and Reproduction
 
-Record only facts that were actually observed.
+Preserve useful failed attempts and state what the experiment cannot establish.
+List the minimum conditions another authorized learner would need to reproduce
+the result. Do not use progress checkboxes.
 
-Examples:
+### Relationship to the Session
 
-* terminal output
-* packet captures
-* process state
-* logs
-* browser behavior
-* debugger output
+Identify the owning roadmap session and explain what completion evidence this
+experiment supplies. Link the final completed-session archive when available.
 
-Do not include explanations here.
+## Evidence Storage
 
----
+Prefer small sanitized text excerpts. When separate evidence files are
+necessary, use repository-relative links and explain what each file proves.
+Do not commit private program data, undisclosed findings, live credentials,
+personal account data, unredacted captures, confidential source, or unsafe
+real-target identifiers.
 
-# Explanation
+Real private-program evidence belongs in a separate private workspace. A
+public experiment record may refer only to sanitized conclusions and
+publication-safe evidence.
 
-Explain why the observed behavior occurred.
+## Validation
 
-Connect the observation to the underlying mechanism.
+Before accepting a record, verify that:
 
-Preferred flow:
+- the experiment was actually performed
+- status matches the observed outcome
+- action and evidence provenance are clear
+- interpretation is separate from observation
+- alternatives, limitations, and uncertainty are explicit
+- identifiers and evidence are publication-safe
+- links resolve locally
+- the record does not claim session completion by itself
 
-```text
-Observation
-
-↓
-
-Mechanism
-
-↓
-
-Mental Model
-```
-
----
-
-# Evidence
-
-Include evidence that supports the explanation.
-
-Possible evidence:
-
-* command output
-* screenshots
-* packet captures
-* log excerpts
-* memory maps
-* debugger state
-
-Evidence should support conclusions rather than replace them.
-
-When evidence is stored separately, record its repository-relative path and
-briefly explain what it demonstrates.
-
----
-
-# Unexpected Results
-
-Document anything that differed from the original prediction.
-
-Example:
-
-```text
-Prediction
-
-↓
-
-Observed Difference
-
-↓
-
-Reason
-
-↓
-
-Updated Mental Model
-```
-
-Unexpected behavior often produces the most valuable learning.
-
----
-
-# Related Concepts
-
-List concepts reinforced by this experiment.
-
-Example:
-
-* Virtual Memory
-* ARP
-* TCP Handshake
-* Process Lifecycle
-* Routing
-
----
-
-# Key Takeaways
-
-Summarize the experiment in a few concise points.
-
-Focus on transferable understanding rather than procedural steps.
-
-Example:
-
-* The kernel resolved the routing decision before packet transmission.
-* ARP resolved the destination MAC only when necessary.
-* The observation matched the predicted packet flow.
-
----
-
-# Reproduction Checklist
-
-Verify that another learner could repeat the experiment.
-
-Checklist:
-
-* [ ] Environment recorded
-* [ ] Procedure documented
-* [ ] Observations recorded
-* [ ] Explanation included
-* [ ] Evidence preserved
-* [ ] Conclusions supported by evidence
-
----
-
-# Follow-up Questions
-
-Record questions for future investigation.
-
-Examples:
-
-* Why did this behavior differ from the prediction?
-* What would happen under different conditions?
-* Which component should be investigated next?
+Follow [Session Archive Format](SESSION_ARCHIVE_FORMAT.md) for the final session
+record and [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md) for
+formatting, redaction, media review, and validation.

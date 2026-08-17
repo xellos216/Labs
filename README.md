@@ -1,121 +1,106 @@
-# Labs
+# Labs Curriculum V2
 
-## Purpose
+Labs is a public, evidence-based curriculum for authorized security learning
+and research. It connects Unix/Linux observation, network protocol reasoning,
+web and API security, bug bounty research operations, wired network security,
+and Wi-Fi security through reproducible investigation.
 
-Labs is a long-term technical learning workspace built around systems
-understanding, observable evidence, practical investigation, and durable
-mental models. It records how concepts were predicted, tested, explained,
-and connected across related systems.
+The repository is a learning record and curriculum specification, not a
+commercial course or a substitute for direct practice.
 
-The repository is a noncommercial learning resource, not a finished
-commercial curriculum or a substitute for direct observation and practice.
-
-## Repository Status
-
-This is the populated personal learning workspace of `xellos216` and a
-reference implementation of the Labs method. Its roadmap order, recorded
-progress, and topic selection reflect one learner's path. Historical session
-archives may use older formats that remain useful as learning records.
-
-This repository is not an empty starter or template repository. Readers may
-clone it to study the populated reference implementation and its history, but
-its content and Git history reflect an existing learner's work.
-
-This repository is maintained as a populated reference, not as a reusable
-template. A new personal workspace should use independent Git history and be
-adapted to its learner's own goals, environment, and roadmap order. Before
-copying or adapting material from this repository, review its license
-documents. This repository is not distributed as a whole under an
-OSI-approved software license.
-
-## Who It Is For
-
-Labs may be useful to learners who want durable understanding of areas such
-as systems, Unix and Linux, programming, networking, administration,
-embedded systems, firmware, or practical security investigation. Readers can
-adapt the method to their own operating system, shell, editor, tools, and lab
-environment.
-
-## Learning Method
-
-The canonical learning cycle is:
+## Initial V2 Baseline
 
 ```text
-Understand
-↓
-Predict
-↓
-Observe
-↓
-Explain
+Curriculum version: V2
+Initial active roadmap: Security Core
+First phase: Phase 01 — Unix/Linux Observation
+Baseline completed sessions: none
+First session: P01-S01 — Local Lab Boundaries and Evidence
 ```
 
-A short concept establishes the problem, a prediction creates a testable
-expectation, observation supplies evidence, and explanation connects the
-result to a durable mental model. See the [Design
-Principles](ops/docs/DESIGN_PRINCIPLES.md) and [Labs Session
-Rules](ops/docs/LABS_SESSION_RULES.md) for the canonical method.
+This block records the V2 starting state, not live progress. Determine current
+progress from committed completed-session archives and the ordered roadmap
+sessions. No earlier session work counts as a V2 prerequisite or
+completed-session credit.
 
-## Explore the Repository
+## Evidence-Based Learning Cycle
 
-- `active/` contains roadmaps currently being practiced or expanded.
-- `backlog/` contains planned, paused, or future roadmaps.
-- `archive/` contains roadmaps whose planned learning sequence is complete.
-- `ops/` contains repository operation materials.
-- `ops/docs/` contains governance, templates, policies, and navigation.
-
-A roadmap's directory determines its current roadmap lifecycle state. A
-session archive is a learning record stored with its roadmap; it is not the
-same thing as the top-level `archive/` lifecycle directory. See the [Roadmap
-Index](ops/docs/ROADMAP_INDEX.md) for the current inventory.
-
-## Quick Start for Reading
-
-Clone the populated reference repository:
-
-```bash
-git clone https://github.com/xellos216/Labs.git
-cd Labs
+```text
+Scope
+↓
+Question
+↓
+Prediction or Hypothesis
+↓
+Observation or Controlled Test
+↓
+Evidence
+↓
+Explanation
+↓
+Record
 ```
 
-Then read this `README.md`, open the [Roadmap
-Index](ops/docs/ROADMAP_INDEX.md), choose a relevant roadmap `README.md` in
-its lifecycle directory, and inspect its existing phase or session records.
+Conclusions must remain traceable to observed evidence. The curriculum
+prioritizes protocol and trust-boundary reasoning, hypothesis testing,
+false-positive rejection, and durable mental models over tool collection or
+memorized procedures.
 
-Cloning this repository copies the populated personal learning workspace and
-its Git history. It is useful for reference and should not be treated as a
-clean bootstrap. To create an independent personal workspace, follow the
-[Getting Started with Labs](ops/docs/GETTING_STARTED.md) guide.
+## Graduated AI Assistance
 
-## Start Your Own Labs
+Labs uses a [graduated AI assistance
+model](ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md). Learners collect direct
+evidence and form an initial model before AI progresses from explanation and
+review to active analysis or bounded automation. AI output is never evidence,
+and every material suggestion requires human verification. Sensitive research
+data follows the policy's strict handling and minimization rules.
 
-- [Getting Started with Labs](ops/docs/GETTING_STARTED.md)
-- [Optional ChatGPT Setup](ops/docs/CHATGPT_SETUP.md)
-- [Project Instructions Template](ops/docs/PROJECT_INSTRUCTIONS.md)
+## Roadmap Lifecycle
 
-ChatGPT or another LLM can be used as an optional AI assistant, but Labs can
-be operated without one. The committed repository remains the source of
-truth.
+- [`active/`](active/README.md) contains the roadmap currently being
+  practiced. The initial active roadmap is [Security
+  Core](active/security_core/README.md).
+- [`backlog/`](backlog/README.md) contains complete roadmap specifications
+  awaiting activation.
+- [`archive/`](archive/README.md) contains roadmaps whose completion criteria
+  have been met. No V2 roadmap is initially archived.
+- [`ops/`](ops/README.md) contains governance, formats, templates, and
+  operational documentation.
 
-## Safety and Public Documentation
+See the [Roadmap Index](ops/docs/ROADMAP_INDEX.md) for canonical paths,
+activation relationships, and progress rules.
 
-Experiments should be local, reproducible, observable, reversible, and
-authorized. Follow the safety guidance in the [Labs Session
-Rules](ops/docs/LABS_SESSION_RULES.md) and the privacy and redaction rules in
-the [Markdown Generation Policy](ops/docs/MARKDOWN_GENERATION_POLICY.md)
-before publishing observations.
+## Language Policy
+
+Repository governance and roadmap specifications are written in English.
+Completed session archives are written in Korean so that learner predictions,
+observations, explanations, failures, and uncertainty remain natural and
+precise. Commands, protocol names, APIs, and technical identifiers retain
+their original form.
+
+## Source of Truth
+
+Current committed repository files are canonical. Observed system output,
+focused branch or diff evidence, explicit handoffs, Project Sources, and chat
+context cannot silently replace committed curriculum or progress records.
+Project Sources, AI output, and AI memory are working context, not
+authoritative state.
+
+## Authorization and Publication Boundary
+
+Practical work must stay inside local labs, owned systems, isolated
+environments, authorized training platforms, or other explicitly authorized
+scope. Private program data, undisclosed findings, live credentials, tokens,
+personal account data, unredacted packet captures, confidential source, and
+unsafe real-target identifiers must not be committed here. Private research
+evidence belongs in a separate private workspace.
+
+The public repository may contain local-lab results, authorized
+training-platform results, public disclosed-report analysis, sanitized
+mechanism notes, redacted examples, and reusable research workflows.
 
 ## License
 
-Original learning documents and embedded code examples are available under
-the repository's stated noncommercial documentation license where the owner
-holds the necessary rights. Standalone programs, automation, configuration,
-and third-party material do not automatically inherit that license. Read
-[License and Scope](LICENSE.md) and [Third-Party
-Notices](THIRD_PARTY_NOTICES.md) before copying or adapting material.
-
-## Contributions and Support
-
-This repository is currently maintained as a personal learning workspace. It
-is not yet accepting general curriculum contributions or providing
-individual learning support.
+Review [License and Scope](LICENSE.md) and [Third-Party
+Notices](THIRD_PARTY_NOTICES.md) before copying or adapting repository
+material. Canonical third-party legal text is stored under `LICENSES/`.

@@ -1,127 +1,166 @@
-# Getting Started with Labs
+# Getting Started with Labs Curriculum V2
 
-## What Labs Is
+## What This Repository Is
 
-Labs is a method for organizing long-term technical learning around explicit
-goals, observable evidence, and durable mental models. Its main record types
-have different roles:
+Labs is a public curriculum and learning record for authorized security
+investigation. It develops evidence-based reasoning across Unix/Linux
+observation, network protocols, web and API security, bug bounty operations,
+wired networks, Wi-Fi, and optional Linux internals.
 
-- A **roadmap** defines a topic's learning objective, phases, and documented
-  session sequence.
-- A **learning session** is an interactive unit of study and investigation
-  within a roadmap.
-- An **experiment record** documents a reproducible practical investigation,
-  including procedure, evidence, and conclusions.
-- A **session archive** preserves what happened during a learning session.
-  It stays inside the roadmap that owns it.
-- A **lifecycle directory** is `active/`, `backlog/`, or `archive/`. The
-  directory records the roadmap's current lifecycle state, not the format of
-  an individual learning record.
+It is not a blank template, a completed commercial course, or a substitute for
+performing the work in a real authorized environment.
 
-## Use Labs as a Reference
+## Initial V2 Baseline
 
-The populated `xellos216/Labs` repository is a reference implementation of
-the Labs method, including evolving roadmaps and historical learning records.
-You may browse or clone it to study its organization and workflow.
-
-Do not treat the populated repository as an empty template. Its content and
-Git history reflect an existing learner's work. Use a new repository when you
-need independent history and content.
-
-## Create a Personal Workspace
-
-Initialize a new repository so that its history, goals, environment, roadmap
-order, and progress belong to you from the beginning:
-
-```bash
-mkdir my-labs
-cd my-labs
-git init
+```text
+Curriculum version: V2
+Initial active roadmap: Security Core
+First phase: Phase 01 — Unix/Linux Observation
+Baseline completed sessions: none
+First session: P01-S01 — Local Lab Boundaries and Evidence
 ```
 
-Describe the workspace in its `README.md` and choose the lifecycle directories
-and operational documents that support your learning process. Before copying
-or adapting material from this repository, review the [License and
-Scope](../../LICENSE.md) and [Third-Party Notices](../../THIRD_PARTY_NOTICES.md).
+This block records the V2 starting state, not live progress. Determine current
+progress from committed completed-session archives and the ordered roadmap
+sessions.
 
-Before the first personal commit, confirm the Git identity that will be
-recorded publicly:
+Begin with the [Roadmap Index](ROADMAP_INDEX.md), then read [Security
+Core](../../active/security_core/README.md) and [Labs Session
+Rules](LABS_SESSION_RULES.md). Do not treat earlier Git history, cached context,
+or old branch content as V2 completion credit.
+
+## Obtain the Repository
+
+Clone the public repository when you need a local reference copy:
 
 ```bash
-git config --get user.name
-git config --get user.email
+git clone https://github.com/xellos216/Labs.git
+cd Labs
 ```
 
-Create the first roadmap using the [Roadmap Format](ROADMAP_FORMAT.md) as a
-structural reference. If you adopt the same repository layout, create or
-update a roadmap index for your workspace. AI setup is optional.
+Inspect the current branch and commit before continuing curriculum work:
 
-## Create the First Roadmap
+```bash
+git branch --show-current
+git log -1 --oneline
+git status --short
+```
 
-1. Define the learning objective and intended scope.
-2. Create `backlog/<roadmap>/README.md`, using the [Roadmap
-   Format](ROADMAP_FORMAT.md) as a structural reference.
-3. If you adopt the Labs layout, create or update your workspace's roadmap
-   index.
-4. Review the proposed phases and sessions before beginning.
-5. Move the roadmap to `active/` only when actual learning begins.
-6. Keep phase and session records inside the same roadmap directory.
-7. Move the whole roadmap to `archive/` only when its planned sequence is
-   complete.
+Current committed files are canonical. A local uncommitted change, focused
+branch diff, handoff, Project Source, or chat must be identified explicitly
+before it can inform the current task.
 
-There is no universal first roadmap. Choose a topic that matches your goals
-and the systems you can investigate safely.
+## Understand the Repository
+
+- `active/` contains the roadmap currently being practiced.
+- `backlog/` contains complete roadmap specifications awaiting activation.
+- `archive/` contains roadmaps whose full completion criteria were met.
+- `ops/docs/` defines governance, formats, source precedence, and session rules.
+- `ops/templates/` contains reusable documentation templates.
+
+Normal operation allows one primary roadmap and zero or one bounded secondary
+roadmap. Linux Internals can be activated temporarily when an investigation
+reaches an operating-system mechanism boundary.
+
+## Prepare an Authorized Lab
+
+Before a practical session, identify:
+
+- systems and accounts you own or are explicitly authorized to test
+- the local, isolated, or training-platform scope
+- data-handling and publication constraints
+- the observation point and required tool capability
+- stop conditions for unexpected reachability or sensitive data
+
+Use local services, VMs, containers, network namespaces, owned networks,
+isolated access points, intentionally vulnerable applications, or authorized
+training platforms. Do not infer authorization from technical reachability.
 
 ## Run a Session
 
-Use the canonical cycle:
+Use this flow:
 
 ```text
-Understand
+Minimal Setup
 ↓
-Predict
+Question or Task
 ↓
-Observe
+Learner Prediction
 ↓
-Explain
+Learner Performs Primary Work
+↓
+Observed Output
+↓
+Learner Initial Interpretation
+↓
+Optional Level-Appropriate AI Assistance
+↓
+Controlled Verification
+↓
+Mechanism Explanation
+↓
+Completion Decision
+↓
+Korean Session Archive
 ```
 
-Begin with enough context to understand the problem. When practical, make a
-learner prediction before receiving a complete explanation. Observe a real
-system or controlled lab before drawing conclusions, and record observations
-separately from interpretations, assumptions, and speculation.
+The learner performs the primary terminal or browser work and forms an initial
+interpretation. A normal session has one central question, no more than five
+core tasks, and one explicit completion criterion. Keep evidence separate from
+interpretation and investigate plausible alternatives before accepting a
+conclusion.
 
-Prefer local, reproducible, observable, reversible, and authorized
-experiments. Generate a session archive only when you explicitly want to
-preserve the session as a record.
+Do not change phase order, add unrelated work, or declare completion because a
+conversation was long. Phase transitions require explicit approval.
+
+## Record a Completed Session
+
+After the learner and assistant review completion, the learner may request or
+approve a final archive. Follow [Session Archive
+Format](SESSION_ARCHIVE_FORMAT.md) and the [Korean
+template](../templates/session_archive_ko.md).
+
+Create one Korean Markdown file under the owning roadmap's `phaseXX/`
+directory. Record only actual commands and observations, use the real
+completion date, redact sensitive identifiers, and preserve limitations. Do
+not create an incomplete session file or a separate notes, QA, or progress
+file.
 
 ## Git Workflow
 
-Prefer small changes, clean working trees, narrow commits, and explicit diff
-review. Inspect the affected paths before reorganizing or deleting material.
-Use a separate branch for broad structural changes, and preserve historical
-records unless a reviewed migration explicitly includes them.
+Use a short-lived branch for bounded work:
 
-Git is a safety boundary: it should make changes observable and reversible,
-not hide large automated rewrites.
+```text
+learn/<roadmap>_pXX_sYY
+fix/<bounded_issue>
+refactor/<bounded_refactor>
+```
+
+Inspect status and diffs before and after changes. Do not use long-lived
+roadmap branches, rewrite history, or discard unrelated work. Committed session
+files with `status: completed` are progress evidence; there is no separate
+progress database.
 
 ## Public Repository Safety
 
-Before publishing learning records, remove or mask:
+Do not commit private program data, undisclosed findings, restricted target
+information, credentials, tokens, personal account data, unredacted captures,
+confidential source, or unsafe target identifiers. Store real private-program
+evidence in a separate private workspace.
 
-- usernames and hostnames
-- personal filesystem paths
-- public or revealing network identifiers
-- MAC addresses
-- tokens and credentials
-- debugger output containing secrets
-- private screenshots
-- sensitive Git metadata where relevant
+Follow [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md) before
+publishing learner records. Visual media requires manual pixel and metadata
+review in addition to text searches.
 
-Follow the [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md) for
-formatting, privacy, and redaction checks.
+## Graduated AI Assistance
 
-## Next Step
+AI may explain concepts from the beginning. Active AI analysis is
+intentionally delayed until the learner can collect direct evidence and form
+an initial model. The first formal analysis session is Security Core Phase 03,
+Session 10, and advanced AI-assisted research scaling appears in Bug Bounty
+Operations.
 
-Labs does not require an AI tool. If you want an optional AI assistant for
-interactive sessions, review the [Optional ChatGPT Setup](CHATGPT_SETUP.md).
+Using no AI remains valid when a session does not explicitly require
+AI-assisted practice. AI output is never evidence. Follow [AI-Assisted Learning
+and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md); if using ChatGPT, also
+read [Optional ChatGPT Setup](CHATGPT_SETUP.md).

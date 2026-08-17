@@ -1,2 +1,0 @@
-dev checklist
-debug enabled
