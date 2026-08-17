@@ -3,7 +3,7 @@
 ## Purpose
 
 This document defines how local files, Git branches, GitHub, observed system
-output, ChatGPT context, and handoffs establish state for Labs Curriculum V2.
+output, AI context, and handoffs establish state for Labs Curriculum V2.
 
 ## Source-of-Truth Precedence
 
@@ -21,8 +21,10 @@ explicit handoff
 accumulated chat context
 ```
 
-Project Sources, cached uploads, and LLM memory are not canonical. They may
-provide working context but must not override current committed files.
+Project Sources, cached uploads, AI chats, summaries, outputs, hypotheses,
+generated reports, and AI memory are not canonical. They may provide working
+context but must not override current committed files or direct observed
+evidence.
 
 For runtime questions, current observed output is the evidence for what the
 system did. It does not silently change repository policy, roadmap sequence,
@@ -95,6 +97,20 @@ Before committing an observation, redact it according to
 [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md). Private-program
 or unsafe target evidence belongs in a separate private workspace.
 
+## AI Context and Generated Artifacts
+
+AI chats, provider history, memory, summaries, hypotheses, generated code, and
+draft reports are assistance artifacts, not project state or direct evidence.
+They become part of canonical repository state only after a human verifies the
+material claims, applies publication and data-handling rules, and commits the
+resulting repository file.
+
+AI-generated text must never replace the observed command, packet, frame,
+request, response, source definition, or runtime state needed to support a
+claim. Follow [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) for verification, privacy, and
+untrusted-content rules.
+
 ## Project Sources and Cached Context
 
 Stable governance files may be kept as Project Sources for convenience, but
@@ -103,6 +119,7 @@ the current committed repository remains authoritative. Useful references are:
 - `LABS_SOURCE_SYNC.md`
 - `DESIGN_PRINCIPLES.md`
 - `LABS_SESSION_RULES.md`
+- `AI_ASSISTED_LEARNING_AND_RESEARCH.md`
 - `MARKDOWN_GENERATION_POLICY.md`
 - `ROADMAP_FORMAT.md`
 - `ROADMAP_INDEX.md`

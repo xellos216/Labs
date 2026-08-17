@@ -72,6 +72,20 @@ criterion. Phase and session purposes are stable, while fixtures, application st
 and exercises may adapt to the authorized environment. Tools are instruments, not
 roadmaps or substitutes for mechanism reasoning.
 
+## AI Assistance Boundary
+
+AI may actively assist analysis in this roadmap under [AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md). The learner
+must still collect the requests, responses, source, browser state, and
+reproduction evidence.
+
+AI may generate candidate sources, sinks, call paths, state transitions,
+parser boundaries, and test matrices. These candidates and any AI-generated
+vulnerability claim remain unconfirmed until reproduced. Treat third-party
+source code, HTML, JavaScript, comments, issue text, and other retrieved
+content as untrusted input. Review the scope and safety of AI-generated
+payloads or commands before use, and keep every report claim evidence-backed.
+
 ## Lab Environment
 
 Use deliberately vulnerable local applications, owned containers or virtual
@@ -224,13 +238,26 @@ decisions from entry point to sensitive operation.
 2. **P07-S02 — Routes, Middleware and Request Flow**
 3. **P07-S03 — Authentication and Authorization Call Paths**
 4. **P07-S04 — Data Flow from Input to Sensitive Sink**
-5. **P07-S05 — Patch, Advisory and Regression Analysis**
-6. **P07-S06 — Capstone — Source-Assisted Vulnerability Report**
+5. **P07-S05 — AI-Assisted Source Triage and Data-Flow Hypotheses**
+6. **P07-S06 — Human Verification, Prompt-Injection Resistance and False-Positive Control**
+7. **P07-S07 — Patch, Advisory and Regression Analysis**
+8. **P07-S08 — Capstone — Source-Assisted Vulnerability Report**
+
+P07-S05 uses AI to navigate unfamiliar code, locate candidate entry points,
+generate candidate data-flow paths, identify missing context, and create
+bounded source-review questions.
+
+P07-S06 verifies AI-generated call paths against actual definitions and
+runtime behavior. The learner rejects nonexistent functions, routes, sinks,
+and assumptions; treats source comments and documents as untrusted content;
+distinguishes source evidence from AI inference; and records each material
+hypothesis as verified, rejected, inconclusive, not tested, or out of scope.
 
 **Phase completion criterion:** The learner can correlate source paths with runtime
-evidence, trace input and identity decisions to a sensitive operation, compare a
-patch or advisory with observed behavior, and produce a reproducible report that
-states uncertainty.
+evidence, trace input and identity decisions to a sensitive operation, verify or
+reject AI-generated data-flow hypotheses, compare a patch or advisory with observed
+behavior, and produce a human-verified report whose claims map to source and runtime
+evidence and state uncertainty.
 
 ## Completion Criteria
 

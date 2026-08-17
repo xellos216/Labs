@@ -58,6 +58,26 @@ Include only the minimum raw output needed to support the explanation. Do not
 copy a raw chat transcript into the repository. Preserve failed hypotheses
 when they clarify the final mental model or false-positive rejection.
 
+## AI-Derived Markdown
+
+Apply [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) to Markdown derived from AI
+assistance.
+
+- Manually verify every factual claim against the underlying source or direct
+  evidence.
+- Never invent commands, output, packets, frames, requests, responses, source
+  behavior, or environment state.
+- Do not paste sensitive prompts or full private AI transcripts.
+- Redact secrets, account data, private-program details, and target identifiers
+  before any AI use.
+- Record material assistance in the completed-session archive.
+- Do not treat AI citations or summaries as substitutes for the underlying
+  source.
+- Review drafts for text or instructions introduced through prompt injection
+  in untrusted source material.
+- Do not publish private-program or undisclosed material.
+
 ## Public Security-Research Boundary
 
 Labs is public or publication-oriented. Do not commit:

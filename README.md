@@ -44,6 +44,15 @@ prioritizes protocol and trust-boundary reasoning, hypothesis testing,
 false-positive rejection, and durable mental models over tool collection or
 memorized procedures.
 
+## Graduated AI Assistance
+
+Labs uses a [graduated AI assistance
+model](ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md). Learners collect direct
+evidence and form an initial model before AI progresses from explanation and
+review to active analysis or bounded automation. AI output is never evidence,
+and every material suggestion requires human verification. Sensitive research
+data follows the policy's strict handling and minimization rules.
+
 ## Roadmap Lifecycle
 
 - [`active/`](active/README.md) contains the roadmap currently being
@@ -72,7 +81,8 @@ their original form.
 Current committed repository files are canonical. Observed system output,
 focused branch or diff evidence, explicit handoffs, Project Sources, and chat
 context cannot silently replace committed curriculum or progress records.
-Project Sources and LLM memory are working context, not authoritative state.
+Project Sources, AI output, and AI memory are working context, not
+authoritative state.
 
 ## Authorization and Publication Boundary
 

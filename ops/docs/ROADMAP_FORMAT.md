@@ -29,6 +29,9 @@ Every roadmap README must contain these sections in a clear order:
 The title is normally the document's single level-one heading. Use level-two
 headings for the remaining required sections.
 
+When AI materially affects how a roadmap is practiced, add the optional
+`AI Assistance Boundary` section after `Learning Method`.
+
 ## Status
 
 Use a lifecycle value that matches the roadmap directory:
@@ -81,6 +84,21 @@ Record
 
 State any roadmap-specific adaptation without contradicting
 [Labs Session Rules](LABS_SESSION_RULES.md).
+
+## AI Assistance Boundary
+
+Include this optional section when AI materially affects roadmap practice.
+Link to [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) and define concisely:
+
+- permitted assistance levels;
+- work the learner must perform directly;
+- evidence and human-verification requirements;
+- roadmap-specific data-handling constraints; and
+- whether the roadmap contains AI-specific sessions.
+
+Do not repeat the canonical policy or make AI mandatory before its readiness
+gate.
 
 ## Lab Environment
 
@@ -198,5 +216,6 @@ Before accepting a roadmap change, verify that:
 - completion criteria are observable
 - sessions are stable and coherently bounded
 - authorization and public-documentation boundaries are explicit
+- an AI Assistance Boundary exists when AI materially affects practice
 - relationships reference prerequisites instead of duplicating them
 - no future progress or observation is fabricated

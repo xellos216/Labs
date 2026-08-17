@@ -4,7 +4,8 @@
 
 These rules define how interactive Curriculum V2 learning sessions are run.
 Roadmap README files define what each session covers; this document defines how
-the learner and assistant conduct it.
+the learner and assistant conduct it. AI assistance follows [AI-Assisted
+Learning and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md).
 
 ## Learner-Facing Flow
 
@@ -19,7 +20,11 @@ Learner Performs Primary Work
 ↓
 Observed Output
 ↓
-Review and Minimal Correction
+Learner Initial Interpretation
+↓
+Optional Level-Appropriate AI Assistance
+↓
+Controlled Verification
 ↓
 Mechanism Explanation
 ↓
@@ -57,8 +62,10 @@ as a comparison point for the observed mechanism.
 ## Learner Performs the Primary Work
 
 The learner performs the primary terminal, browser, packet-capture, request,
-or analysis work. The assistant should not immediately provide the complete
-solution unless the learner asks for it or is blocked after a genuine attempt.
+and initial interpretation work. The assistant should not immediately provide
+the complete solution unless the learner asks for it, is blocked after a
+genuine attempt, or has reached a roadmap activity that explicitly permits
+higher-level assistance.
 
 The assistant may provide a minimal fixture or bounded command when setup
 syntax is not the learning objective. It must still leave the core observation
@@ -79,12 +86,52 @@ Keep these categories distinct:
 
 Never invent output, successful execution, environment state, or completion.
 
+## Learner Initial Interpretation
+
+Before material AI review or analysis, the learner explains what the observed
+evidence appears to show. The initial interpretation should identify the
+relevant evidence, propose a state, path, or trust-boundary model, and state
+uncertainty or plausible alternatives.
+
+An incomplete or incorrect initial model is useful. Preserve it so later
+corrections remain traceable to verification instead of appearing as
+unexplained facts.
+
+## Level-Appropriate AI Assistance
+
+AI assistance is optional and graduated by demonstrated capability:
+
+- `explanation` may be used from the beginning to clarify a concept or
+  mechanism without replacing primary observation;
+- `review` follows a learner attempt, evidence, or initial interpretation;
+- `analysis` follows independent evidence collection and an initial human
+  hypothesis; and
+- `automation` follows a manually performed and verified workflow.
+
+The assistant must not fabricate terminal, browser, packet, service, or other
+environment output. It must label proposed classifications, missing links, and
+hypotheses as candidates. AI use does not reduce the learner's responsibility
+for primary terminal, browser, capture, or request work.
+
+A learner may intentionally complete a session with `ai_assistance: none`
+unless that session explicitly teaches AI-assisted practice.
+
+## Controlled Verification
+
+Test each material AI suggestion against direct evidence. Record its outcome
+as `verified`, `rejected`, `inconclusive`, `not tested`, or `out of scope`.
+Do not silently incorporate a suggestion into the final explanation.
+
+Use the smallest safe observation or controlled comparison that distinguishes
+the candidate from plausible alternatives. Session completion requires
+observed evidence, not a convincing AI explanation.
+
 ## Review and Minimal Correction
 
-Review the learner's actual attempt. Identify the specific mismatch between
-the task and the evidence, then provide the smallest correction that lets the
-learner continue. Explain syntax only to the depth needed for the current
-question.
+Review the learner's actual attempt at the assistance level permitted for the
+session. Identify the specific mismatch between the task and the evidence,
+then provide the smallest correction that lets the learner continue. Explain
+syntax only to the depth needed for the current question.
 
 Do not silently add a new concept, core task, or unrelated troubleshooting
 branch. When a dependency problem becomes its own workstream, split it from the
@@ -132,8 +179,9 @@ The learner should be able to:
 - apply the mental model to a nearby case
 
 Do not infer completion from chat length, task count, earlier conversations,
-or an assistant-generated summary. If evidence is incomplete, mark the session
-as not complete or inconclusive and identify the next bounded action.
+an assistant-generated summary, or an AI explanation. If evidence is
+incomplete, mark the session as not complete or inconclusive and identify the
+next bounded action.
 
 Phase transitions require explicit learner approval after the phase capstone
 and completion evidence are reviewed. Do not silently advance a phase or
@@ -161,7 +209,9 @@ Generate one final Korean archive only when all of these are true:
 Follow [Session Archive Format](SESSION_ARCHIVE_FORMAT.md) and
 [`session_archive_ko.md`](../templates/session_archive_ko.md). Do not create a
 draft or incomplete session file. Do not copy a raw transcript. Include only
-the minimum raw evidence needed and redact sensitive identifiers.
+the minimum raw evidence needed and redact sensitive identifiers. Record the
+highest material assistance level in `ai_assistance` and disclose material AI
+use and verification in the required Korean AI-use section.
 
 ## Conversation Boundary
 
@@ -203,4 +253,6 @@ Private research evidence stays outside the public repository.
 
 Before generating public Markdown, apply
 [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md), including
-redaction and media review.
+redaction and media review. Classify AI inputs, minimize shared data, and treat
+target-derived or third-party content as untrusted under [AI-Assisted Learning
+and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md).

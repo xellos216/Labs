@@ -3,6 +3,8 @@
 This directory contains the operational authority for Labs Curriculum V2.
 
 - [Design Principles](DESIGN_PRINCIPLES.md)
+- [AI-Assisted Learning and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) —
+  graduated assistance, verification, privacy, and automation policy
 - [Labs Session Rules](LABS_SESSION_RULES.md)
 - [Labs Source Sync Policy](LABS_SOURCE_SYNC.md)
 - [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md)

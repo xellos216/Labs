@@ -65,6 +65,22 @@ Sessions are bounded around one central question, no more than five core tasks, 
 one explicit completion criterion. Phase and session purposes remain stable, while
 fixtures, local services, and exercises may adapt to the learner's environment.
 
+## AI Assistance Boundary
+
+AI use follows [AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md). The preferred
+maximum assistance varies with demonstrated capability:
+
+| Scope | Preferred maximum | Required human work |
+| --- | --- | --- |
+| Phase 01 | `explanation` or `review` | Directly inspect processes, descriptors, services, sockets, syscalls, and logs. |
+| Phase 02 | `review` | Identify relevant frames, fields, routes, and socket evidence before AI reviews the interpretation. |
+| Phase 03 Sessions 01–09 | `review` | Reconstruct the browser and HTTP flow manually before AI review. |
+| Phase 03 Session 10 and later | `analysis` | Provide a manual flow model before AI compares evidence or proposes alternatives. |
+
+AI suggestions remain candidates until the learner verifies or rejects them
+through targeted direct evidence.
+
 ## Lab Environment
 
 Use a local Linux system, virtual machines, containers, or network namespaces that
@@ -159,9 +175,28 @@ state.
 7. **P03-S07 — REST, JSON and GraphQL Fundamentals**
 8. **P03-S08 — Authentication, OAuth, OIDC and Token Roles**
 9. **P03-S09 — Python Request Replay, Normalization and Response Diffing**
-10. **P03-S10 — Capstone — Reconstruct a Complete Web Flow**
+10. **P03-S10 — AI-Assisted Flow Review and Human Verification**
+11. **P03-S11 — Capstone — Reconstruct a Complete Web Flow**
 
-**Phase completion criterion:** The learner can explain:
+P03-S10 teaches this bounded review workflow:
+
+```text
+manual flow reconstruction
+↓
+AI review
+↓
+candidate missing links or alternative explanations
+↓
+targeted browser, proxy, curl, or server verification
+↓
+accepted or rejected corrections
+```
+
+The session applies AI to an existing learner-produced flow model. It does not
+teach general prompt engineering.
+
+**Phase completion criterion:** The learner can manually reconstruct and
+explain:
 
 ```text
 browser action
@@ -171,6 +206,10 @@ browser action
 → server response
 → browser-side state change
 ```
+
+The learner can then use AI to review that model, verify or reject every
+material suggestion through targeted evidence, and document the assistance
+level and validation outcome.
 
 ## Completion Criteria
 

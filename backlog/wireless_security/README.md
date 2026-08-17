@@ -62,6 +62,25 @@ accepted only when supported by observed evidence. Failed hypotheses and
 alternative explanations remain part of the record when they clarify the
 mechanism.
 
+## AI Assistance Boundary
+
+Under [AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md), AI may organize
+identified 802.11 frames, compare handshake sequences, review field
+interpretations, generate candidate failure modes, compare observed behavior
+with protocol expectations, and review assessment documentation.
+
+The learner performs regulatory and authorization decisions, adapter
+capability verification, capture setup, channel and interface selection,
+initial frame identification, BSSID, station, sequence, and state
+interpretation, and the final security conclusion.
+
+AI cannot prove monitor-mode support or injection support, infer unmeasured RF
+conditions, or confirm a handshake or attack condition without capture
+evidence. Screenshots and partial text summaries may omit critical frame
+metadata. Capstones may use AI review, but the learner must produce the primary
+frame narrative.
+
 ## Lab Environment
 
 Practical work must use an isolated AP/client lab, owned equipment, or an

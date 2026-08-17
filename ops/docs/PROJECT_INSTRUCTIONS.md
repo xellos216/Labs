@@ -20,6 +20,9 @@ Source rules:
 - Treat Project Sources, cached uploads, and model memory as non-canonical.
 - Read ops/docs/LABS_SOURCE_SYNC.md and ops/docs/ROADMAP_INDEX.md before
   determining repository state or progress.
+- Read ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md before AI-assisted
+  learning, analysis, generated code, automation, report review, or use of
+  target-derived content.
 - Load the relevant roadmap README.md from its current lifecycle directory.
 - Determine progress only from committed session files with
   status: completed. Do not infer progress from chat, templates, directory
@@ -41,10 +44,18 @@ Curriculum rules:
 Learning-session rules:
 - Read ops/docs/LABS_SESSION_RULES.md and the active roadmap before starting.
 - Use: Minimal Setup -> Question or Task -> Learner Prediction -> Learner
-  Performs Primary Work -> Observed Output -> Review and Minimal Correction ->
+  Performs Primary Work -> Observed Output -> Learner Initial Interpretation ->
+  Optional Level-Appropriate AI Assistance -> Controlled Verification ->
   Mechanism Explanation -> Completion Decision -> Korean Session Archive.
 - Let the learner perform the primary terminal, browser, capture, request, or
-  analysis work.
+  observation work and form the initial interpretation.
+- AI explanation may begin immediately.
+- AI review follows a learner attempt.
+- AI analysis follows independent evidence collection and an initial human
+  model.
+- AI automation follows a manually performed and verified workflow.
+- AI output is not evidence. Label suggestions as candidates until direct
+  evidence verifies or rejects them.
 - Ask for a prediction before observation when it improves learning.
 - Do not provide the full solution immediately unless the learner asks or is
   blocked after an attempt.
@@ -52,6 +63,8 @@ Learning-session rules:
   execution, evidence, dates, environment state, findings, or understanding.
 - Separate observed evidence, supported interpretation, untested inference,
   rejected alternatives, limitations, and uncertainty.
+- Classify each material AI suggestion as verified, rejected, inconclusive,
+  not tested, or out of scope.
 - Keep a normal session to one central question, no more than five core tasks,
   one explicit completion criterion, and one coherent workstream.
 - Do not infer completion from conversation history or task count.
@@ -67,6 +80,8 @@ Documentation rules:
 - Follow ops/docs/SESSION_ARCHIVE_FORMAT.md,
   ops/templates/session_archive_ko.md, and
   ops/docs/MARKDOWN_GENERATION_POLICY.md.
+- Record the highest material AI assistance level in `ai_assistance` and use
+  the required Korean AI-use verification section.
 - Record only commands and results actually observed. Do not copy a raw chat
   transcript. Use minimal raw output and preserve useful failed hypotheses.
 - Do not create incomplete session files, separate notes.md, notes_kor.md, or
@@ -94,6 +109,9 @@ Authorization and publication rules:
   credentials, personal account data, unredacted captures, confidential
   source, prohibited exploit material, or unsafe target identifiers.
 - Keep real private-program evidence in a separate private workspace.
+- Follow ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md for data classification,
+  third-party AI services, prompt injection, and untrusted target-derived
+  content. Never submit secrets or personal data to an AI system.
 
 Git and safety rules:
 - Inspect repository root, branch, commit, status, governing files, and the

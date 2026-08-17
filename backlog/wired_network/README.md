@@ -49,6 +49,21 @@ roadmaps. Every phase ends with a capstone that collects evidence, reconstructs
 a path or trust boundary, checks alternative explanations, explains the observed
 mechanism, and records limitations and uncertainty.
 
+## AI Assistance Boundary
+
+Under [AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md), AI may compare
+packet traces, organize protocol timelines, review network diagrams, generate
+candidate trust relationships, compare configurations, suggest verification
+questions, and summarize documented protocol behavior.
+
+The learner performs authorization and scope decisions, packet capture, frame
+and packet selection, initial field interpretation, command execution, path
+and identity verification, and final assessment conclusions. AI cannot infer a
+reachable path, credential validity, privilege relationship, or segmentation
+bypass without direct evidence. Capstones may use AI review, but the primary
+network and identity reconstruction must be human-produced.
+
 ## Lab Environment
 
 Every practical activity must remain inside one or more of these environments:

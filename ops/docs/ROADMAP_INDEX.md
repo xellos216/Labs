@@ -71,6 +71,15 @@ canonical responsibilities: mechanism reasoning belongs to Web Security;
 authorized research selection, validation, evidence, and reporting belong to
 Bug Bounty Operations.
 
+## Cross-Cutting AI Assistance
+
+AI use is governed by [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) and graduated by demonstrated
+competence. AI is integrated into Security Core, Web Security, and Bug Bounty
+Operations rather than represented as a separate roadmap. Roadmap-specific
+boundaries define permitted assistance while direct evidence and human
+verification remain authoritative.
+
 ## Optional Linux Internals Support Path
 
 ```text

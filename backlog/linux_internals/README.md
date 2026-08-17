@@ -76,6 +76,20 @@ Prefer an existing program and observable runtime state over writing new code.
 Use the smallest controlled probe that distinguishes competing explanations.
 Never record an inferred or expected result as observed fact.
 
+## AI Assistance Boundary
+
+Under [AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md), AI may assist
+source-tree navigation, explain system calls and data structures, generate
+candidate call paths, compare documentation with source, design small
+observation programs, and review `strace`, `/proc`, and debugger
+interpretations.
+
+Verify material claims directly through current source definitions, runtime
+output, `/proc`, `strace`, `lsof`, debugger output, or controlled local
+experiments. A plausible source explanation is insufficient when the relevant
+version, configuration, or runtime state has not been checked.
+
 ## Lab Environment
 
 Use a local Linux host, disposable VM, container, or network namespace whose

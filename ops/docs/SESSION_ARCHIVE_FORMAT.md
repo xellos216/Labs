@@ -4,7 +4,8 @@
 
 A completed session archive is the durable evidence record for one Curriculum
 V2 session. It preserves what the learner predicted, performed, observed,
-explained, and remained uncertain about.
+initially interpreted, verified with or without AI assistance, concluded, and
+remained uncertain about.
 
 Use one Korean Markdown file per completed session. Do not split a session into
 `notes.md`, `notes_kor.md`, `QA.md`, or similar companion files.
@@ -53,6 +54,7 @@ roadmap: security_core
 phase: 01
 session: 01
 status: completed
+ai_assistance: none
 date: 2026-08-17
 scope: local_lab
 ---
@@ -70,6 +72,20 @@ completed
 
 An incomplete record is not a session archive and must not be added as one.
 
+`ai_assistance` records the highest material AI assistance level used during
+the session. Use exactly one value, not an array or multiple values:
+
+```text
+none
+explanation
+review
+analysis
+automation
+```
+
+Apply the definitions and readiness gates in [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md).
+
 ## Required Korean Sections
 
 Use these headings in this order:
@@ -82,7 +98,9 @@ Use these headings in this order:
 ## 실습 환경
 ## 수행한 작업
 ## 관찰된 증거
-## 해석
+## 초기 해석
+## AI 활용 및 검증
+## 최종 해석
 ## 재사용 가능한 Mental Model
 ## 실패, 한계 및 불확실성
 ## 복습 질문
@@ -124,10 +142,38 @@ Record facts before interpretation. Include only the minimum relevant output,
 packet fields, log excerpts, state changes, or browser behavior. Preserve the
 link between an action and its observed result.
 
-### Interpretation (`해석`)
+### Initial Interpretation (`초기 해석`)
 
-Explain the mechanism supported by the evidence. Distinguish direct evidence,
-inference, rejected alternatives, and remaining uncertainty.
+Preserve the learner's interpretation before material AI review or analysis.
+Connect the observed evidence to an initial state, path, mechanism, or
+trust-boundary model, and state uncertainty or plausible alternatives.
+
+### AI Use and Verification (`AI 활용 및 검증`)
+
+State:
+
+- the highest assistance level used;
+- what AI was used for;
+- what input category was shared;
+- which AI suggestions were independently verified; and
+- which suggestions were rejected, inconclusive, or not tested.
+
+Classify material suggestions as `verified`, `rejected`, `inconclusive`,
+`not tested`, or `out of scope`. When no material AI assistance was used,
+record:
+
+```text
+사용하지 않음.
+```
+
+Do not include raw prompts or full AI transcripts. Never include sensitive
+prompts, private transcripts, secrets, or private-program content.
+
+### Final Interpretation (`최종 해석`)
+
+Explain the conclusion after controlled verification. Distinguish direct
+evidence, verified corrections, rejected alternatives, untested inference,
+and remaining uncertainty. AI output is not evidence.
 
 ### Reusable Mental Model (`재사용 가능한 Mental Model`)
 
@@ -156,6 +202,8 @@ later learner-authored review within an explicitly scoped update.
 - Include only the minimum raw output needed.
 - Do not copy a raw chat transcript.
 - Preserve failed hypotheses when they improve false-positive control.
+- Resolve each material AI suggestion as verified, rejected, inconclusive,
+  not tested, or out of scope.
 - State limitations and uncertainty explicitly.
 - Redact sensitive identifiers before writing public Markdown.
 

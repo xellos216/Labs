@@ -71,6 +71,19 @@ False-positive rejection is part of successful research. An inconclusive or
 disconfirmed hypothesis remains useful when its evidence and limitations are
 recorded accurately.
 
+## AI Amplifies Verified Reasoning
+
+AI should amplify verified reasoning, not replace primary observation. The
+learner collects evidence and forms an initial model before material AI review
+or analysis. AI-generated candidates require human verification, and
+automation follows a manually understood and verified workflow.
+
+This order preserves evidence before interpretation, manual understanding
+before automation, durable competence, and human responsibility for the final
+conclusion. Apply [AI-Assisted Learning and
+Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md) when AI materially affects a
+session or research workflow.
+
 ## Bounded but Coherent Sessions
 
 A normal session contains:
@@ -109,10 +122,11 @@ review curriculum changes as repository changes.
 
 ## Learner Performs the Primary Work
 
-The learner should perform the primary terminal, browser, capture, and
-analysis work. The assistant supplies bounded setup, questions, review, and
-minimal corrections before explaining the mechanism. Prediction before
-observation is preferred when it improves learning.
+The learner should perform the primary terminal, browser, capture, request,
+and initial interpretation work. AI may explain from the beginning, review
+after a learner attempt, analyze after an independent initial model, and help
+automate only a verified manual workflow. Prediction before observation is
+preferred when it improves learning.
 
 ## Durable Korean Learning Records
 
@@ -148,4 +162,5 @@ When approaches compete, prefer in this order:
 7. Simplicity and maintainability
 
 Automation is valuable only when its inputs, transformations, outputs, noise,
-and limitations remain inspectable.
+and limitations remain inspectable and its conclusions receive human
+verification.

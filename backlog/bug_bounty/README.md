@@ -50,6 +50,20 @@ Every phase ends with a capstone that integrates evidence collection,
 reconstruction of a state or trust boundary, alternative-explanation checks,
 explanation, limitations, and uncertainty.
 
+## AI Assistance Boundary
+
+This roadmap permits the most active AI use in Curriculum V2 under
+[AI-Assisted Learning and
+Research](../../ops/docs/AI_ASSISTED_LEARNING_AND_RESEARCH.md). AI may assist
+surface classification, request and response grouping, endpoint inventory,
+HAR processing, test-matrix construction, hypothesis generation,
+cross-account comparison, report review, and transparent automation.
+
+Human verification remains mandatory for scope, target ownership,
+authorization, reproduction, vulnerability confirmation, impact, submission
+readiness, and disclosure. Confidential or private-program data must follow
+the canonical AI policy before any AI use.
+
 ## Lab Environment
 
 Work may use local applications, owned test systems, isolated labs, explicitly
@@ -81,7 +95,7 @@ or real target identifiers when disclosure is unsafe.
 | --- | --- | --- |
 | Phase 01 | Establish authorization and an evidence-backed attack surface | Build an Evidence-Backed Target Map |
 | Phase 02 | Validate observations and communicate defensible results | Confirmed, False-Positive and Inconclusive Reports |
-| Phase 03 | Scale repeatable reasoning without hiding evidence | Build a Transparent Research Harness |
+| Phase 03 | Scale manual reasoning through verified AI assistance and transparent automation | AI-Assisted Research Workflow with Human Verification |
 
 ## Phases and Sessions
 
@@ -115,32 +129,77 @@ defensible results that another authorized reviewer can reproduce.
 4. **P02-S04 — Impact Calibration**
 5. **P02-S05 — Duplicate, Out-of-Scope and Non-Security Classification**
 6. **P02-S06 — Writing a Reproducible Report**
-7. **P02-S07 — Triage Communication and Retesting**
-8. **P02-S08 — Capstone — Confirmed, False-Positive and Inconclusive Reports**
+7. **P02-S07 — AI-Assisted Report Review and Claim Verification**
+8. **P02-S08 — Triage Communication and Retesting**
+9. **P02-S09 — Capstone — Confirmed, False-Positive and Inconclusive Reports**
+
+P02-S07 uses AI to detect unsupported claims, identify missing evidence,
+compare the summary with reproduction steps, check whether impact exceeds the
+observation, and review uncertainty and limitations. The learner manually
+verifies every accepted revision. AI must not generate fictional reproduction
+steps or evidence.
 
 **Phase completion criterion:** The learner can present confirmed,
 false-positive, and inconclusive cases with minimal reproductions, evidence
 provenance, alternative-explanation checks, calibrated impact, defensible
-classification, reproducible reports, and retest results.
+classification, reproducible reports, manually verified AI-assisted revisions,
+and retest results.
 
 ### Phase 03 — Research Scaling
 
-**Goal:** Scale validated manual reasoning through bounded automation whose
-inputs, decisions, and evidence remain inspectable.
+**Goal:** Scale validated manual reasoning through AI assistance and bounded
+automation whose inputs, decisions, and evidence remain inspectable.
 
-1. **P03-S01 — Manual Reasoning Before Automation**
-2. **P03-S02 — Request Corpus and HAR Processing**
-3. **P03-S03 — Response Normalization and Diffing**
-4. **P03-S04 — Cross-Account and Cross-Role Replay**
-5. **P03-S05 — Concurrency, Rate Limits and Noise Control**
-6. **P03-S06 — Structured Evidence Storage**
-7. **P03-S07 — Specialization and Research Retrospectives**
-8. **P03-S08 — Capstone — Build a Transparent Research Harness**
+1. **P03-S01 — Manual Reasoning Before AI and Automation**
+2. **P03-S02 — AI-Assisted Surface Classification**
+3. **P03-S03 — Request Corpus and HAR Processing**
+4. **P03-S04 — AI-Assisted Response Diffing**
+5. **P03-S05 — AI-Assisted Hypothesis Generation**
+6. **P03-S06 — Human Verification and False-Positive Rejection**
+7. **P03-S07 — Cross-Account and Cross-Role Replay**
+8. **P03-S08 — Structured Evidence Storage and Transparent Automation**
+9. **P03-S09 — Specialization and Research Retrospectives**
+10. **P03-S10 — Capstone — AI-Assisted Research Workflow with Human Verification**
 
-**Phase completion criterion:** The learner can demonstrate a bounded harness
-whose request corpus, normalization, comparisons, account and role changes,
-concurrency controls, and stored evidence are inspectable, with a representative
-result reproduced manually and remaining uncertainty recorded.
+Session requirements:
+
+- **P03-S01:** Establish that AI and automation follow a manually understood
+  workflow.
+- **P03-S02:** Use AI to organize known surface data without treating a
+  classification as proof.
+- **P03-S03:** Process a bounded request corpus or HAR with explicit data
+  minimization.
+- **P03-S04:** Compare normalized request and response evidence to identify
+  candidate differences.
+- **P03-S05:** Generate candidate hypotheses and identify the evidence needed
+  to confirm or reject each one.
+- **P03-S06:** Classify every material hypothesis as `verified`, `rejected`,
+  `inconclusive`, `not tested`, or `out of scope`.
+- **P03-S07:** Compare controlled accounts and roles through replay.
+- **P03-S08:** Create inspectable, bounded, rate-limited automation around a
+  previously verified workflow.
+- **P03-S09:** Review which AI-assisted methods produced useful evidence and
+  which created noise.
+- **P03-S10:** Integrate the following sequence into report-quality output:
+
+  ```text
+  scope
+  → evidence collection
+  → manual model
+  → AI assistance
+  → controlled verification
+  → transparent automation
+  → report-quality output
+  ```
+
+The capstone does not require testing a real public program. A local,
+synthetic, public-disclosure, or authorized training environment is sufficient.
+
+**Phase completion criterion:** The learner can demonstrate a bounded
+AI-assisted workflow whose scope, request corpus, comparisons, candidate
+hypotheses, human verification, account and role changes, automation controls,
+and stored evidence are inspectable. A representative result is reproduced
+manually, and remaining uncertainty is recorded.
 
 ## Completion Criteria
 
@@ -155,8 +214,9 @@ learner can:
   false-positive, and inconclusive results;
 - calibrate impact and write a report that another authorized reviewer can
   reproduce;
-- build a bounded harness whose inputs, transformations, comparisons, rate
-  controls, and outputs remain inspectable; and
+- build a bounded AI-assisted workflow whose inputs, candidate hypotheses,
+  transformations, comparisons, human decisions, rate controls, and outputs
+  remain inspectable; and
 - complete every capstone with collected evidence, reconstructed state or trust
   boundaries, rejected alternatives, an explanation, and explicit limitations
   and uncertainty.

@@ -87,7 +87,11 @@ Learner Performs Primary Work
 ↓
 Observed Output
 ↓
-Review and Minimal Correction
+Learner Initial Interpretation
+↓
+Optional Level-Appropriate AI Assistance
+↓
+Controlled Verification
 ↓
 Mechanism Explanation
 ↓
@@ -96,10 +100,11 @@ Completion Decision
 Korean Session Archive
 ```
 
-The learner performs the primary terminal or browser work. A normal session
-has one central question, no more than five core tasks, and one explicit
-completion criterion. Keep evidence separate from interpretation and investigate
-plausible alternatives before accepting a conclusion.
+The learner performs the primary terminal or browser work and forms an initial
+interpretation. A normal session has one central question, no more than five
+core tasks, and one explicit completion criterion. Keep evidence separate from
+interpretation and investigate plausible alternatives before accepting a
+conclusion.
 
 Do not change phase order, add unrelated work, or declare completion because a
 conversation was long. Phase transitions require explicit approval.
@@ -143,9 +148,15 @@ Follow [Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md) before
 publishing learner records. Visual media requires manual pixel and metadata
 review in addition to text searches.
 
-## Optional AI Assistant
+## Graduated AI Assistance
 
-Labs does not require an AI assistant. If you use ChatGPT or another assistant,
-read [Optional ChatGPT Setup](CHATGPT_SETUP.md). The assistant can ask
-questions, review evidence, explain mechanisms, and draft an approved archive;
-it cannot substitute generated text for observed system behavior.
+AI may explain concepts from the beginning. Active AI analysis is
+intentionally delayed until the learner can collect direct evidence and form
+an initial model. The first formal analysis session is Security Core Phase 03,
+Session 10, and advanced AI-assisted research scaling appears in Bug Bounty
+Operations.
+
+Using no AI remains valid when a session does not explicitly require
+AI-assisted practice. AI output is never evidence. Follow [AI-Assisted Learning
+and Research](AI_ASSISTED_LEARNING_AND_RESEARCH.md); if using ChatGPT, also
+read [Optional ChatGPT Setup](CHATGPT_SETUP.md).
