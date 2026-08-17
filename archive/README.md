@@ -1,8 +1,8 @@
-# Archive
+# Archived Roadmaps
 
-Completed Labs learning tracks.
-
-Use this directory for roadmaps whose planned learning sessions are complete but whose roadmap, session records, and review material should remain available.
+`archive/` contains roadmap directories whose full completion criteria have
+been met. Curriculum V2 begins with no completed roadmaps, so this README is
+the only file in the directory.
 
 Canonical archived roadmap path:
 
@@ -10,8 +10,8 @@ Canonical archived roadmap path:
 archive/<roadmap>/README.md
 ```
 
-Archived tracks may still receive review answers, factual corrections, link repairs, or clearly scoped maintenance. Review-only work does not make a track active again.
-
-Move a track back to `active/` only when new sessions, exercises, or substantive expansion become part of the current learning cycle. Use `backlog/` instead when a track is planned or paused rather than completed.
-
-This lifecycle directory is not a restoration area for historical, pre-redaction, or legacy material. Such material requires an explicit audited restoration, migration, or private archival task.
+Move a complete roadmap directory here only after explicit review of its
+committed session evidence. Review, factual correction, or link maintenance
+does not reactivate an archived roadmap. This directory is not a compatibility
+or historical-restoration tree; Git history preserves earlier curriculum
+states.

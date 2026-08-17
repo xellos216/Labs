@@ -1,325 +1,151 @@
 # Design Principles
 
-> This document defines the guiding principles of the Labs project.
->
-> These principles are intended to remain stable over time and apply across every roadmap, experiment, and archive.
->
-> Operational procedures for individual learning sessions are defined in
-> `LABS_SESSION_RULES.md`.
+## Purpose
 
----
+Labs Curriculum V2 develops security-research judgment through authorized,
+observable, and reproducible investigation. It connects host evidence,
+protocol state, browser behavior, identity, trust boundaries, validation, and
+reporting without treating any one tool as the curriculum.
 
-# Purpose
+Success is the ability to explain what happened, identify the evidence that
+supports the explanation, reject plausible alternatives, state uncertainty,
+and reproduce the reasoning safely.
 
-Labs exists to build durable systems understanding through observation, reasoning, and practical investigation.
+## Evidence-Based Research Cycle
 
-The project is not organized around:
-
-* certifications
-* interview preparation
-* memorizing commands
-* collecting tools
-
-Instead, it develops the ability to understand unfamiliar systems by reasoning from observable evidence.
-
----
-
-# Core Principles
-
-## Understanding Before Memorization
-
-Memorized facts are useful only when they support understanding.
-
-Prefer asking:
-
-* Why does this exist?
-* What problem does it solve?
-* How does it work?
-
-rather than:
-
-* Which command should I remember?
-
----
-
-## Observation Before Explanation
-
-Whenever practical:
+Use this cycle for learning sessions, capstones, and research operations:
 
 ```text
-Observe
-
+Scope
 ↓
-
-Explain
-```
-
-Real system behavior provides stronger understanding than abstract descriptions.
-
-Preferred observations include:
-
-* logs
-* packet captures
-* debugger output
-* process state
-* filesystem changes
-* browser developer tools
-
----
-
-## Prediction Before Verification
-
-Encourage forming a hypothesis before running an experiment.
-
-Typical workflow:
-
-```text
-Predict
-
+Question
 ↓
-
-Observe
-
+Prediction or Hypothesis
 ↓
-
-Compare
-
+Observation or Controlled Test
 ↓
-
-Revise Mental Model
-```
-
-Incorrect predictions are valuable because they expose incorrect assumptions.
-
----
-
-## Evidence-Based Reasoning
-
-Conclusions should be supported by observable evidence.
-
-Distinguish clearly between:
-
-* observations
-* verified conclusions
-* assumptions
-* speculation
-
-Avoid presenting assumptions as facts.
-
----
-
-## Systems Thinking
-
-Every concept should be understood as part of a larger system.
-
-Examples:
-
-```text
-HTTP
-
+Evidence
 ↓
-
-TCP
-
-↓
-
-IP
-
-↓
-
-Ethernet
-```
-
-```text
-Application
-
-↓
-
-Operating System
-
-↓
-
-Kernel
-
-↓
-
-Hardware
-```
-
-Understanding relationships is more valuable than remembering isolated components.
-
----
-
-## Practical Investigation
-
-Learning should include experiments whenever practical.
-
-Experiments should be:
-
-* local
-* reproducible
-* observable
-* reversible
-* ethically scoped
-
-The objective is to understand system behavior, not simply complete tasks.
-
----
-
-## Mental Models Over Procedures
-
-Commands and APIs change.
-
-Fundamental concepts usually do not.
-
-The project prioritizes understanding:
-
-* architectures
-* execution flow
-* data flow
-* state transitions
-* component interactions
-
-over procedural knowledge.
-
----
-
-## Simplicity
-
-Prefer explanations that are:
-
-* technically correct
-* minimal
-* structurally clear
-
-Avoid unnecessary complexity when a simpler explanation accurately represents the system.
-
----
-
-## Incremental Learning
-
-Build understanding in layers.
-
-Typical progression:
-
-```text
-Concept
-
-↓
-
-Observation
-
-↓
-
-Experiment
-
-↓
-
-Integration
-```
-
-Advanced topics should extend earlier mental models rather than replace them.
-
----
-
-## Reproducibility
-
-Experiments should be repeatable by another learner.
-
-Good experiments include:
-
-* environment information
-* clear procedure
-* observable results
-* evidence-backed conclusions
-
----
-
-## Failure as Evidence
-
-Unexpected results are valuable observations.
-
-Preferred workflow:
-
-```text
-Prediction
-
-↓
-
-Unexpected Result
-
-↓
-
-Investigation
-
-↓
-
 Explanation
-
 ↓
-
-Improved Mental Model
+Record
 ```
 
-Failures should refine understanding rather than discourage experimentation.
+Scope comes first because authorization and intended learning boundaries
+determine which observations and tests are valid. A result that was not
+observed must never be recorded as fact.
 
----
+## One Concept, One Canonical Home
 
-## Ethical Scope
+Foundational concepts have one canonical curriculum location:
 
-All practical work should remain within explicitly authorized environments.
+| Concept | Canonical home |
+| --- | --- |
+| Unix/Linux observation and general packet reasoning | Security Core |
+| HTTP and browser fundamentals | Security Core |
+| Web authentication, authorization, and vulnerability mechanisms | Web Security |
+| Scope, evidence, validation, and reporting | Bug Bounty Operations |
+| Enterprise LAN, segmentation, and identity security | Wired Network Security |
+| IEEE 802.11 and Wi-Fi security | Wireless Security |
+| Optional operating-system mechanism depth | Linux Internals |
 
-Preferred environments include:
+Another roadmap may reference a prerequisite, use it in a capstone, or deepen
+an application-specific consequence. It must not reteach the same foundation
+as a parallel canonical curriculum.
 
-* local systems
-* virtual machines
-* containers
-* intentionally vulnerable applications
-* authorized training platforms
+## Tools Are Instruments, Not Roadmaps
 
-The objective is understanding systems, not unauthorized access.
+DevTools, Burp Suite, Wireshark, Nmap, Flask, HTB, PortSwigger Web Security
+Academy, HackerOne, and similar tools or environments support an investigation.
+They do not define standalone roadmaps. Exercises should remain valid when an
+equivalent instrument or authorized fixture is substituted.
 
----
+## Evidence Before Interpretation
 
-## Long-Term Perspective
+Record observed output, state, packets, logs, or browser behavior separately
+from the explanation. Mark inference and uncertainty explicitly. When several
+mechanisms could explain a result, design the smallest controlled check that
+distinguishes them.
 
-Knowledge should remain useful beyond a specific technology version.
+False-positive rejection is part of successful research. An inconclusive or
+disconfirmed hypothesis remains useful when its evidence and limitations are
+recorded accurately.
 
-Prefer learning:
+## Bounded but Coherent Sessions
 
-* principles
-* architectures
-* reasoning techniques
+A normal session contains:
 
-over:
+- one central question
+- no more than five core tasks
+- one explicit completion criterion
+- related tasks from one coherent workstream
 
-* version-specific features
-* temporary workflows
-* tool-specific shortcuts
+Setup, review, and approved archive generation are not extra core tasks. A
+correction remains part of the current task. Do not silently turn unrelated
+troubleshooting, installation, or repository maintenance into curriculum work.
 
----
+## Capstone-Based Completion
 
-# Decision Framework
+Every phase ends with a capstone. The capstone must integrate:
 
-When choosing between two approaches, prefer the one that better satisfies the following priorities:
+- evidence collection
+- reconstruction of a state, path, or trust boundary
+- checks for alternative explanations
+- a mechanism-based explanation
+- limitations and uncertainty
 
-1. Technical correctness
-2. Evidence-based reasoning
-3. Transferable understanding
-4. Reproducibility
-5. Simplicity
-6. Maintainability
+Topic coverage alone is not phase completion. The learner must demonstrate the
+phase outcome using observed evidence.
 
----
+## Stable Boundaries, Adaptive Exercises
 
-# Project Vision
+Roadmap phase and session purposes remain stable. Fixtures, local services,
+accounts, tools, commands, and exercises may adapt to the learner's actual
+environment when the adaptation preserves the question, evidence requirement,
+authorization boundary, and completion criterion.
 
-Labs aims to produce an engineer who can explain, investigate, and reason about complete computing systems.
+Do not change roadmap sequence or add canonical topics silently. Record and
+review curriculum changes as repository changes.
 
-Success is measured not by the number of commands remembered, but by the ability to answer questions such as:
+## Learner Performs the Primary Work
 
-* Why did this happen?
-* Which component is responsible?
-* What evidence supports this conclusion?
-* How does this connect to the rest of the system?
-* What would happen if this component changed?
+The learner should perform the primary terminal, browser, capture, and
+analysis work. The assistant supplies bounded setup, questions, review, and
+minimal corrections before explaining the mechanism. Prediction before
+observation is preferred when it improves learning.
+
+## Durable Korean Learning Records
+
+Governance and roadmap specifications are English. A completed session archive
+is one Korean Markdown file that preserves the learner's prediction, observed
+evidence, explanation, failures, uncertainty, and reusable mental model.
+Commands and technical identifiers retain their original form.
+
+The archive is created only after actual completion and learner approval. It
+is a record of observed work, not a prospective worksheet or chat transcript.
+
+## Authorization and Publication Safety
+
+Practical investigation must stay inside local, owned, isolated, or explicitly
+authorized environments. Authorization, program scope, regulatory limits, and
+data-handling rules are part of the experiment design.
+
+The public repository contains only publication-safe material. Private program
+data, undisclosed findings, credentials, live tokens, personal account data,
+unredacted captures, confidential source, and unsafe target identifiers belong
+in a separate private workspace.
+
+## Decision Priorities
+
+When approaches compete, prefer in this order:
+
+1. Authorization and safety
+2. Factual and technical correctness
+3. Observable evidence
+4. False-positive control
+5. Reproducibility
+6. Transferable mental models
+7. Simplicity and maintainability
+
+Automation is valuable only when its inputs, transformations, outputs, noise,
+and limitations remain inspectable.

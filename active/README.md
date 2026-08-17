@@ -1,9 +1,15 @@
-# Active
+# Active Roadmaps
 
-Currently active Labs learning tracks.
+`active/` contains the roadmap currently being practiced. Curriculum V2 starts
+with one primary roadmap:
 
-Use this directory for studies that are being actively practiced or expanded.
+- [Security Core](security_core/README.md)
 
-A track belongs here when it has ongoing sessions, exercises, notes, or near-term follow-up work.
+Normal operation allows one primary roadmap and, only when a bounded support
+need exists, zero or one secondary roadmap. Starting a roadmap requires an
+explicit activation decision and an update to the [Roadmap
+Index](../ops/docs/ROADMAP_INDEX.md).
 
-If the planned learning sessions are complete and only review or reference work remains, move the track to `archive/`.
+A roadmap moves to `archive/` only after its completion criteria are met and
+its completed-session files provide committed evidence. Review or maintenance
+alone does not make a roadmap active.

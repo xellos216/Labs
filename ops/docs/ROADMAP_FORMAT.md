@@ -1,431 +1,202 @@
 # Roadmap Format Specification
 
-> This document defines the standard structure for all roadmap documents used in the Labs project.
->
-> Every roadmap should follow this specification unless there is a clear project-specific reason to deviate.
+## Purpose
 
----
+A roadmap README is an English curriculum specification. It defines stable
+scope, sequence, evidence expectations, activation relationships, and
+completion criteria. It is not a session archive, progress checklist, tool
+manual, or collection of prospective notes.
 
-# Design Goals
+## Required Top-Level Sections
 
-A roadmap should:
+Every roadmap README must contain these sections in a clear order:
 
-* define a long-term learning path
-* remain understandable months later
-* allow learning to continue across chat sessions
-* build transferable mental models
-* emphasize systems understanding over memorization
+1. Title
+2. Status
+3. Objective
+4. Scope
+5. Non-Goals
+6. Learning Method
+7. Lab Environment
+8. Prerequisites
+9. Phase Structure
+10. Phases and Sessions
+11. Completion Criteria
+12. Relationship to Other Roadmaps
+13. Final Outcome
+14. Core Mental Model
 
-A roadmap is a curriculum specification, not a collection of notes.
+The title is normally the document's single level-one heading. Use level-two
+headings for the remaining required sections.
 
----
+## Status
 
-# Standard Structure
-
-New roadmaps should use the following top-level sections.
+Use a lifecycle value that matches the roadmap directory:
 
 ```text
-Title
-
-Objective
-
-Philosophy
-
-Learning Method
-
-Lab Environment
-
-Typical Phase Structure
-
-Phase 01
-Phase 02
-...
-
-Final Outcome
-
-Core Mental Model
+Active
+Backlog
+Archived
 ```
 
----
+Status describes lifecycle, not document quality or session completion.
 
-# Required and Optional Sections
+## Objective
 
-Required sections:
+State the capability the roadmap develops and the security-research role it
+serves. Use measurable verbs such as explain, identify, distinguish, inspect,
+observe, reconstruct, compare, validate, reject, and report.
 
-* Title
-* Objective
-* Learning Method
-* Typical Phase Structure
-* Phase definitions
-* Final Outcome
+Do not describe the repository as a broad collection of topics or repeat every
+session title.
 
-Optional sections:
+## Scope and Non-Goals
 
-* Philosophy
-* Lab Environment
-* Core Mental Model
+Scope defines the canonical concepts, systems, and trust boundaries owned by
+the roadmap. Non-Goals prevent adjacent topics, tools, frameworks, or practice
+platforms from silently becoming curriculum.
 
-Optional sections should be included when they improve clarity. They should
-not be added only to satisfy a template.
+Apply one concept, one canonical home. Reference prerequisites from other
+roadmaps instead of reteaching them. Tools are instruments, not roadmaps.
 
-Existing roadmaps are historical learning records. Do not rewrite them solely
-to match this specification. Apply the current format when creating a roadmap
-or when making a substantive revision that already affects its structure.
+## Learning Method
 
----
-
-# Title
-
-The title should clearly identify the subject.
-
-Examples:
+Use the common evidence cycle:
 
 ```text
-Networking Roadmap
-
-Linux Server Administration
-
-Embedded Linux & Firmware Analysis
-
-Security Toolsmith
-```
-
----
-
-# Objective
-
-Describe:
-
-* the long-term purpose
-* the expected capabilities
-* the intended scope
-
-Avoid describing individual sessions.
-
----
-
-# Philosophy
-
-Describe the learning philosophy.
-
-Typical themes include:
-
-* understanding before memorization
-* observation before modification
-* systems thinking
-* evidence-based reasoning
-* practical experimentation
-* ethical learning
-
----
-
-# Learning Method
-
-Describe how learning progresses.
-
-Typical workflow:
-
-```text
-Concept
-
+Scope
 ↓
-
-Observation
-
+Question
 ↓
-
-Experiment
-
+Prediction or Hypothesis
 ↓
-
+Observation or Controlled Test
+↓
+Evidence
+↓
 Explanation
+↓
+Record
 ```
 
-or
+State any roadmap-specific adaptation without contradicting
+[Labs Session Rules](LABS_SESSION_RULES.md).
+
+## Lab Environment
+
+Define the minimum safe, authorized, and observable environment. Distinguish
+required capabilities from optional tools. Allow equivalent instruments when
+they preserve the session's question and evidence.
+
+Do not embed private targets, real credentials, or environment-specific
+identifiers. Practical work must be local, owned, isolated, explicitly
+authorized, or performed on an authorized training platform.
+
+## Prerequisites
+
+Name required roadmap outcomes or equivalent evidence. Do not count tool
+familiarity or removed historical sessions as curriculum credit. State
+activation gates when hardware, accounts, scope, or lab isolation must be
+verified.
+
+## Phase Structure
+
+Describe the stable phase pattern. A normal phase should move from bounded
+questions through observation and controlled tests to an integration
+capstone. Sessions normally contain one central question, no more than five
+core tasks, and one explicit completion criterion.
+
+Fixtures, services, tools, and exercises may adapt to the learner's actual
+environment. Phase and session purposes remain stable.
+
+## Phases and Sessions
+
+Use stable identifiers and titles:
 
 ```text
-Understand
-
-↓
-
-Predict
-
-↓
-
-Observe
-
-↓
-
-Explain
+Phase 01 — Phase Title
+P01-S01 — Session Title
 ```
 
-The workflow should remain consistent throughout the roadmap.
+Within each phase, include:
 
----
+- a goal
+- the ordered session list
+- a capstone as the final session
+- an observable phase completion criterion
 
-# Lab Environment
+Descriptions are optional unless needed to disambiguate scope. Do not repeat
+the same verbose explanation under the phase, session, and completion sections.
 
-Specify the recommended environment.
+## Capstones
 
-Typical items include:
+Every phase capstone must verify integration through:
 
-* operating system
-* virtual machines
-* containers
-* development tools
-* debugging tools
-* packet analyzers
-* browsers
-* local services
+- evidence collection
+- reconstruction of a state, path, or trust boundary
+- alternative-explanation checks
+- mechanism-based explanation
+- limitations and uncertainty
 
-Experiments should generally be:
+A capstone is a normal numbered session and uses the same completed-session
+archive format.
 
-* local
-* reproducible
-* observable
-* reversible
-* ethically scoped
+## Completion Criteria
 
----
+Define observable criteria for each phase and for the full roadmap. Completion
+must depend on evidence-backed explanation, not attendance, task count,
+checkboxes, platform ranking, bounty amount, or assistant assertion.
 
-# Typical Phase Structure
+Progress comes from committed completed-session files. Do not create a separate
+progress database or embed progress checkboxes in the roadmap.
 
-Describe the overall organization of a phase.
+## Relationship to Other Roadmaps
 
-Example:
+Explain:
+
+- which canonical foundations this roadmap consumes
+- which later roadmaps use its outcomes
+- which adjacent concepts remain elsewhere
+- whether it can act as a bounded secondary support roadmap
+
+Do not duplicate another roadmap's sessions to make the relationship appear
+self-contained.
+
+## Final Outcome and Core Mental Model
+
+The final outcome states what the learner can reconstruct, validate, reject,
+or report after completing the roadmap. End with a concise text diagram that
+shows the roadmap's central state, path, or trust-boundary model.
+
+## File and Lifecycle Rules
+
+Use these canonical paths:
 
 ```text
-Core Concepts
-
-↓
-
-Observation
-
-↓
-
-Hands-on
-
-↓
-
-Integrated Lab
-
-↓
-
-Review
+active/<roadmap>/README.md
+backlog/<roadmap>/README.md
+archive/<roadmap>/README.md
 ```
 
-The roadmap may define a fixed or variable number of sessions per phase.
-
----
-
-# Phase Structure
-
-Each phase should follow a consistent format.
-
-```text
-Phase Title
-
-Goal
-
-Outcomes
-
-Typical Tools
-
-Example Labs
-
-Sessions
-```
-
----
-
-## Goal
-
-Describe what the learner should understand after completing the phase.
-
-Focus on concepts rather than commands.
-
----
-
-## Outcomes
-
-List measurable abilities.
-
-Use statements beginning with:
-
-* explain
-* identify
-* distinguish
-* inspect
-* observe
-* analyze
-* reason about
-* troubleshoot
-* compare
-
-Avoid vague outcomes such as:
-
-* "know"
-* "learn"
-
----
-
-## Typical Tools
-
-List the primary tools introduced in the phase.
-
-Examples:
-
-* ip
-* tcpdump
-* GDB
-* Wireshark
-* curl
-* systemctl
-
-Do not include every command used during labs.
-
----
-
-## Example Labs
-
-Provide representative experiments.
-
-Experiments should be:
-
-* practical
-* observable
-* reproducible
-
-Focus on investigation rather than completing tasks.
-
----
-
-## Sessions
-
-Each session should contain:
-
-```text
-Session Number
-
-Title
-```
-
-Descriptions are optional unless needed for clarity.
-
-Session names should remain stable over time.
-
----
-
-# Final Outcome
-
-Describe the capabilities expected after completing the entire roadmap.
-
-Focus on:
-
-* reasoning ability
-* systems understanding
-* practical competence
-
-Avoid listing every individual topic again.
-
----
-
-# Core Mental Model
-
-End every roadmap with a concise systems diagram.
-
-Example:
-
-```text
-Application
-
-↓
-
-Operating System
-
-↓
-
-Kernel
-
-↓
-
-Hardware
-```
-
-or
-
-```text
-Source Code
-
-↓
-
-Compiler
-
-↓
-
-Executable
-
-↓
-
-Operating System
-
-↓
-
-Hardware
-```
-
-The diagram should express the central mental model of the roadmap.
-
----
-
-# Naming Conventions
-
-Use:
-
-* clear technical names
-* consistent capitalization
-* stable terminology
-
-Prefer:
-
-```text
-Processes
-
-Windows Services
-
-Packet Capture
-
-Authentication
-```
-
-Avoid ambiguous or informal titles.
-
----
-
-# Exceptions
-
-A roadmap may deviate from this specification when its subject requires a
-different structure.
-
-Any deviation should:
-
-* have a clear learning or technical reason
-* preserve stable phase and session identifiers
-* remain understandable without hidden context
-* avoid forcing unrelated material into the standard structure
-
-Document significant exceptions in the roadmap itself.
-
----
-
-# Roadmap Principles
-
-Every roadmap should satisfy the following principles.
-
-* Begin with concepts before implementation.
-* Progress from observation to experimentation.
-* Build durable mental models.
-* Connect topics to the larger system.
-* Favor reproducible local experiments.
-* Separate roadmap structure from archive templates.
-* Preserve phase and session numbering once published whenever practical.
+Use lowercase English snake_case for roadmap directories. Move the complete
+roadmap directory when its lifecycle changes, then update
+[Roadmap Index](ROADMAP_INDEX.md). Do not create duplicate roadmap documents,
+redirects, or compatibility trees.
+
+Do not create `phaseXX/` directories or session files while drafting a roadmap.
+Create a phase directory only when its first session is actually completed and
+the learner approves the Korean archive.
+
+## Review Checklist
+
+Before accepting a roadmap change, verify that:
+
+- all required sections exist
+- status and path agree
+- canonical topic boundaries do not overlap another roadmap
+- every phase ends in a capstone
+- completion criteria are observable
+- sessions are stable and coherently bounded
+- authorization and public-documentation boundaries are explicit
+- relationships reference prerequisites instead of duplicating them
+- no future progress or observation is fabricated

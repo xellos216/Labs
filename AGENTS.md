@@ -1,483 +1,369 @@
-# AGENTS.md
-
-# Labs Workspace Agent Rules
+# Labs Curriculum V2 Agent Rules
 
 ## Purpose
 
-This repository is a centralized personal learning workspace for long-term technical study.
+This file is the operational authority for agents working in Labs Curriculum
+V2. The repository supports authorized, evidence-based security learning
+across Unix/Linux observation, network protocols, web and API security, bug
+bounty research operations, wired networks, Wi-Fi, and optional Linux
+internals.
 
-The primary goals are:
+Agents must preserve observable evidence, reproducibility, curriculum
+boundaries, public-repository safety, and learner ownership of the primary
+work.
 
-* preserve learning continuity
-* preserve topic-oriented organization
-* maintain roadmap-based progress
-* keep experiments reproducible
-* maintain readable notes and lab records
-* support ChatGPT and Codex collaboration
-* prefer systems understanding over command memorization
+## Source-of-Truth Hierarchy
 
-Favor clarity, incremental progress, and maintainability over broad automation.
-
-This repository contains:
-
-* active learning roadmaps
-* backlog roadmaps
-* archived roadmaps retained for review and reference
-* phase-based learning records
-* practical lab notes
-* session archive documents inside roadmap tracks
-* review questions
-* experiment records
-* small experiments and proof-of-concept code
-* repository operational documentation
-
----
-
-# Source Policy
-
-Labs uses both a local Git repository and a GitHub remote.
-
-For source-of-truth and ChatGPT Project Sources policy, read:
+Use this precedence when sources conflict:
 
 ```text
-ops/docs/LABS_SOURCE_SYNC.md
+current committed repository file
+>
+current observed system output
+>
+focused branch or diff evidence
+>
+explicit handoff
+>
+accumulated chat context
 ```
 
-General rule:
+Project Sources, cached uploads, and LLM memory are not canonical. Uncommitted
+changes are visible only through the local working tree or an explicitly
+provided diff. For repository state, inspect Git and current files instead of
+inferring progress from conversation history.
 
-* GitHub remote and committed repository files are authoritative.
-* ChatGPT Project Sources are cached working references, not canonical originals.
-* Uncommitted local changes are invisible to ChatGPT unless pasted into the conversation or pushed to a branch.
-* If uploaded Project Sources and repository files conflict, repository files win.
+After Curriculum V2 is merged, `main` is the canonical curriculum and
+committed-progress branch.
 
----
-
-# Agent Document Index
-
-Labs governance documents live under:
+## Repository Layout
 
 ```text
-ops/docs/
-```
-
-Before creating, moving, or refactoring lab documents, read the relevant documents below.
-
-* `ops/docs/LABS_SOURCE_SYNC.md`
-
-  * Source-of-truth, Project Sources, and GitHub connector policy.
-* `ops/docs/DESIGN_PRINCIPLES.md`
-
-  * Stable design principles for the Labs project.
-* `ops/docs/LABS_SESSION_RULES.md`
-
-  * Rules for interactive learning sessions.
-* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
-
-  * Markdown generation, formatting, markdownlint validation, and redaction policy.
-* `ops/docs/ARCHIVE_TEMPLATE.md`
-
-  * Template for archived learning/session documents.
-* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
-
-  * QA document format and review-question requirements.
-* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
-
-  * Template for experiment-style lab notes.
-* `ops/docs/ROADMAP_INDEX.md`
-
-  * Index of roadmap documents and learning tracks.
-* `ops/docs/ROADMAP_FORMAT.md`
-
-  * Format rules for roadmap documents.
-* `ops/docs/GETTING_STARTED.md`
-
-  * Public learner bootstrap and operating guide.
-* `ops/docs/CHATGPT_SETUP.md`
-
-  * Optional ChatGPT setup guide.
-* `ops/docs/PROJECT_INSTRUCTIONS.md`
-
-  * Reusable generic project-instructions template.
-
-Root public legal scope documents are:
-
-* `LICENSE.md`
-
-  * Repository-specific license scope and exclusions.
-* `THIRD_PARTY_NOTICES.md`
-
-  * Third-party rights, dependency references, and notice guidance.
-
-Canonical legal text under `LICENSES/` is publisher-supplied source material, not a normal editable project document.
-
----
-
-# Required Reading Policy
-
-For ordinary small file edits, read only this `AGENTS.md` unless the task touches a specific policy area.
-
-For source policy, Project Sources, or GitHub connector behavior, read:
-
-* `ops/docs/LABS_SOURCE_SYNC.md`
-
-For Markdown generation, Markdown cleanup, privacy redaction, or Markdown policy changes, read:
-
-* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
-
-For public onboarding or reusable assistant setup, read the relevant documents:
-
-* `ops/docs/GETTING_STARTED.md`
-* `ops/docs/CHATGPT_SETUP.md`
-* `ops/docs/PROJECT_INSTRUCTIONS.md`
-
-For licensing scope or third-party notices, read:
-
-* `LICENSE.md`
-* `THIRD_PARTY_NOTICES.md`
-
-For canonical legal-text handling, public media, or privacy review, also read:
-
-* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
-
-For session archive generation, read:
-
-* `ops/docs/LABS_SESSION_RULES.md`
-* `ops/docs/ARCHIVE_TEMPLATE.md`
-* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
-
-For experiment documentation, read:
-
-* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
-
-For roadmap continuation, read:
-
-* `ops/docs/ROADMAP_INDEX.md`
-* the roadmap's `README.md` from its current `active/`, `backlog/`, or `archive/` lifecycle directory
-
-For roadmap creation or roadmap modification, read:
-
-* `ops/docs/ROADMAP_FORMAT.md`
-* `ops/docs/ROADMAP_INDEX.md`
-* the relevant roadmap `README.md` from `active/`, `backlog/`, or `archive/` if it already exists
-
-For repository structure, taxonomy, or organization changes, read:
-
-* `ops/docs/LABS_SOURCE_SYNC.md`
-* `ops/docs/ROADMAP_INDEX.md`
-* `ops/docs/DESIGN_PRINCIPLES.md`
-
----
-
-# Repository Layout Policy
-
-Current high-level repository structure:
-
-```text
-AGENTS.md
 README.md
+AGENTS.md
 LICENSE.md
 THIRD_PARTY_NOTICES.md
 LICENSES/
 active/
+  README.md
+  security_core/
+    README.md
 backlog/
+  README.md
+  web_security/
+    README.md
+  bug_bounty/
+    README.md
+  wired_network/
+    README.md
+  wireless_security/
+    README.md
+  linux_internals/
+    README.md
 archive/
+  README.md
 ops/
+  README.md
+  docs/
+  templates/
+  scripts/
 ```
 
-## active/
+Do not create a compatibility, migration, or legacy curriculum tree. Git
+history is the historical record.
 
-`active/` contains roadmaps that are currently practiced or expanded.
+## Required Reading
 
-Canonical active roadmap path:
+Read this file before repository work. Then read only the documents governing
+the task:
+
+- Source state, Project Sources, branch policy, or handoffs:
+  `ops/docs/LABS_SOURCE_SYNC.md`
+- Curriculum boundaries or architectural decisions:
+  `ops/docs/DESIGN_PRINCIPLES.md`
+- Interactive learning sessions or completion decisions:
+  `ops/docs/LABS_SESSION_RULES.md`
+- Markdown creation, public output, media, or redaction:
+  `ops/docs/MARKDOWN_GENERATION_POLICY.md`
+- Roadmap creation, activation, or modification:
+  `ops/docs/ROADMAP_FORMAT.md`, `ops/docs/ROADMAP_INDEX.md`, and the relevant
+  roadmap `README.md`
+- Completed session archive generation:
+  `ops/docs/LABS_SESSION_RULES.md`,
+  `ops/docs/SESSION_ARCHIVE_FORMAT.md`, and
+  `ops/templates/session_archive_ko.md`
+- Detailed experiment records: `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
+- Public onboarding or reusable assistant guidance:
+  `ops/docs/GETTING_STARTED.md`, `ops/docs/CHATGPT_SETUP.md`, and
+  `ops/docs/PROJECT_INSTRUCTIONS.md`
+- License or third-party scope: `LICENSE.md` and `THIRD_PARTY_NOTICES.md`
+
+Read the relevant local policy files completely before acting. When actual
+repository state differs from an instruction or index, report the conflict
+and do not invent missing files, progress, or observations.
+
+## Lifecycle Semantics
+
+### Active
+
+`active/` contains roadmaps currently practiced. Normal operation permits one
+primary roadmap and zero or one bounded secondary roadmap. Initial state:
 
 ```text
-active/<roadmap>/README.md
+Primary: Security Core
+Secondary: none
 ```
 
-Use active roadmap directories for:
+### Backlog
 
-* topic roadmaps
-* reusable concepts
-* long-term notes
-* organized lab records
-* phase/session archives
-* practical observations
+`backlog/` contains complete curriculum specifications that are not active.
+Backlog status does not mean the roadmap is incomplete. Activation requires an
+explicit decision, prerequisite review, a whole-directory lifecycle move, and
+an index update.
 
-## backlog/
+### Archive
 
-`backlog/` contains planned, paused, or future roadmaps.
+`archive/` contains roadmap directories whose full completion criteria have
+been met. Move a roadmap there only after explicit review of committed
+completed-session evidence. The initial V2 archive contains only its README.
 
-Backlog roadmap path:
+Review, correction, and link repair do not reactivate a roadmap. The lifecycle
+archive is not a location for old curriculum or pre-redaction material.
+
+## Canonical Topic Boundaries
+
+Apply one concept, one canonical home:
+
+- HTTP and browser fundamentals belong to Security Core.
+- Web authentication, authorization, and vulnerability mechanisms belong to
+  Web Security.
+- Scope, target selection, evidence, validation, and reporting belong to Bug
+  Bounty Operations.
+- General packet and protocol reasoning belongs to Security Core.
+- Enterprise LAN and identity security belongs to Wired Network Security.
+- IEEE 802.11 and Wi-Fi security belongs to Wireless Security.
+- Optional operating-system mechanism depth belongs to Linux Internals.
+
+Other roadmaps may reference a prerequisite but must not reteach it as a
+parallel canonical curriculum. Tools, frameworks, platforms, and programs are
+instruments or practice environments, not standalone roadmaps.
+
+## Roadmap Specification Rules
+
+Each roadmap owns one English `README.md` in its lifecycle directory and must
+contain:
+
+- Title
+- Status
+- Objective
+- Scope
+- Non-Goals
+- Learning Method
+- Lab Environment
+- Prerequisites
+- Phase Structure
+- Phases and Sessions
+- Completion Criteria
+- Relationship to Other Roadmaps
+- Final Outcome
+- Core Mental Model
+
+Use stable `Phase XX` headings and `PXX-SYY` session identifiers, where the
+identifier encodes the owning phase and session number. Every phase ends in a
+capstone that integrates evidence collection, reconstruction of a state, path,
+or trust boundary, alternative-explanation checks, explanation, limitations,
+and uncertainty.
+
+Phase and session purposes remain stable. Fixtures, tools, local services, and
+exercises may adapt to the learner's actual authorized environment. A roadmap
+is a curriculum specification, not a session archive or progress checklist.
+
+## Interactive Session Rules
+
+Use the learner-facing flow defined in `LABS_SESSION_RULES.md`:
 
 ```text
-backlog/<roadmap>/README.md
+Minimal Setup
+↓
+Question or Task
+↓
+Learner Prediction
+↓
+Learner Performs Primary Work
+↓
+Observed Output
+↓
+Review and Minimal Correction
+↓
+Mechanism Explanation
+↓
+Completion Decision
+↓
+Korean Session Archive
 ```
 
-Backlog material is not active unless explicitly reactivated.
+A session normally has one central question, no more than five core tasks, one
+explicit completion criterion, and one coherent workstream. Do not silently
+expand scope, add core tasks, change roadmap order, infer completion from chat,
+or generate an archive without learner approval.
 
-## archive/
+## Completed Session Archives
 
-`archive/` contains roadmaps whose planned learning sessions are complete and whose roadmap, session records, and review material remain available.
-
-Canonical archived roadmap path:
+Create one Korean Markdown file per completed session under the owning
+roadmap's `phaseXX/` directory. Use English snake_case filenames such as:
 
 ```text
-archive/<roadmap>/README.md
+phase01/01_local_lab_boundaries_and_evidence.md
 ```
 
-Review answers, factual corrections, link repairs, and clearly scoped maintenance may continue in an archived roadmap. Review-only work does not reactivate a track.
+Follow `ops/docs/SESSION_ARCHIVE_FORMAT.md`. Create an archive only after the
+session is actually complete and the learner explicitly approves final archive
+generation. Record only observed commands and results, separate evidence from
+interpretation, preserve educational failures, include minimal raw output, and
+redact sensitive identifiers.
 
-The lifecycle `archive/` directory is not a restoration area for historical, pre-redaction, or legacy material. Reintroducing such material requires an explicit audited restoration, migration, or private archival task.
+Do not create incomplete archives, placeholder phase directories, separate
+`notes.md`, `notes_kor.md`, or `QA.md` files, progress checkboxes, or a progress
+database. The committed file with `status: completed` is progress evidence.
 
-## ops/docs/
+## Language Policy
 
-`ops/docs/` contains governance and operational documentation.
+Use English for:
 
-Use for:
+- root and lifecycle README files
+- `AGENTS.md`
+- governance and format specifications under `ops/docs/`
+- roadmap README files
+- filenames, directories, branch examples, and commit examples
 
-* source sync policy
-* project design principles
-* session rules
-* Markdown generation policy
-* archive templates
-* QA templates
-* experiment templates
-* roadmap index and roadmap format rules
+Use Korean for:
 
-Do not place ordinary session archives here.
+- completed session archive headings and body
+- learner predictions, observations, explanations, failures, and uncertainty
 
-## Root Legal Documents and LICENSES/
+Preserve commands, code, protocol names, APIs, error messages, and technical
+identifiers in their original form. Terms such as file descriptor, system
+call, namespace, capability, request, response, authorization, and race
+condition may remain in English within Korean prose.
 
-`LICENSE.md` defines repository-specific license scope, and `THIRD_PARTY_NOTICES.md` records third-party scope and notice guidance. `LICENSES/` stores verified canonical legal text. Do not treat canonical legal text as ordinary Markdown or normalize it to match repository formatting.
+## Conversation and Handoff Boundaries
 
----
+Organize one conversation around one meaningful roadmap section or one
+coherent workstream. Closely related tasks may remain together. Do not require
+a new conversation for every task, one conversation for an entire long
+milestone, a coordinator conversation, or an end-of-session handoff.
 
-# Roadmap Layout Policy
+Split the conversation or branch when troubleshooting materially diverges,
+installation becomes its own problem, repository corruption or maintenance is
+involved, an independent experiment is required, or the work no longer belongs
+to the current roadmap section.
 
-Each roadmap directory owns its roadmap document inside its current lifecycle directory.
+Create a handoff only when cross-session transfer is useful. Include only:
 
-Canonical roadmap paths are:
+- what was verified
+- what remains unresolved
+- exact paths, commands, or evidence
+- current branch and commit
+- next bounded action
+
+Repository evidence takes precedence over the handoff and chat context.
+
+## Naming and Content Placement
+
+Use lowercase English snake_case for roadmap directories and learner-created
+session or experiment files. Preserve the canonical names of root, governance,
+template, and legal files at their documented paths. Keep stable roadmap paths
+and grep-friendly names. Store completed session archives inside `phaseXX/`
+under the roadmap that owns them. Do not create a phase directory before its
+first approved completed-session archive.
+
+Keep temporary files, private research evidence, generated artifacts, and
+downloaded data outside the public curriculum tree.
+
+## Modification and Deletion Safety
+
+Prefer small, explicit, reviewable diffs. Before non-trivial changes:
+
+1. Verify repository root, branch, and worktree state.
+2. Read governing policies and affected roadmap files.
+3. Inspect actual paths and committed state.
+4. State intended behavior, non-goals, and acceptance evidence.
+5. Use a dry-run for broad filesystem changes when practical.
+6. Verify the final diff and repository structure.
+
+Do not delete, move, or broadly reorganize content without explicit scope and
+approval. Never silently discard unrelated user changes. Do not rewrite Git
+history, force push, or use destructive reset or clean commands. Preserve
+learner-authored records unless an explicitly approved reset or deletion task
+includes them.
+
+## Git Branch Policy
+
+Use short-lived branches with bounded purposes:
 
 ```text
-active/<roadmap>/README.md
-backlog/<roadmap>/README.md
-archive/<roadmap>/README.md
+learn/<roadmap>_pXX_sYY
+fix/<bounded_issue>
+refactor/<bounded_refactor>
 ```
 
-Current examples:
+Do not create long-lived branches per roadmap. Do not merge curriculum or
+session content from an obsolete topic branch without explicit review. Branch
+deletion, merge, push, and history rewriting require task-specific authority.
 
-```text
-active/unix/README.md
-active/c/README.md
-active/network/README.md
-active/server/README.md
-active/crypto/README.md
-active/payload/README.md
-backlog/flask/README.md
-archive/numbersystem/README.md
-```
+## Public Repository and Redaction
 
-Do not move roadmap documents into a central `roadmaps/` directory unless the user explicitly requests a structural redesign.
+Do not commit:
 
-Roadmap documents and their session archives should stay close to each other inside the topic directory.
+- private bug bounty program data or scope-restricted target information
+- undisclosed vulnerability details
+- live cookies, tokens, credentials, secrets, or personal account data
+- unredacted packet captures
+- confidential third-party source
+- prohibited exploit material
+- unsafe real-target identifiers
 
----
+Store real private-program evidence in a separate private workspace. Public
+Labs content may include local-lab evidence, authorized training-platform
+results, public disclosed-report analysis, sanitized mechanism notes, redacted
+examples, and reusable research workflows.
 
-# Content Placement Rules
+Before publishing Markdown or media, follow
+`ops/docs/MARKDOWN_GENERATION_POLICY.md`. Inspect image pixels, surrounding
+context, filenames, and metadata; text search alone is insufficient.
 
-Use `phaseXX/` directories for:
+## Authorized Security-Lab Boundary
 
-* chronological learning sessions
-* exercise records
-* incremental lab work
-* rough observations that may later be distilled
+All practical activity must remain within local systems, VMs, containers,
+network namespaces, owned networks, isolated labs, intentionally vulnerable
+applications, authorized training platforms, or other explicitly authorized
+scope. Respect program policy, regulatory constraints, rate limits, data
+handling rules, and stop conditions.
 
-Do not place:
+Do not provide or execute work intended for unauthorized access or harm. When
+authorization, ownership, or publication safety is uncertain, stop practical
+work and request clarification.
 
-* unrelated temporary files
-* generated build artifacts
-* downloaded archives without context
-* broad cross-topic notes without a clear home
+## Legal-Text Preservation
 
-When content fits multiple directories, choose the directory based on the primary learning objective.
+`LICENSE.md` defines repository-specific scope and
+`THIRD_PARTY_NOTICES.md` records third-party notices. Verified canonical legal
+texts under `LICENSES/` must remain byte-for-byte unchanged. Do not reflow,
+translate, normalize, trim, or lint them. Modify legal scope only when the task
+explicitly requires legal review; a curriculum change alone is not a reason.
 
----
+## Validation
 
-# Archive Rules
-
-Session archive documents are learning records and may exist inside roadmap directories under `active/`, `backlog/`, or `archive/`.
-
-The term "session archive" describes a learning record. The top-level `archive/` directory describes a roadmap lifecycle state. Do not confuse lifecycle relocation with session archive format migration.
-
-Future archives should follow:
-
-```text
-ops/docs/ARCHIVE_TEMPLATE.md
-```
-
-Future QA sections should follow:
-
-```text
-ops/docs/QA_TEMPLATE_SPECIFICATION.md
-```
-
-Do not silently rewrite populated learner answers.
-
-Do not collapse phase history into polished notes without review.
-
----
-
-# Naming Rules
-
-Prefer:
-
-* lowercase_with_underscores.md
-* stable names
-* grep-friendly filenames
-* explicit phase and session names when useful
-
-Examples:
-
-```text
-process_memory_layout.md
-tcp_three_way_handshake.md
-file_permissions.md
-flask_routing_basics.md
-```
-
-Avoid:
-
-* duplicate topic files
-* vague names when context is unclear
-* mixed naming styles
-* unnecessary mass renaming
-
-Roadmap files should normally remain named:
-
-```text
-README.md
-```
-
----
-
-# Modification Policy
-
-Always prefer:
-
-* small diffs
-* explicit reasoning
-* incremental changes
-* preserving learning continuity
-* reading local README files before changing a topic area
-
-Never:
-
-* mass-delete files without explicit approval
-* perform large reorganizations without approval
-* rewrite notes for style alone
-* modify unrelated files
-* collapse phase history into polished notes without review
-* invent missing phase or session metadata
-
-Before significant changes:
-
-1. inspect repository structure
-2. read relevant README or roadmap files
-3. summarize findings
-4. explain the proposed change
-5. provide dry-run output when appropriate
-6. wait for approval
-
-For filesystem operations:
-
-* prefer dry-run first
-* use git-aware workflows
-* preserve directory semantics
-* avoid broad wildcard modifications
-
----
-
-# Refactor Policy
-
-Refactoring should prioritize:
-
-1. semantic clarity
-2. searchability
-3. stable topic boundaries
-4. maintainability
-5. low cognitive overhead
-
-Avoid refactors that:
-
-* increase nesting without clear benefit
-* rename files without strong justification
-* separate roadmaps from their topic directories without approval
-* mix roadmaps, notes, and runnable code in confusing ways
-* destroy learning context without explicit approval
-* obscure the reason a lab was created
-
-When extracting reusable knowledge from phase notes, preserve the original phase record unless the user explicitly approves consolidation.
-
----
-
-# Privacy and Redaction
-
-Labs may be public.
-
-Before committing Markdown produced from real local output, follow:
-
-```text
-ops/docs/MARKDOWN_GENERATION_POLICY.md
-```
-
-Mask personal and local environment identifiers such as public IPs, MAC addresses, host-specific interface names, usernames, hostnames, local paths, tokens, or account IDs.
-
-Public images and other media require review of visible content, filenames, surrounding context, and embedded metadata. Manually inspect image pixels; text grep is insufficient for screenshots. If an agent cannot perform the visual or metadata review, request human review.
-
-Before public commits, review Git author names and email addresses. Removing or sanitizing a file in the current tree does not remove earlier versions from Git history, including copies reachable through old commits, tags, branches, forks, or clones. History rewriting is destructive and requires a separate, explicitly approved task; ordinary documentation cleanup must not rewrite history.
-
-Preserve verified canonical legal text under `LICENSES/` byte-for-byte. Do not reflow, trim, translate, or normalize it for lint or style consistency.
-
----
-
-# Lab Safety
-
-Prefer experiments that are:
-
-* local
-* reproducible
-* observable
-* reversible
-* ethically scoped
-
-For administration, networking, payload, and security exercises:
-
-* prefer VMs, containers, namespaces, or isolated lab targets
-* avoid unnecessary host modifications
-* document what changed and how it was observed
-* do not run destructive commands without explicit approval
-* do not create instructions for unauthorized access or harm
-
-Before destructive actions:
-
-1. explain intent
-2. show affected files or systems
-3. propose a plan
-4. wait for approval
-
----
-
-# Verification Checklist
-
-After modifications, verify as appropriate:
+After changes, run as appropriate:
 
 ```bash
 git status --short
-git diff --stat
 git diff --check
+git diff --stat
+git diff --name-status
 ```
 
-For Markdown changes, run:
+Lint all normal Markdown while excluding canonical legal text:
 
 ```bash
 npx markdownlint-cli2@latest \
@@ -488,79 +374,17 @@ npx markdownlint-cli2@latest \
   "active/**/*.md" \
   "backlog/**/*.md" \
   "archive/**/*.md" \
-  "ops/docs/**/*.md"
+  "ops/**/*.md"
 ```
 
-Do not include canonical legal texts under `LICENSES/` in Markdown linting. If changes are staged, also inspect `git diff --cached --check` and `git diff --cached`.
-
-For public Markdown generated from real network or host output, run the redaction checks documented in:
-
-```text
-ops/docs/MARKDOWN_GENERATION_POLICY.md
-```
-
-For structural refactors:
+For structural changes, also verify:
 
 ```bash
-rg 'old/path' active backlog archive ops README.md AGENTS.md
-rg '\]\(.*\.md\)' active backlog archive ops README.md AGENTS.md
-find . -type d -empty
+rg -n '\]\([^)]*\.md(?:#[^)]*)?\)' README.md AGENTS.md active backlog archive ops
+find . -type d -empty -not -path './.git*'
 ```
 
-Check for:
-
-* broken links
-* duplicate files
-* empty directories
-* accidental mass changes
-* generated artifacts committed by mistake
-* unreviewed public image pixels or metadata
-* unexpected public Git author metadata or historical exposure
-
-For runnable code or lab tools, verify with the smallest relevant command first.
-
----
-
-# Ambiguity Policy
-
-If requirements are unclear:
-
-* ask questions
-* present options
-* avoid assumptions
-
-Do not infer project requirements without evidence.
-
-When classification is uncertain:
-
-* mark content as ambiguous
-* request human review
-* avoid automatic categorization
-
----
-
-# Workspace Preferences
-
-Prefer:
-
-* CLI-first workflows
-* observable system behavior
-* composable tools
-* git-based safety
-* incremental learning records
-* first-principles explanations
-
-Typical environment:
-
-* Arch Linux
-* zsh
-* tmux
-* neovim
-* CLI-first workflow
-
-When teaching or documenting:
-
-* explain why before how
-* connect commands to system behavior
-* prefer mental models over memorized recipes
-* preserve transferable concepts
+Check for stale paths, broken relative links, duplicate canonical topics,
+unintended empty directories, accidental generated files, secrets, personal
+identifiers, and legal-text changes. Interpret search matches rather than
+assuming every match is invalid.

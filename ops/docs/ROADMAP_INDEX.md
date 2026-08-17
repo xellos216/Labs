@@ -1,506 +1,138 @@
 # Roadmap Index
 
-> This document provides a high-level overview of every roadmap in the Labs project.
->
-> It serves as the project's entry point and navigation document rather than a learning archive.
+## Purpose
 
----
+This is the canonical navigation and lifecycle index for Labs Curriculum V2.
+Roadmap content is defined by each roadmap README; progress is determined from
+committed completed-session files.
 
-# Purpose
+## Roadmaps
 
-The Roadmap Index exists to:
+| Location | Roadmap | Primary Focus | Status |
+| --- | --- | --- | --- |
+| `active/security_core/` | Security Core | Linux observation, protocol reasoning, HTTP/browser foundations | Active |
+| `backlog/web_security/` | Web Security | Web and API vulnerability mechanisms | Backlog |
+| `backlog/bug_bounty/` | Bug Bounty Operations | Scope, attack surface, validation, evidence, reporting | Backlog |
+| `backlog/wired_network/` | Wired Network Security | LAN, segmentation, enterprise protocols and identity | Backlog |
+| `backlog/wireless_security/` | Wireless Security | 802.11 and Wi-Fi security | Backlog |
+| `backlog/linux_internals/` | Linux Internals | Optional OS-mechanism support | Backlog |
 
-* provide a quick overview of all learning tracks
-* define the purpose of each roadmap
-* show long-term progression
-* avoid duplicate roadmap creation
-* simplify project navigation
+## Lifecycle Definitions
 
-It should remain concise and stable.
+- **Active** — currently practiced under `active/`; normal operation permits
+  one primary roadmap and zero or one secondary roadmap.
+- **Backlog** — a complete curriculum specification under `backlog/` that is
+  not currently active.
+- **Archived** — a roadmap under `archive/` whose full completion criteria are
+  supported by committed completed-session evidence.
 
----
+Repository location and roadmap status must agree. Move the whole roadmap
+directory and update this index when lifecycle state changes.
 
-# Repository Structure
-
-Labs is organized by learning status and project function.
-
-```text
-active/
-backlog/
-archive/
-ops/
-  docs/
-AGENTS.md
-README.md
-```
-
-## active/
-
-`active/` contains roadmaps that are currently practiced or expanded.
-
-Canonical active roadmap path:
+## Initial Progress
 
 ```text
-active/<roadmap>/README.md
+Curriculum version: V2
+Active roadmap: Security Core
+Current phase: Phase 01 — Unix/Linux Observation
+Completed sessions: none
+Next session: Session 01 — Local Lab Boundaries and Evidence
 ```
 
-## backlog/
-
-`backlog/` contains planned, paused, or future roadmaps.
-
-Backlog roadmap path:
+Initial roadmap allocation:
 
 ```text
-backlog/<roadmap>/README.md
+Primary: Security Core
+Secondary: none
 ```
 
-## archive/
+No earlier curriculum session, archive, numbering, or completion claim counts
+as V2 progress.
 
-`archive/` contains roadmaps whose planned learning sessions are complete and whose records remain available for review and reference.
-
-Archived roadmap path:
+## Primary Progression
 
 ```text
-archive/<roadmap>/README.md
+Security Core
+      │
+      ├───────────────┐
+      ▼               ▼
+Web Security     Bug Bounty Operations
+      │
+      ▼
+Wired Network Security
+      │
+      ▼
+Wireless Security
 ```
 
-## ops/docs/
+This expresses activation relationships, not a fixed calendar. Web Security
+and Bug Bounty Operations may reinforce one another while retaining separate
+canonical responsibilities: mechanism reasoning belongs to Web Security;
+authorized research selection, validation, evidence, and reporting belong to
+Bug Bounty Operations.
 
-`ops/docs/` contains project governance, templates, source policy, and workflow rules.
-
-The top-level `archive/` directory is a roadmap lifecycle location, not a historical restoration tree. Historical or pre-redaction material should not be reintroduced unless the user explicitly requests a dedicated restoration, migration, or private archival task.
-
----
-
-# Roadmap Overview
-
-| Location                            | Roadmap                     | Primary Focus                                 | Status  |
-| ----------------------------------- | --------------------------- | --------------------------------------------- | ------- |
-| `active/unix/`                      | Unix                        | CLI, text processing, observability           | Active  |
-| `active/c/`                         | C Programming               | Memory, ELF, assembly foundations             | Active  |
-| `active/network/`                   | Networking                  | Communication, protocols, packet reasoning    | Active  |
-| `active/server/`                    | Linux Server Administration | Operations, troubleshooting, recovery         | Active  |
-| `active/crypto/`                    | Cryptography                | Byte reasoning and transformation analysis    | Active  |
-| `active/payload/`                   | Payload Construction        | Parser reasoning and input interpretation     | Active  |
-| `active/devtool/`                   | DevTools                    | Browser troubleshooting and request analysis  | Active  |
-| `backlog/flask/`                    | Flask                       | HTTP, web applications, security foundations  | Backlog |
-| `backlog/toolsmith/`                | Security Toolsmith          | Building security-related utilities           | Backlog |
-| `backlog/vulnerability-report/`     | Vulnerability Report Lab    | Vulnerability verification and report writing | Backlog |
-| `backlog/LFS/`                      | Linux From Scratch          | Linux build process and system construction   | Backlog |
-| `archive/numbersystem/`             | Number Systems              | Binary, hex, bytes, encoding foundations      | Archive |
-
-Status meanings:
-
-* **Active** — maintained as a current learning track under `active/`
-* **Backlog** — planned, paused, or future work under `backlog/`
-* **Archive** — planned learning sessions are complete; review and reference continue under `archive/`
-
-Repository location is authoritative for lifecycle classification.
-
----
-
-# Roadmap File Policy
-
-Each roadmap owns its roadmap document inside its current lifecycle directory.
-
-Canonical roadmap paths:
+## Optional Linux Internals Support Path
 
 ```text
-active/<roadmap>/README.md
-backlog/<roadmap>/README.md
-archive/<roadmap>/README.md
+A security investigation reaches an OS mechanism boundary
+        ↓
+Activate the relevant Linux Internals phase
+        ↓
+Observe and explain the required mechanism
+        ↓
+Return to the original research track
 ```
 
-Current active examples:
+Linux Internals is a bounded optional secondary roadmap, not a fixed
+prerequisite for the specialized security roadmaps.
+
+## Active-Roadmap Limit
+
+Normal operation permits:
 
 ```text
-active/unix/README.md
-active/c/README.md
-active/network/README.md
-active/server/README.md
-active/crypto/README.md
-active/payload/README.md
+one primary roadmap
++
+zero or one secondary roadmap
 ```
 
-Backlog roadmap path:
+Activate a secondary roadmap only for a defined dependency or coherent support
+workstream. Record the activation decision and return point. Do not create
+parallel active tracks merely because their topics are interesting.
+
+## Suggested Long-Term Priority
+
+This allocation guides emphasis and is not a fixed schedule:
+
+| Area | Suggested emphasis |
+| --- | ---: |
+| Web Security and Bug Bounty Operations | 60% |
+| Wired Network Security | 20% |
+| Wireless Security | 15% |
+| Linux Internals | 5% |
+
+## Canonical Paths
 
 ```text
-backlog/<roadmap>/README.md
+active/security_core/README.md
+backlog/web_security/README.md
+backlog/bug_bounty/README.md
+backlog/wired_network/README.md
+backlog/wireless_security/README.md
+backlog/linux_internals/README.md
 ```
 
-Examples:
+If a path is missing or conflicts with this index, report and resolve the
+repository inconsistency instead of inventing a replacement sequence.
 
-```text
-backlog/flask/README.md
-backlog/toolsmith/README.md
-```
+## Progress Determination
 
-Archived roadmap example:
+Determine progress from:
 
-```text
-archive/numbersystem/README.md
-```
+1. the current committed roadmap README
+2. committed session files inside that roadmap
+3. `status: completed` in each completed session's front matter
 
-Do not create duplicate canonical roadmap files in a separate central roadmap directory unless the project structure is explicitly revised.
-
-If a roadmap file is missing, moved, or conflicts with this index, report the conflict before continuing the learning sequence.
-
-Individual roadmap documents should normally be read from the GitHub remote or repository working tree, not treated as canonical ChatGPT Project Sources.
-
----
-
-# Suggested Learning Relationships
-
-The roadmaps are designed to reinforce one another.
-
-```text
-Unix
-        │
-        ▼
-C Programming
-        │
-        ▼
-Linux Internals
-        │
-        ▼
-Networking
-        │
-        ▼
-Linux Server Administration
-        │
-        ▼
-Flask / Web Foundations
-        │
-        ▼
-Security Toolsmith
-        │
-        ▼
-Cryptography
-        │
-        ▼
-Payload Construction
-        │
-        ▼
-Embedded Linux & Firmware Analysis
-```
-
-This is a conceptual dependency graph rather than a strict prerequisite order.
-
----
-
-# Roadmap Summaries
-
-## Unix
-
-Location:
-
-```text
-active/unix/
-```
-
-Focus:
-
-* stream processing
-* composable CLI workflows
-* observability
-* shell reasoning
-
-Supports:
-
-* Server Administration
-* Networking
-* Embedded Linux
-* Toolsmith
-
----
-
-## C Programming
-
-Location:
-
-```text
-active/c/
-```
-
-Focus:
-
-* process memory
-* ELF
-* assembly
-* debugging
-
-Supports:
-
-* Linux Internals
-* Reverse Engineering
-* Embedded Linux
-
----
-
-## Networking
-
-Location:
-
-```text
-active/network/
-```
-
-Focus:
-
-* packet flow
-* Linux networking
-* protocols
-* packet analysis
-
-Supports:
-
-* Flask
-* Server Administration
-* HTB
-* Security
-
----
-
-## Linux Server Administration
-
-Location:
-
-```text
-active/server/
-```
-
-Focus:
-
-* services
-* authentication
-* logging
-* troubleshooting
-* recovery
-
-Supports:
-
-* Infrastructure
-* Security
-* Production Linux
-
----
-
-## Cryptography
-
-Location:
-
-```text
-active/crypto/
-```
-
-Focus:
-
-* bytes
-* transformations
-* XOR
-* token analysis
-
-Supports:
-
-* Payload Construction
-* Web Security
-
----
-
-## Payload Construction
-
-Location:
-
-```text
-active/payload/
-```
-
-Focus:
-
-* parser reasoning
-* trust boundaries
-* input interpretation
-* multi-stage execution
-
-Supports:
-
-* Web Security
-* Secure Software Design
-
----
-
-## Number Systems
-
-Location:
-
-```text
-archive/numbersystem/
-```
-
-Focus:
-
-* binary
-* hexadecimal
-* bytes
-* encoding
-* numeric representation
-
-Supports:
-
-* C Programming
-* Cryptography
-* Payload Construction
-* Low-level systems reasoning
-
----
-
-## Flask
-
-Location:
-
-```text
-backlog/flask/
-```
-
-Focus:
-
-* HTTP
-* sessions
-* authentication
-* web application architecture
-
-Supports:
-
-* Web Security
-* Payload Construction
-
----
-
-## Security Toolsmith
-
-Location:
-
-```text
-backlog/toolsmith/
-```
-
-Focus:
-
-* building small security utilities
-* sockets
-* HTTP
-* parsers
-
-Supports:
-
-* Security Automation
-* Python Engineering
-
----
-
-## Vulnerability Report Lab
-
-Location:
-
-```text
-backlog/vulnerability-report/
-```
-
-Focus:
-
-* vulnerability verification
-* reproducible PoC writing
-* false-positive filtering
-* impact analysis
-* report writing
-* safe disclosure literacy
-
-Supports:
-
-* Web Security
-* Practical Security Research
-* Embedded Linux & Firmware Analysis
-* IoT Device Security
-
----
-
-# Current Status
-
-Each roadmap progresses independently.
-
-Progress should always follow:
-
-* the roadmap document
-* completed archive documents
-* committed repository state
-
-Never infer skipped phases or sessions.
-
-Repository location is authoritative for lifecycle classification:
-
-* `active/` contains current learning tracks
-* `backlog/` contains planned or paused tracks
-* `archive/` contains tracks whose planned learning sessions are complete
-
-Active and Backlog status do not imply completion. Archive status means the planned session sequence is complete, but review questions, factual corrections, and reference use may continue.
-
-Determine progress from the roadmap and its recorded phase/session documents.
-
----
-
-# Future Roadmaps
-
-Potential future additions include:
-
-* Reverse Engineering
-* Windows Internals
-* Malware Analysis
-* Digital Forensics
-* Cloud Infrastructure
-* Kubernetes
-* eBPF
-* Operating System Internals
-* Embedded Linux & Firmware Analysis
-
-These should be added only after a dedicated roadmap has been created.
-
----
-
-# Maintenance Rules
-
-When adding a new active roadmap:
-
-* add it under `active/<roadmap>/`
-* create `active/<roadmap>/README.md`
-* update this index
-* follow the established roadmap format
-
-When adding a backlog roadmap:
-
-* add it under `backlog/<roadmap>/`
-* create `backlog/<roadmap>/README.md`
-* update this index if it is a meaningful project roadmap
-
-When archiving a completed roadmap:
-
-* move the roadmap directory to `archive/<roadmap>/`
-* keep its roadmap and session records together
-* update this index and any lifecycle-specific references
-* do not treat review-only work as reactivation
-
-When restoring historical material:
-
-* use a dedicated branch
-* verify privacy and redaction before commit
-* preserve original context when possible
-* avoid reintroducing pre-redaction material into the public baseline without explicit approval
-
-This document should remain an overview, not a detailed curriculum.
-
----
-
-# Project Vision
-
-Together, these roadmaps form a connected systems curriculum.
-
-The long-term objective is to understand complete computing systems — from source code and hardware to networking, operating systems, applications, and security — through evidence-based reasoning and practical observation.
+Do not infer progress from chat history, Project Sources, directory names,
+templates, uncommitted drafts, tool-platform completion, or a handoff alone.
+Curriculum V2 has no separate progress database and no progress checkboxes.

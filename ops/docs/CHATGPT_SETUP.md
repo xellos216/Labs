@@ -1,130 +1,139 @@
 # Optional ChatGPT Setup for Labs
 
-## Role of ChatGPT
+## Role
 
-ChatGPT can be used as:
+ChatGPT may act as an interactive questioner, evidence reviewer, mechanism
+explainer, and approved archive drafter. It is not the source of repository
+state, proof that an experiment occurred, a substitute for learner work, or a
+requirement for using Labs.
 
-- a reasoning partner
-- an interactive learning assistant
-- a review and drafting tool
-- an optional archive generator
+## Source Precedence
 
-ChatGPT is not:
+Provide or load [Labs Source and Git Policy](LABS_SOURCE_SYNC.md). Apply this
+order:
 
-- the canonical source of repository state
-- a replacement for system observation
-- proof that an experiment occurred
-- mandatory for using Labs
+```text
+current committed repository file
+>
+current observed system output
+>
+focused branch or diff evidence
+>
+explicit handoff
+>
+accumulated chat context
+```
 
-The committed repository remains the source of truth. ChatGPT is an optional
-AI assistant around that workflow.
+Project Sources and model memory are cached context, not canonical state.
+Uncommitted local work is invisible unless its file content or focused diff is
+provided.
 
-## Recommended Workspace Setup
+## Recommended Context
 
-Use a project-scoped ChatGPT workspace, or the current equivalent available
-to you, to keep related instructions and references together:
-
-1. Create a workspace for your personal Labs repository.
-2. Add the contents of [Project Instructions](PROJECT_INSTRUCTIONS.md) as the
-   workspace's project instructions or equivalent persistent guidance.
-3. Make the relevant repository material available to the workspace.
-4. Keep the committed repository authoritative over cached or uploaded
-   copies.
-5. Load the relevant roadmap before continuing a learning sequence.
-
-Interface labels and available features may differ by product surface or
-change over time. The workflow matters more than a fixed menu location.
-
-## Ways to Provide Repository Context
-
-Choose the narrowest supported method that provides the material needed for
-the current session:
-
-- Use a supported GitHub connection when it is available for your account,
-  product experience, and repository.
-- Upload stable governance and template documents as reusable references.
-- Paste the relevant roadmap, file excerpt, or local diff into the current
-  conversation.
-
-Do not assume that every account or platform provides every integration.
-Uncommitted local changes are invisible unless you paste them or otherwise
-make them available to the conversation.
-
-## Recommended Stable Reference Documents
-
-Follow [Labs Source Sync Policy](LABS_SOURCE_SYNC.md) when deciding what to
-keep as reusable project context. Recommended stable references include:
+Keep the smallest stable context needed for the current work:
 
 - `LABS_SOURCE_SYNC.md`
+- `DESIGN_PRINCIPLES.md`
 - `LABS_SESSION_RULES.md`
 - `MARKDOWN_GENERATION_POLICY.md`
-- `ARCHIVE_TEMPLATE.md`
-- `QA_TEMPLATE_SPECIFICATION.md`
-- `LAB_EXPERIMENT_TEMPLATE.md`
 - `ROADMAP_INDEX.md`
+- `SESSION_ARCHIVE_FORMAT.md`
 
-`DESIGN_PRINCIPLES.md` and `ROADMAP_FORMAT.md` can also be useful when the
-session needs them. Do not keep ordinary session archives, handoffs,
-temporary notes, or frequently changing progress records as persistent
-reference sources.
+Load the relevant roadmap README from its current committed lifecycle path.
+Use [Roadmap Format](ROADMAP_FORMAT.md) only for curriculum changes and [Lab
+Experiment Format](LAB_EXPERIMENT_TEMPLATE.md) only for a detailed experiment
+record.
 
-## Source-of-Truth Order
+Do not treat ordinary session archives, handoffs, temporary notes, or progress
+summaries as persistent authority.
 
-Use this order when sources disagree:
+## Conversation Boundary
+
+Organize a conversation around one meaningful roadmap section or one coherent
+workstream. A conversation may contain multiple closely related tasks.
+
+Do not require:
+
+- one new conversation for every task
+- one conversation for an entire long milestone
+- a coordinator conversation
+- an end-of-session handoff
+
+Create a separate conversation or branch when:
+
+- troubleshooting materially diverges from the learning objective
+- a driver or tool installation issue becomes its own problem
+- repository corruption or maintenance is involved
+- the issue requires an independent experiment
+- the work no longer belongs to the current roadmap section
+
+## Starting a Learning Conversation
+
+Use a prompt like this, replacing the path with the actual active roadmap:
 
 ```text
-Committed repository state
-↓
-Relevant roadmap in its lifecycle directory
-↓
-Stable cached project references
-↓
-Current conversation clarification
+Read ops/docs/LABS_SOURCE_SYNC.md, ops/docs/LABS_SESSION_RULES.md, and
+ops/docs/ROADMAP_INDEX.md from the current committed repository. Then read
+active/security_core/README.md. Determine progress only from committed session
+files with status: completed. Confirm the next documented session and begin
+with minimal setup and one question. Ask for my prediction when useful, then
+let me perform the primary work. Review only actual output. Do not change the
+roadmap sequence or generate an archive unless I explicitly approve it.
 ```
 
-A stale uploaded document must not override the current committed repository
-or a roadmap in its authoritative lifecycle directory.
+## Session Behavior
 
-## Add Project Instructions
+The assistant should:
 
-Copy and adapt the [Project Instructions Template](PROJECT_INSTRUCTIONS.md).
-Update it for your repository, preferred conversational language,
-environment, tools, learning goals, and safety boundaries. Do not inherit
-another learner's private context or progress.
+- state the authorized scope and central question
+- request a prediction when it improves learning
+- let the learner perform primary terminal or browser work
+- review actual commands and observed output
+- give the smallest correction needed to continue
+- separate evidence, interpretation, alternatives, and uncertainty
+- keep the session to one coherent workstream and no more than five core tasks
+- apply the roadmap's explicit completion criterion
+- require explicit approval for a phase transition
 
-## Start the First Session
+It should not immediately provide a full solution unless the learner asks or
+is blocked, fabricate output, infer completion from chat, add core tasks
+silently, or alter roadmap sequence without an approved repository change.
 
-Example prompt:
+## Archive Workflow
 
-```text
-Read ops/docs/LABS_SOURCE_SYNC.md and ops/docs/ROADMAP_INDEX.md.
-Then read <lifecycle>/<roadmap>/README.md from the committed repository.
-Identify the next documented session without inventing missing progress.
-Begin with a short concept and ask for my prediction before observation.
-Do not generate a session archive unless I explicitly request one.
-```
+After actual completion, ask whether the learner wants the final archive. Only
+after approval, use [Session Archive Format](SESSION_ARCHIVE_FORMAT.md) and the
+[Korean template](../templates/session_archive_ko.md).
 
-Replace the placeholders with a roadmap path that exists in your repository.
+The archive must be Korean, use the real completion date, contain only observed
+commands and results, separate evidence from interpretation, preserve useful
+failed hypotheses, state limitations, and redact sensitive identifiers. It is
+one file; do not create separate notes or QA files.
 
-## Archive and Review Workflow
+## Handoffs
 
-Learning happens interactively. Generate a session archive only on explicit
-request, after the relevant observations and reasoning are available. Never
-fabricate experiments, command output, dates, progress, or learner answers.
-Review answers remain blank unless the learner explicitly asks to populate
-them.
+Create a handoff only when cross-session transfer is genuinely useful. Include
+only:
 
-Review every repository change locally before committing it. The assistant's
-draft is not evidence that a command ran or that a file matches the committed
-repository.
+- what was verified
+- what remains unresolved
+- exact paths, commands, or evidence
+- current branch and commit
+- next bounded action
 
-## Maintenance Note
+Verify the handoff against repository evidence at the start of the next
+conversation.
 
-ChatGPT interfaces and available integrations can change. Rely on the
-workflow principles in this guide and current official OpenAI documentation
-rather than screenshots or fixed menu coordinates.
+## Private and Public Context
 
-Official product references used for this guide:
+Do not upload private bug bounty data, undisclosed findings, credentials,
+tokens, personal account data, unredacted captures, confidential source, or
+scope-restricted target information as reusable project context. Keep real
+private-program evidence in a separate private workspace and provide only
+sanitized, necessary context.
 
-- [Projects in ChatGPT](https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt)
-- [Connecting GitHub to ChatGPT](https://help.openai.com/en/articles/11145903/)
+## Maintenance Principle
+
+Chat interfaces and context features may change. Preserve the workflow rather
+than depending on a specific menu, connector, or persistent-memory behavior.
+The current committed repository remains authoritative.

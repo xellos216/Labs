@@ -1,217 +1,158 @@
-# Labs Source Sync Policy
+# Labs Source and Git Policy
 
-> This document defines how Labs project context is shared between the local repository, GitHub remote, ChatGPT Project Sources, and GitHub connector.
+## Purpose
+
+This document defines how local files, Git branches, GitHub, observed system
+output, ChatGPT context, and handoffs establish state for Labs Curriculum V2.
+
+## Source-of-Truth Precedence
+
+Use this order when sources conflict:
+
+```text
+current committed repository file
 >
-> Labs differs from ordinary coding or documentation projects because ChatGPT is also used as an interactive learning partner and archive generator.
-
----
-
-# Purpose
-
-The purpose of this document is to define which source should be treated as authoritative when ChatGPT works with the Labs project.
-
-Labs uses multiple context locations:
-
-* local working tree
-* GitHub remote repository
-* ChatGPT Project Sources
-* current conversation
-
-These locations do not always contain the same state.
-
-This document defines how to handle that difference.
-
----
-
-# Source-of-Truth Model
-
-The local Git repository and its GitHub remote are the canonical source of truth for Labs.
-
-Version-controlled project documents should be updated locally, committed, and pushed.
-
-The GitHub remote is the preferred source for ChatGPT when current repository state matters.
-
-ChatGPT Project Sources are not canonical.
-
-Uploaded Project Sources may be useful as cached working references, but they may become stale and must not override the GitHub repository.
-
-If ChatGPT Project Sources and GitHub conflict, GitHub wins.
-
----
-
-# Context Locations
-
-## Local Working Tree
-
-The local working tree is where edits are created, reviewed, and committed.
-
-Uncommitted local changes are not visible through the GitHub connector.
-
-To ask ChatGPT to review uncommitted work, either:
-
-* paste the relevant `git diff` directly into the conversation
-* commit and push the work to a branch, then tell ChatGPT which branch to read
-
-Do not assume that ChatGPT can see local uncommitted changes.
-
-## GitHub Remote Repository
-
-The GitHub remote contains committed and pushed Labs history.
-
-It is authoritative for:
-
-* roadmap documents
-* archive documents
-* session records
-* project templates
-* source policy documents
-* long-term project structure
-
-## ChatGPT Project Sources
-
-ChatGPT Project Sources are cached working references.
-
-They may be used for high-frequency documents that ChatGPT needs during ordinary learning and archive generation.
-
-They are not authoritative.
-
-## Current Conversation
-
-The current conversation may contain temporary instructions, clarifications, or user decisions.
-
-Conversation context can guide the current task, but it must not silently override the repository when repository state is relevant.
-
----
-
-# Recommended Project Sources
-
-Keep the following in ChatGPT Project Sources:
-
-* `ops/docs/LABS_SOURCE_SYNC.md`
-* `ops/docs/LABS_SESSION_RULES.md`
-* `ops/docs/MARKDOWN_GENERATION_POLICY.md`
-* `ops/docs/ARCHIVE_TEMPLATE.md`
-* `ops/docs/QA_TEMPLATE_SPECIFICATION.md`
-* `ops/docs/LAB_EXPERIMENT_TEMPLATE.md`
-* `ops/docs/ROADMAP_INDEX.md`
-
-Optionally keep:
-
-* `ops/docs/DESIGN_PRINCIPLES.md`
-* `ops/docs/ARCHIVE_MIGRATION_PLAN.md`
-* `ops/docs/ROADMAP_FORMAT.md`
-
-Do not keep ordinary session archives, handoff files, temporary notes, or frequently changing progress records in ChatGPT Project Sources.
-
-Individual roadmap documents should normally be read from the GitHub remote through the GitHub connector.
-
----
-
-# Roadmap Loading Policy
-
-Each roadmap owns its roadmap document inside its current lifecycle directory.
-
-Canonical roadmap paths are:
-
-```text
-active/<roadmap>/README.md
-backlog/<roadmap>/README.md
-archive/<roadmap>/README.md
+current observed system output
+>
+focused branch or diff evidence
+>
+explicit handoff
+>
+accumulated chat context
 ```
 
-Current active examples:
+Project Sources, cached uploads, and LLM memory are not canonical. They may
+provide working context but must not override current committed files.
+
+For runtime questions, current observed output is the evidence for what the
+system did. It does not silently change repository policy, roadmap sequence,
+or committed progress.
+
+## Canonical Git State
+
+After Curriculum V2 is merged:
 
 ```text
-active/unix/README.md
-active/c/README.md
-active/network/README.md
-active/server/README.md
-active/crypto/README.md
-active/payload/README.md
+main = current canonical curriculum and committed progress
 ```
 
-Backlog roadmaps may be referenced at `backlog/<roadmap>/README.md`, but they are not active unless explicitly reactivated.
+The local working tree is where changes are inspected before commit. The
+GitHub remote provides committed state to tools that cannot see local files.
+Uncommitted changes are not visible through the remote; provide a focused diff
+or exact file content when another tool must review them.
 
-Archived roadmaps may be referenced at `archive/<roadmap>/README.md`. Their planned learning sessions are complete, but review and reference work may continue without reactivating the track.
+Always identify the repository root, current branch, current commit, and
+working-tree state before broad changes or a handoff.
 
-Examples:
+## Focused Branch and Diff Evidence
+
+A branch or diff is evidence only for the paths and commit range inspected.
+Check the branch's base before assuming that it represents current `main`.
+When uncommitted changes matter, inspect both staged and unstaged diffs.
+
+Do not silently rebase, merge, switch branches, reset, discard changes, rewrite
+history, or force push. Report a baseline conflict before modifying files.
+
+## Short-Lived Branch Policy
+
+Permitted branch patterns are:
 
 ```text
-backlog/flask/README.md
-archive/numbersystem/README.md
+learn/<roadmap>_pXX_sYY
+fix/<bounded_issue>
+refactor/<bounded_refactor>
 ```
 
-Before continuing a learning sequence or review, ChatGPT should consult the relevant roadmap document from its current lifecycle directory in the GitHub remote.
+Branches should have one bounded purpose and merge or close after review. Do
+not create long-lived branches named for roadmap directories.
 
-If a roadmap file has moved or the expected path is unavailable, ChatGPT should report the missing file instead of inventing the session order.
+Obsolete topic branches may remain after the V2 reset. Treat them as cleanup
+candidates, not curriculum sources:
 
-Uploaded Project Sources may contain cached references, but they must not override the roadmap in the GitHub remote.
+1. List whether they exist locally or remotely.
+2. Do not merge their earlier session content into V2.
+3. Do not delete them without explicit branch-cleanup authority.
+4. If a path-specific diff shows unique non-curriculum governance or tooling,
+   report the exact paths for separate review.
 
----
+## Committed Progress
 
-# Archive and Template Policy
+Progress is determined from the current roadmap specification and committed
+session files whose front matter contains `status: completed`. Chat claims,
+placeholder files, directory existence, Project Sources, and uncommitted
+templates are not completed-session evidence.
 
-For ordinary archive generation, ChatGPT may use cached Project Sources for:
+Curriculum V2 uses no separate progress database or progress checkboxes.
 
-* archive format
-* QA format
-* experiment format
-* session interaction rules
-* Markdown generation and redaction policy
+## Observed System Output
 
-If the user says templates were recently edited, or if there is any conflict, ChatGPT should fetch the current template from GitHub before generating final archive output.
+Record only output actually produced by the learner's authorized environment.
+Preserve the command or action, relevant environment, and minimum evidence
+needed to support the conclusion. An assistant-generated example is not an
+observation.
 
-Archive documents are generated only when explicitly requested.
+Before committing an observation, redact it according to
+[Markdown Generation Policy](MARKDOWN_GENERATION_POLICY.md). Private-program
+or unsafe target evidence belongs in a separate private workspace.
 
-Existing archives may use older formats.
+## Project Sources and Cached Context
 
-Do not silently rewrite historical archives unless the user explicitly requests an archive migration or refactoring task.
+Stable governance files may be kept as Project Sources for convenience, but
+the current committed repository remains authoritative. Useful references are:
 
----
+- `LABS_SOURCE_SYNC.md`
+- `DESIGN_PRINCIPLES.md`
+- `LABS_SESSION_RULES.md`
+- `MARKDOWN_GENERATION_POLICY.md`
+- `ROADMAP_FORMAT.md`
+- `ROADMAP_INDEX.md`
+- `SESSION_ARCHIVE_FORMAT.md`
 
-# Preferred Workflow
+Load the relevant roadmap README from its current committed lifecycle path.
+Do not keep ordinary session archives, private evidence, handoffs, or changing
+progress summaries as authoritative cached sources.
 
-For repository updates:
+## Conversation Context
 
-```text
-Local repo
-→ commit
-→ push
-→ GitHub remote
-→ ChatGPT reads current files through GitHub connector
-```
+The current conversation may supply a bounded instruction or clarification,
+but it is not proof of repository state, runtime output, or completed progress.
+Inspect the relevant files and evidence before continuing a roadmap.
 
-For frequent archive output:
+Organize a conversation around one meaningful roadmap section or coherent
+workstream. Split materially divergent troubleshooting or maintenance rather
+than letting accumulated context redefine the curriculum.
 
-```text
-Project Sources cached templates
-→ generate archive
-→ user saves locally
-→ commit
-→ push
-```
+## Handoffs
 
----
+Use a handoff only when cross-session transfer is useful. It should contain:
 
-# Conflict Policy
+- what was verified
+- what remains unresolved
+- exact paths, commands, or evidence
+- current branch and commit
+- next bounded action
 
-If Project Sources and GitHub remote disagree:
+Verify handoff claims against the repository and current observations. When
+they conflict, the higher source in the precedence order wins.
 
-1. Treat GitHub remote as authoritative.
-2. Report the conflict.
-3. Ask whether the stale Project Source should be updated or removed.
+## Conflict Handling
 
-Do not silently merge conflicting rules.
+When two sources disagree:
 
----
+1. Identify both sources and their dates, branches, commits, or paths.
+2. Apply the source-of-truth precedence.
+3. Verify the current committed file and relevant observed evidence.
+4. Report unresolved ambiguity instead of silently combining rules.
+5. Update stale cached context only after the canonical change is reviewed and
+   committed.
 
-# New Session Bootstrap
+## Session Bootstrap
 
-At the start of a Labs session, use this rule:
+Before continuing learning work:
 
-```text
-Use Project Instructions and `ops/docs/LABS_SOURCE_SYNC.md` for source policy.
-Use cached Project Sources for common templates.
-Use the GitHub connector to read the roadmap from its current lifecycle directory before continuing a learning sequence or review.
-Treat GitHub remote as authoritative over uploaded Project Sources.
-```
+1. Read this policy and the [Roadmap Index](ROADMAP_INDEX.md).
+2. Identify the current branch and commit.
+3. Load the relevant roadmap README from its current lifecycle directory.
+4. Determine progress only from committed completed-session files.
+5. Confirm the authorized environment and next documented session.
+6. Follow [Labs Session Rules](LABS_SESSION_RULES.md).

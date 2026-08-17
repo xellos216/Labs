@@ -1,14 +1,8 @@
 # Markdown Generation Policy
 
-This document defines how Markdown should be created or modified in Labs.
+## Purpose and Scope
 
-The goal is to prevent recurring cleanup work by making generated Markdown match the repository lint policy before commit.
-
----
-
-# Scope
-
-This policy applies to generated or modified Markdown under:
+This policy governs Markdown created or modified in Labs Curriculum V2:
 
 ```text
 README.md
@@ -18,183 +12,173 @@ THIRD_PARTY_NOTICES.md
 active/**/*.md
 backlog/**/*.md
 archive/**/*.md
-ops/docs/**/*.md
+ops/**/*.md
 ```
 
-Repository Markdown outside these paths should be handled only when the task explicitly includes it.
+Verified canonical legal text under `LICENSES/` is outside normal Markdown
+generation, formatting normalization, and linting.
 
-Canonical legal texts stored under `LICENSES/` are not generated repository Markdown. They are excluded from normal Markdown linting and formatting normalization.
+## Source and Language
 
-The public repository baseline does not keep a `legacy/` tree. The top-level `archive/` directory is reserved for completed roadmap lifecycles; it is not a restoration area for historical or pre-redaction material. Do not reintroduce historical archive directories unless the user explicitly requests a dedicated restoration or migration task.
+Current repository files and `.markdownlint-cli2.jsonc` define the formatting
+baseline. Cached Project Sources and assistant memory must not override them.
 
----
+Use English for governance, roadmap specifications, repository navigation,
+filenames, branch examples, and commit examples. Use Korean for completed
+session archive headings and body, including learner observations and
+explanations. Preserve commands, protocol names, APIs, errors, and technical
+identifiers in their original form.
 
-# Source of Truth
+## Formatting Rules
 
-The repository is authoritative.
+- Put blank lines around lists, headings, block quotes, and fenced code.
+- Add a language identifier to every fenced code block.
+- Use one trailing newline at the end of each file.
+- Remove trailing spaces and repeated blank lines.
+- Use English snake_case for learner-created session and experiment filenames;
+  preserve canonical governance, template, root, and legal filenames.
+- Prefer concise headings and measurable verbs.
+- Keep relative links repository-valid.
+- Do not rewrite learner language or observed facts for style alone.
 
-Markdown generation must follow:
+Roadmap README files are English curriculum specifications. Completed-session
+files are Korean evidence records. Do not combine those roles in one document.
+
+## Evidence and Interpretation
+
+Never present an unobserved command result, packet, log, browser state,
+response, or successful test as fact. Separate:
+
+- observed evidence
+- interpretation supported by that evidence
+- inference requiring another test
+- limitation or uncertainty
+
+Include only the minimum raw output needed to support the explanation. Do not
+copy a raw chat transcript into the repository. Preserve failed hypotheses
+when they clarify the final mental model or false-positive rejection.
+
+## Public Security-Research Boundary
+
+Labs is public or publication-oriented. Do not commit:
+
+- private bug bounty program data
+- undisclosed vulnerability details
+- scope-restricted target information
+- live cookies, tokens, credentials, or secrets
+- personal account data
+- unredacted packet captures
+- confidential third-party source
+- prohibited exploit material
+- real target identifiers when disclosure is unsafe
+
+Real private-program evidence belongs in a separate private workspace. The
+public repository may contain:
+
+- local-lab results
+- authorized training-platform results
+- public disclosed-report analysis
+- sanitized mechanism notes
+- redacted examples
+- generic and reusable research workflows
+
+Repository publication eligibility does not expand authorization to perform a
+test. Authorization and disclosure safety must both be satisfied.
+
+## Identifier Redaction
+
+Mask or replace identifiers that expose a real environment, person, account,
+or target, including:
+
+- WAN and revealing private IP addresses
+- MAC addresses and stable host-specific interface names
+- usernames, hostnames, account IDs, email addresses, and personal paths
+- program names or asset identifiers covered by private scope
+- session IDs, cookies, API keys, OAuth tokens, and authentication material
+- request IDs or timestamps when they can correlate private activity
+
+Use documentation ranges and generic identifiers when the relationship matters:
 
 ```text
-.markdownlint-cli2.jsonc
-.github/workflows/markdown.yml
+IPv4: 192.0.2.10, 198.51.100.23, 203.0.113.8
+IPv6: 2001:db8::10
+MAC: aa:bb:cc:dd:ee:ff
+Interfaces: eth0, wlan0
+Accounts: account_a, account_b, admin_test
+Targets: app.example.test, api.example.test
 ```
 
-ChatGPT Project Sources are cached references. If Project Sources and committed repository files disagree, the committed repository files win.
+Review redaction manually. Pattern searches can miss encoded, truncated,
+contextual, or image-based secrets.
 
----
+## Images, Captures, and Other Media
 
-# Required Formatting Habits
+Before adding public media, inspect:
 
-When creating or editing Markdown, follow these rules by default:
+- visible pixels or rendered content
+- filename and surrounding Markdown context
+- embedded metadata when present
+- whether the source and license permit publication
 
-- Put blank lines before and after lists.
-- Use language identifiers on fenced code blocks.
-- End every Markdown file with exactly one trailing newline.
-- Avoid trailing spaces.
-- Avoid repeated blank lines unless a template explicitly requires them.
-- Do not rewrite learner answers for style-only reasons.
+Look for terminal prompts, usernames, hostnames, paths, tokens, QR codes,
+notifications, window titles, tabs, target names, network identifiers, and
+background content. Text grep does not replace manual image inspection.
 
-Example list formatting:
+Unredacted captures and private research artifacts must remain outside the
+public repository. Prefer small sanitized excerpts in the archive over binary
+evidence when the excerpt is sufficient.
 
-```markdown
-After completing this phase, you should be able to:
-
-- explain the concept
-- observe the behavior
-- connect it to related systems
-
-Next paragraph starts here.
-```
-
-Example fenced code formatting:
-
-````markdown
-```bash
-git status --short
-```
-````
-
----
-
-# Canonical Legal-Text Preservation
-
-Official license texts must be obtained from the authoritative license publisher and stored verbatim. Do not edit, reflow, translate, trim, or normalize a canonical legal text merely to satisfy repository formatting conventions.
-
-When practical, verify downloaded legal text byte-for-byte against a fresh copy from the same official source. Record the official source and verification method. If an exact canonical source causes an intentional whitespace warning, document the warning instead of silently correcting the legal text.
-
-This exception applies only to verified canonical legal text. Ordinary repository documents, including `LICENSE.md` and `THIRD_PARTY_NOTICES.md`, remain subject to the normal Markdown policy.
-
----
-
-# Privacy and Redaction
-
-Labs is a public repository.
-
-When creating or editing Markdown, do not preserve raw personal or local environment identifiers unless the user explicitly requests it for a private note.
-
-Mask or generalize:
-
-- public WAN IP addresses
-- home or local gateway IP addresses
-- private LAN IP addresses when they reveal the user's real network layout
-- MAC addresses
-- stable device-specific interface names from the real host, replacing them with documentation-safe names such as `eth0` or `wlan0`
-- hostnames, usernames, local paths, tokens, account IDs, or other identifiers tied to the user's real environment
-
-Prefer documentation-safe examples:
-
-```text
-Public example IPs:
-203.0.113.10
-198.51.100.23
-192.0.2.15
-
-Private LAN examples:
-192.168.0.10
-192.168.0.1
-
-IPv6 documentation example:
-2001:db8::1
-
-MAC examples:
-aa:bb:cc:dd:ee:ff
-aa:bb:cc:dd:ee:11
-
-Interface examples:
-eth0
-wlan0
-```
-
-For network learning archives, preserve the technical relationship while masking the real identifier.
-
-Example:
-
-```text
-Real observation:
-default via <real-public-gateway> dev <real-interface> src <real-public-ip>
-<real-mac-address>
-
-Archive-safe form:
-default via 203.0.113.1 dev eth0 src 203.0.113.10
-aa:bb:cc:dd:ee:ff
-```
-
-The purpose is to preserve the network model without exposing the user's actual environment.
-
-Historical or pre-redaction material must not be reintroduced into the public repository unless the task is explicitly about audited restoration, migration, or private archival work.
-
-## Images and Other Media
-
-Every image or other media file intended for the public repository requires review of the rendered or visible content, its filename and surrounding Markdown context, and embedded metadata when present. For images, manual visual inspection is mandatory. Text searches cannot detect identifiers rendered inside image pixels.
-
-Inspect visible content for:
-
-- terminal prompts, usernames, and hostnames
-- local filesystem paths
-- timestamps when they are sensitive
-- debugger PINs, tokens, session identifiers, QR codes, credentials, or other secrets
-- public or revealing network identifiers
-- window titles, tabs, notifications, and background content
-
-List tracked media with a Git-aware command, adapting the extensions to the task:
+List tracked media with a Git-aware command:
 
 ```bash
-git ls-files -- '*.png' '*.jpg' '*.jpeg' '*.gif' '*.webp' '*.svg' '*.pdf' '*.mp4' '*.webm'
+git ls-files -- '*.png' '*.jpg' '*.jpeg' '*.gif' '*.webp' '*.svg' '*.pdf' \
+  '*.pcap' '*.pcapng' '*.har' '*.mp4' '*.webm'
 ```
 
-When `exiftool` is already available, it may be used to inspect embedded metadata:
+Use an available metadata viewer such as `exiftool`; do not install a new tool
+solely for this check. Request human review when visual or metadata inspection
+cannot be completed.
 
-```bash
-exiftool "<media-path>"
-```
+## Session Archive Generation
 
-If `exiftool` is unavailable, use an equivalent local metadata viewer or request human metadata review. Do not require tool installation or OCR solely to satisfy this policy. Removing metadata does not replace visual inspection.
+Follow [Session Archive Format](SESSION_ARCHIVE_FORMAT.md). Create one archive
+only after actual session completion and explicit learner approval. Use the
+real completion date, `status: completed`, Korean required sections, and an
+English snake_case filename.
 
----
+Do not create incomplete session files, placeholder archives, separate notes
+or QA files, or progress checkboxes. A template is not progress evidence.
 
-# Git Metadata and History Exposure
+## Canonical Legal Text
 
-Commit author names and email addresses are public metadata when repository history is published. Before making public commits, contributors should inspect their configured identity. A GitHub-provided noreply address may be used when appropriate.
+Preserve verified publisher-supplied legal text under `LICENSES/`
+byte-for-byte. Do not reflow, translate, trim, normalize, or lint it. A warning
+caused by canonical formatting must be documented rather than fixed in the
+source text.
 
-Useful inspection commands include:
+`LICENSE.md` and `THIRD_PARTY_NOTICES.md` are normal repository Markdown but
+must not be changed for style or curriculum wording when their legal scope and
+internal links remain valid.
+
+## Git Metadata and History
+
+Public commits expose author name and email. Review configured identity before
+publishing:
 
 ```bash
 git config --get user.name
 git config --get user.email
 git log --all --format='%h %an <%ae>' | sort -u
-git log --all -- <repository-relative-path>
 ```
 
-Removing or sanitizing a file in the current tree does not remove earlier versions from Git history. Renamed or deleted files may remain reachable from old commits, tags, branches, forks, and clones.
+Deleting or redacting a current file does not remove older copies from commits,
+tags, branches, forks, or clones. Report historical exposure for human review.
+Do not rewrite history as part of ordinary documentation cleanup.
 
-Findings from identity or history inspection require human review and must not trigger automatic history rewriting. History rewriting is destructive and must be a separate, explicitly approved task. Ordinary Markdown cleanup must not rewrite history, and rewriting the current repository cannot guarantee removal from existing forks or clones.
+## Required Validation
 
----
-
-# Required Validation
-
-Before committing Markdown changes, run:
+Run Markdown lint across all normal Markdown, including `ops/templates/` and
+`ops/scripts/`, while excluding `LICENSES/`:
 
 ```bash
 npx markdownlint-cli2@latest \
@@ -205,7 +189,7 @@ npx markdownlint-cli2@latest \
   "active/**/*.md" \
   "backlog/**/*.md" \
   "archive/**/*.md" \
-  "ops/docs/**/*.md"
+  "ops/**/*.md"
 ```
 
 Expected result:
@@ -214,66 +198,30 @@ Expected result:
 Summary: 0 error(s)
 ```
 
-Also check the diff:
+Also inspect:
 
 ```bash
 git diff --check
-git diff
+git diff --stat
+git diff --name-status
 ```
 
-When staged changes are relevant, inspect them as well:
+For public documents derived from real output, search at minimum for MAC
+addresses and unexpected IPv4 literals, then interpret every match:
 
 ```bash
-git diff --cached --check
-git diff --cached
+rg -n --pcre2 '\b[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5}\b' \
+  README.md AGENTS.md active backlog archive ops
+rg -n --pcre2 '\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b' \
+  README.md AGENTS.md active backlog archive ops
 ```
 
-Before committing public Markdown that used real network or host output, search for unmasked environment identifiers.
+Validate local relative Markdown links with existing repository tooling or a
+temporary uncommitted check. Do not add a dependency solely for link checking.
 
-Check MAC addresses:
+## Agent Requirements
 
-```bash
-rg -n --pcre2 \
-  -e '\b[0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5}\b' \
-  -- active backlog archive docs README.md AGENTS.md LICENSE.md THIRD_PARTY_NOTICES.md
-```
-
-Check public IPv4 addresses:
-
-```bash
-rg -n --pcre2 \
-  -e '\b(?!(?:10|127)\.)(?!(?:172\.(?:1[6-9]|2[0-9]|3[01]))\.)(?!(?:192\.168)\.)(?!(?:169\.254)\.)(?!(?:0|255)\.)(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])(?:\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])){3}\b' \
-  -- active backlog archive docs README.md AGENTS.md LICENSE.md THIRD_PARTY_NOTICES.md
-```
-
-Review matches manually because documentation ranges such as `203.0.113.0/24`, `198.51.100.0/24`, `192.0.2.0/24`, and well-known public examples such as `8.8.8.8` may be intentional.
-
-Do not commit broad formatting changes unless the task is explicitly a formatting cleanup.
-
----
-
-# Agent Instruction
-
-When an agent generates or edits Markdown for Labs, it must:
-
-1. Read this policy when the task involves Markdown generation, Markdown cleanup, privacy redaction, or Markdown policy changes.
-2. Keep changes scoped to the requested files.
-3. Preserve learner answers and historical context.
-4. Avoid reintroducing historical or pre-redaction material into the public repository unless explicitly requested.
-5. Mask personal or local environment identifiers before writing public Markdown.
-6. Visually inspect public media and review its metadata, or request human review when the agent cannot do so; do not rely only on text searches for image privacy.
-7. Preserve verified canonical legal texts exactly and exclude them from ordinary formatting normalization.
-8. Run or request the repository markdownlint command before commit.
-9. Run or request redaction checks when real network or host output appears in the generated Markdown.
-10. Report Git identity or historical exposure findings for human review without rewriting history.
-11. Keep public-documentation changes narrow, observable, and reviewable.
-
----
-
-# ChatGPT Project Instruction Snippet
-
-Use this short instruction in the ChatGPT Labs project settings:
-
-```text
-When creating or editing Markdown for Labs, follow the canonical repository policy in ops/docs/MARKDOWN_GENERATION_POLICY.md. The GitHub repository is authoritative over Project Sources; do not reintroduce historical or pre-redaction material unless explicitly requested.
-```
+An agent modifying repository Markdown must read this policy, keep changes in
+scope, preserve legal text, avoid fabricating evidence, apply publication
+boundaries, run the relevant validation, and report failed or unavailable
+checks without claiming success.
